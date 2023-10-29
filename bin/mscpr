@@ -1,0 +1,16 @@
+#!/bin/expect
+
+set IP "43.143.140.169"
+set PASSWORD "Bear@123456"
+set FILE [lindex $argv 0]
+
+spawn scp -R $FILE Bear@$IP:~/Download
+expect {
+    "yes/on" {
+        send "yes\r"
+    }
+    "password" {
+        send "$PASSWORD\r"
+    }
+}
+interact

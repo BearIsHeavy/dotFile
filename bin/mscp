@@ -1,0 +1,18 @@
+#! /bin/expect
+
+set ipAddress "43.143.140.169"
+set hostName "Bear"
+set Password "Bear@123456"
+set file [ lindex $argv 0]
+
+spawn scp $file $hostName@$ipAddress:~/Download
+expect {
+    "yes/on" {
+        send "yes\r"
+        exp_continue
+    }
+    "password:" {
+        send "$Password\r"
+    }
+}
+interact

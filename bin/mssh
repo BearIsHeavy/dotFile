@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+
+set ipaddress "43.143.140.169"
+set password "Bear@123456"
+set timeout 30
+
+
+spawn ssh Bear@$ipaddress
+expect {
+    "yes/no" {
+        send "yes\r"
+        exp_continue
+    }
+    "password:" {
+        send "$password\r"
+    }
+}
+interact
+
