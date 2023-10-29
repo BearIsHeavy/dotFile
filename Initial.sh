@@ -11,3 +11,6 @@ makeLink ".profile"
 makeLink ".zshrc"
 makeLink ".bashrc"
 makeLink ".vimrc"
+makeLink ".gitconfig"
+
+ln -s $(pwd)/bin ~/
