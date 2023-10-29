@@ -1,17 +1,13 @@
 #!/bin/bash
 
-if [ ! -f $HOME/.profile ];then
-    ln -s $(HOME)/.profile ~
-fi
+makeLink()
+{
+    fileName="$1"
+    [ -f $HOME/$fileName || -L $HOME/$fileName ] && { rm $HOME/$fileName; } || echo "not exsits $fileName"
+    ln -s $HOME/.dotfile/$fileName ~
+}
 
-if [ ! -f $HOME/.bashrc ];then
-    ln -s $(HOME)/.bashrc ~
-fi
-
-if [ ! -f $HOME/.vimrc ];then
-    ln -s $(HOME)/.vimrc ~
-fi
-
-if [ ! -f $HOME/.zshrc ];then
-    ln -s $(HOME)/.zshrc ~
-fi
+makeLink ".profile"
+makeLink ".zshrc"
+makeLink ".bashrc"
+makeLink ".vimrc"

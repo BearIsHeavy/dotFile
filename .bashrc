@@ -96,8 +96,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f "$HOME"/.dotfile/.bashrc_alias ]; then
-    source "$HOME"/.dotfile/.bashrc_alias
+if [ -f "$HOME"/.dotfile/.alias ]; then
+    source "$HOME"/.dotfile/.alias
 fi
 
 # enable programmable completion features (you don't need to enable
