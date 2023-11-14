@@ -1,11 +1,10 @@
-" set nu
+" Plugins will be downloaded under the specified directory.
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+" Declare the list of plugins.
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
-" set ruler
-" set undolevels=200
-" set incsearch
-" set background=dark
-" set smartindent
-" set autoindent
+
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -23,9 +22,6 @@ syntax on
 set number
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
-
-" Highlight cursor line underneath the cursor vertically.
-" set cursorcolumn
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -67,16 +63,23 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 set encoding=utf-8
 
-" PLUGINS
+" PLUGINS ---------------------------------------------------------------- {{{
+" Plugin code goes here.
+" }}}
+" MAPPINGS --------------------------------------------------------------- {{{
+" Mappings code goes here.
+" }}}
+" VIMSCRIPT -------------------------------------------------------------- {{{
+" This will enable code folding.
+" Use the marker method of folding.
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+" More Vimscripts code goes here.
+" }}}
+" STATUS LINE ------------------------------------------------------------ {{{
+" Status bar code goes here.
+" }}}
 
-" MAPPINGS -------------------------------------------------------
-" Set the backslash as the leader key
-" let mapleader="\"
-
-" Press \\ to jump back to the last cursor position.
-nnoremap <leader>\ ``
 
