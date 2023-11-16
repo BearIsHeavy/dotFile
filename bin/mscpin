@@ -2,9 +2,10 @@
 
 set IP "43.143.140.169"
 set PASSWORD "Bear@123456"
-set FILE [lindex $argv 0]
+set PathFile [ lindex $argv 0 ]
+set patter [ lindex $argv 1 ]
 
-spawn scp -R $FILE Bear@$IP:~/Download
+spawn scp $patter Bear@$IP:~/"$PathFile" ./
 expect {
     "yes/on" {
         send "yes\r"

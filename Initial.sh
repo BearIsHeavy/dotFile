@@ -13,4 +13,4 @@ makeLink ".bashrc"
 makeLink ".vimrc"
 makeLink ".gitconfig"
 
-[ -d $HOME/bin ] && ( rm -r $HOME/bin; ln -s $HOME/.dotfile/bin $HOME ) || ( ln -s $HOME/.dotfile/bin $HOME )
+ln -s $(pwd)/bin ~/

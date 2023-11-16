@@ -3,9 +3,10 @@
 set ipAddress "43.143.140.169"
 set hostName "Bear"
 set Password "Bear@123456"
-set file [ lindex $argv 0]
+set file [lindex $argv 0]
+set patter [lindex $argv 1]
 
-spawn scp $file $hostName@$ipAddress:~/Download
+spawn scp $patter $file $hostName@$ipAddress:~/Download
 expect {
     "yes/on" {
         send "yes\r"
