@@ -1,11 +1,11 @@
-" Plugins will be downloaded under the specified directory.
+" Plugins will be downloaded under the specified directory. ---------- {{{
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 " List ends here. Plugins become visible to Vim after this call.
-call plug#end()
-
+call plug#end
+"}}}
 
 "VIM_BASIC_SETTING ------------------------------------------------ {{{
 " Disable compatibility with vi which can cause unexpected issues.
@@ -139,7 +139,7 @@ endif
 let mapleader = '\'
 
 " Press \\ to jump back to the last cursor position.
-nnoremap <leader>\ ``
+nnoremap <leader>\ :nohlsearch<CR>
 
 " Press \p to print the current file to the default printer from a Linux operating system.
 " View available printers:   lpstat -v
@@ -161,9 +161,6 @@ nnoremap O O<esc>
 " Center the cursor vertically when moving to the next word during a search.
 nnoremap n nzz
 nnoremap N Nzz
-
-" Yank from cursor to the end of line.
-nnoremap Y y$
 
 " Map the F5 key to run a Python script inside Vim.
 " I map F5 to a chain of commands here.
@@ -195,4 +192,29 @@ nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 " }}}
 
+" STATUS LINE ------------------------------------------------------------ {{{
 
+" Clear status line when vimrc is reloaded.
+set statusline=
+
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
+
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
+
+" }}}
+
+"Customer config for VIM --------------------------------------{{{
+nnoremap <F2> :colorscheme molokai<CR>
+inoremap { {<CR>}
+inoremap ( ()<ESC>i
+set visualbell
+set t_vb=
+"}}}
