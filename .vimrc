@@ -4,7 +4,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 " List ends here. Plugins become visible to Vim after this call.
-call plug#end
+call plug#end()
 "}}}
 
 "VIM_BASIC_SETTING ------------------------------------------------ {{{
