@@ -148,7 +148,8 @@ nnoremap <leader>\ :nohlsearch<CR>
 nnoremap <silent> <leader>p :%w !lp<CR>
 
 " Type jj to exit insert mode quickly.
-inoremap jj <Esc>
+" inoremap jj <Esc>
+inoremap jj <C-n>
 
 " Press the space bar to type the : character in command mode.
 nnoremap <space> :
@@ -213,8 +214,8 @@ set laststatus=2
 
 "Customer config for VIM --------------------------------------{{{
 nnoremap <F2> :colorscheme molokai<CR>
-inoremap { {<CR>}
-inoremap ( ()<ESC>i
+inoremap { {<CR>}<ESC>k
+inoremap ( ()<ESC>h
 set visualbell
 set t_vb=
 "}}}

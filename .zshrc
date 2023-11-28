@@ -23,7 +23,7 @@ precmd(){
 # This code snip will be used to set Promopt
 PS1="%n@%m %1~ %#"
 
-# souce necessary file
+# source necessary file
 if [ -s $HOME/.dotfile/.alias ];then
     source $HOME/.dotfile/.alias
 fi
