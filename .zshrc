@@ -3,9 +3,9 @@ VIRTUAL_ENV=basic
 check_command_status()
 {
     if [ $? -eq 0 ];then
-	    PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{green}😊%f"  # Success status (green)
+        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV")) %F{green}😊%f"  # Success status (green)
     else
-        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{red}😟%f"    # Failure status (red)
+        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV")) %F{red}😟%f"    # Failure status (red)
     fi
 
     if [ $(whoami) = 'root' ];then

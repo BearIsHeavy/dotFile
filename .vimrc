@@ -148,7 +148,7 @@ nnoremap <leader>\ :nohlsearch<CR>
 nnoremap <silent> <leader>p :%w !lp<CR>
 
 " Type jj to exit insert mode quickly.
-" inoremap jj <Esc>
+" inoremap jj <C-n>
 inoremap jj <C-n>
 
 " Press the space bar to type the : character in command mode.
