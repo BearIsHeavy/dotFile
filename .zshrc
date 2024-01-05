@@ -1,11 +1,12 @@
 # Function to check command exit status
 VIRTUAL_ENV=basic
+
 check_command_status()
 {
     if [ $? -eq 0 ];then
-        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV")) %F{green}😊%f"  # Success status (green)
+	    PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{green}😊%f"  # Success status (green)
     else
-        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV")) %F{red}😟%f"    # Failure status (red)
+        PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{red}😟%f"    # Failure status (red)
     fi
 
     if [ $(whoami) = 'root' ];then
@@ -23,7 +24,7 @@ precmd(){
 # This code snip will be used to set Promopt
 PS1="%n@%m %1~ %#"
 
-# source necessary file
+# souce necessary file
 if [ -s $HOME/.dotfile/.alias ];then
     source $HOME/.dotfile/.alias
 fi
@@ -31,7 +32,7 @@ fi
 # Add PATH
 export PATH=$HOME/bin:$PATH
 
-
+# ADD NVM PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
