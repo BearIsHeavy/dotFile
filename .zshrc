@@ -4,13 +4,24 @@ VIRTUAL_ENV=basic
 check_command_status()
 {
     if [ $? -eq 0 ];then
-	    #PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{green}😊%f"  # Success status (green)
-        PROMPT_STATUS="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/') %F{yellow}($(basename "$VIRTUAL_ENV"))%f %F{green}😊%f"  # Success status (green)
+        git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')
+        if [[ $git_branch == "" ]];then
+            python_venv="($(basename "$VIRTUAL_ENV"))"
+            PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}😊%f"
+        else
+            PROMPT_STATUS="%F{blue} $git_branch %f%F{green}😊%f"
+        fi
     else
-        #PROMPT_STATUS=" ($(basename "$VIRTUAL_ENV)") %F{red}😟%f"    # Failure status (red)
-        PROMPT_STATUS="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/') %F{yellow}($(basename "$VIRTUAL_ENV"))%f %F{read}❌%f"  # Success status (green)
+        git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')
+        if [[ $git_branch == "" ]];then
+            python_venv="($(basename "$VIRTUAL_ENV"))"
+            PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}❌%f"
+        else
+            PROMPT_STATUS="%F{blue} $git_branch %f%F{green}❌%f"
+        fi
     fi
 
+    # root user
     if [ $(whoami) = 'root' ];then
         PROMPT="%S%F{red}%n%f%s${PROMPT_STATUS} %B%F{cyan}%1~%f%b %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
     else
