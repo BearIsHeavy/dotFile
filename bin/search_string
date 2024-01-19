@@ -1,8 +1,10 @@
 #!/bin/bash
 
-for i in `ls .`
+getPath=$(ls .)
+
+for i in $getPath
 do
-    if [ -d $i ];then
+    if [ -d "$i" ];then
         continue
     fi
     seach=$(grep "$1" "$i")

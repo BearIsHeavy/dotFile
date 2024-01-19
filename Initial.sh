@@ -2,7 +2,7 @@
 
 echo "you should running Initial.sh in specifical file, now in $(pwd)"
 if [[ $(basename "$(pwd)") != ".dotfile" ]];then
-    echo "switch workspace" && exit;
+    echo "switch workspace" && exit 2;
 fi
 
 makeLink()
