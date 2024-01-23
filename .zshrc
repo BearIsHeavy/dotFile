@@ -1,7 +1,10 @@
 # Function to check command exit status
 VIRTUAL_ENV=basic
 
-check_command_status()
+# this snipper be used to auto-suggesion when you type commands
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+function check_command_status()
 {
     if [ $? -eq 0 ];then
         git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')

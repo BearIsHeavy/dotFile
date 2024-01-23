@@ -19,6 +19,7 @@ create_link()
     makeLink ".bashrc"
     makeLink ".vimrc"
     makeLink ".gitconfig"
+    makeLink ".zsh"
     
     ln -s "$(pwd)/bin" ~/
 }
