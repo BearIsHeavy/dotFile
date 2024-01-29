@@ -1,13 +1,20 @@
 # Function to check command exit status
 VIRTUAL_ENV=basic
 
-setopt promptsubst  #enable command sustitution in prompt
+# Set history model
+HISTFILE=~/.zsh_history
+HISTSIZE=2000
+SAVEHIST=2000
+setopt appendhistory
+
+#enable command sustitution in prompt
+setopt promptsubst 
 
 # this snipper be used to auto-suggesion when you type commands
 if [[ -L ~/.zsh ]];then
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.zsh/zsh-autosuggestions/*.zsh
 else
-    echo ".zsh folds is not exit"
+    echo ".zsh folds is not exit 1>&2"
 fi
 
 function check_command_status()
