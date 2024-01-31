@@ -57,6 +57,13 @@ PS1="%n@%m %1~ %#"
 if [ -s $HOME/.dotfile/.alias ];then
     source $HOME/.dotfile/.alias
 fi
+# source download auto-suggestion
+if [[ -f /etc/zsh_command_not_found ]];then
+    source /etc/zsh_command_not_found
+else
+    echo "/etc/zsh_command_not_found not installed"
+    echo "sudo apt install zsh_command_not_found"
+fi
 
 # Add PATH
 export PATH=$HOME/bin:$PATH
