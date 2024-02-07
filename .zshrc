@@ -2,7 +2,7 @@
 VIRTUAL_ENV=basic
 
 # Set history model
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=2000
 SAVEHIST=2000
 setopt appendhistory
@@ -14,7 +14,13 @@ setopt promptsubst
 if [[ -L ~/.zsh ]];then
     source ~/.zsh/zsh-autosuggestions/*.zsh
 else
-    echo ".zsh folds is not exit 1>&2"
+    read -p "Do you make symbol link to .zsh?" c
+    if [[ $c =~ ^(Y|y) ]];then
+        ln -s $HOME/.dotfile/.zsh $HOME/.zsh
+    else
+        echo "not insatll" 1>&2
+        #echo ".zsh folds is not exit" 1>&2
+    fi
 fi
 
 function check_command_status()
@@ -73,3 +79,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# ADD EDITOR 
+export EDITOR=vim
+export VISUAL=vim
+
+
+#logo="
+#__________   __    __                        __    
+#\______   \_/  |__/  |_____________    ____ |  | __
+# |    |  _/\   __\   __\_  __ \__  \ _/ ___\|  |/ /
+# |    |   \ |  |  |  |  |  | \// __ \\  \___|    < 
+# |______  / |__|  |__|  |__|  (____  /\___  >__|_ \ 🐻
+#        \/                         \/     \/     \/
+#
+#"
+echo $logo
+cd $HOME

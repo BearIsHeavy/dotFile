@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "you should running Initial.sh in specifical file, now in $(pwd)"
+echo "Double check running Initial.sh in specifical file(within .dotfile), now in $(pwd)"
 if [[ $(basename "$(pwd)") != ".dotfile" ]];then
     echo "switch workspace" && exit 2;
 fi
@@ -58,3 +58,26 @@ create_nvm() {
     fi
 }
 
+####The following code is used to interact with the user####
+echo "Whether to create a file for the following files:"
+echo ".profile"
+echo ".zshrc"
+echo ".bashrc"
+echo ".vimrc"
+echo ".gitconfig"
+echo ".zsh"
+read -p -r "yes/no" n
+
+if [[ $n =~ ^[Y|y] ]];then
+    create_link
+elif [[ $n =~ ^[N|n] ]];then
+    echo "No Link be created"
+fi
+
+echo "Whether to create dirtion link for vim:"
+read -p -r "yes/no" n
+if [[ $n =~ ^[Y|y] ]];then
+    initial_vim
+elif [[ $n =~ ^[N|n] ]];then
+    echo "No Link be created"
+fi
