@@ -3,7 +3,18 @@
 echo "Double check running Initial.sh in specifical file(within .dotfile), now in $(pwd)"
 if [[ $(basename "$(pwd)") != ".dotfile" ]];then
     echo "switch workspace" && exit 2;
+else
+	if [[ $(which zsh) == "" ]];then
+		echo "runing:sudo apt update && sudo apt install zsh"
+		if sudo apt update && sudo apt install zsh; then
+			echo "success"
+		else
+			echo "fail please manuial install"
+		fi
+	fi
 fi
+
+
 
 makeLink()
 {
@@ -20,7 +31,13 @@ create_link()
     makeLink ".vimrc"
     makeLink ".gitconfig"
     makeLink ".zsh"
-    ln -s "$(pwd)/bin" ~/
+    makeLink ".zshenv"
+    if [[ -d $HOME/bin ]];then
+        mv $HOME/bin $HOME/bin_back
+        ln -s "$(pwd)/bin" ~/
+        cp $HOME/bin_back/* $HOME/bin
+        rm -r $HOME/bin_back
+    fi
 }
 
 
@@ -46,7 +63,7 @@ create_nvm() {
     if [[ -s "$HOME/.nvm" || -d "$HOME/.nvm" ]];then
         echo -e "you had have nvm"
     else
-       read -r "Do you decide to install nvm in this computer" dec
+       read -p "Do you decide to install nvm in this computer" dec
        if [[ $dec != "no" && $dec != "N" && $dec != "n" ]];then
            code="curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash"
           if [[ $code == 0 ]];then
@@ -66,7 +83,7 @@ echo ".bashrc"
 echo ".vimrc"
 echo ".gitconfig"
 echo ".zsh"
-read -p -r "yes/no" n
+read -p "yes/no: " n
 
 if [[ $n =~ ^[Y|y] ]];then
     create_link
@@ -75,7 +92,8 @@ elif [[ $n =~ ^[N|n] ]];then
 fi
 
 echo "Whether to create dirtion link for vim:"
-read -p -r "yes/no" n
+read -p "yes/no" n
+
 if [[ $n =~ ^[Y|y] ]];then
     initial_vim
 elif [[ $n =~ ^[N|n] ]];then
