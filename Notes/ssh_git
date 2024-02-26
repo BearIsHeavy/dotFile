@@ -1,0 +1,9 @@
+# use ssh connect git
+
+## inspect and setting `ssh-add`
+```bash
+ssh-add -l #如果不能正常工作，执行接下来的命令。可以，请查看密钥的正确性
+ssh-add {{path(~/.ssh/id_rsa)}}
+ssh-add -l
+# Note: Use `tldr` command to knowlege its detail simplly 
+```

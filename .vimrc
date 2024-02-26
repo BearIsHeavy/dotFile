@@ -21,7 +21,7 @@ filetype indent on
 " Turn syntax highlighting on.
 syntax on
 " Add numbers to each line on the left-hand side.
-set number
+set relativenumber
 " Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
@@ -141,25 +141,31 @@ let mapleader = '\'
 " Press \\ to jump back to the last cursor position.
 nnoremap <leader>\ :nohlsearch<CR>
 
-" Press \p to print the current file to the default printer from a Linux operating system.
+" Press \p to print the current file to the default printer 
+" from a Linux operating system.
 " View available printers:   lpstat -v
 " Set default printer:       lpoptions -d <printer_name>
 " <silent> means do not display output.
 nnoremap <silent> <leader>p :%w !lp<CR>
 
-" Type jj to exit insert mode quickly.
+" Type jj to auto-complete word
 " inoremap jj <C-n>
 inoremap jj <C-n>
 
 " Press the space bar to type the : character in command mode.
 nnoremap <space> :
 
+" Press the double-space bar to type the @ character in command mode
+nnoremap <space><space> @
+
 " Pressing the letter o will open a new line below the current one.
-" Exit insert mode after creating a new line above or below the current line.
+" Exit insert mode after creating a new line above 
+" or below the current line.
 nnoremap o o<esc>
 nnoremap O O<esc>
 
-" Center the cursor vertically when moving to the next word during a search.
+" Center the cursor vertically 
+" when moving to the next word during a search.
 nnoremap n nzz
 nnoremap N Nzz
 
@@ -214,8 +220,8 @@ set laststatus=2
 
 "Customer config for VIM --------------------------------------{{{
 nnoremap <F2> :colorscheme molokai<CR>
-inoremap { {<CR>}<ESC>k
-inoremap ( ()<ESC>h
+inoremap { {}<ESC>li
+inoremap ( ()<ESC>li
 set visualbell
 set t_vb=
 "}}}
