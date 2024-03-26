@@ -141,6 +141,9 @@ let mapleader = '\'
 " Press \\ to jump back to the last cursor position.
 nnoremap <leader>\ :nohlsearch<CR>
 
+" map <ESC>
+inoremap oo <ESC>
+
 " Press \p to print the current file to the default printer 
 " from a Linux operating system.
 " View available printers:   lpstat -v

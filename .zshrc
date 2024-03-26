@@ -41,7 +41,7 @@ function check_command_status()
             python_venv="($(basename "$VIRTUAL_ENV"))"
             PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}😊%f"
         else
-            PROMPT_STATUS="%F{blue} $git_branch %f%F{green}😊%f"
+            PROMPT_STATUS="%F{blue}$git_branch%f%F{green}😊%f"
         fi
     else
         git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')
@@ -49,7 +49,7 @@ function check_command_status()
             python_venv="($(basename "$VIRTUAL_ENV"))"
             PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}❌%f"
         else
-            PROMPT_STATUS="%F{blue} $git_branch %f%F{green}❌%f"
+            PROMPT_STATUS="%F{blue}$git_branch%f%F{green}❌%f"
         fi
     fi
 
@@ -94,5 +94,6 @@ export EDITOR=vim
 export VISUAL=vim
 
 # print logo and change working drictory
+clear
 echo $logo
 cd $HOME
