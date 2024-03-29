@@ -1,4 +1,4 @@
-#!/usr/bin/expect
+#!/usr/bin/expect -f
 
 set ipaddress "43.143.140.169"
 set password "Bear@123456"

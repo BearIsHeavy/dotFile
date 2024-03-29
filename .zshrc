@@ -37,19 +37,19 @@ function check_command_status()
 {
     if [ $? -eq 0 ];then
         git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')
+        python_venv="($(basename "$VIRTUAL_ENV"))"
         if [[ $git_branch == "" ]];then
-            python_venv="($(basename "$VIRTUAL_ENV"))"
             PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}😊%f"
         else
-            PROMPT_STATUS="%F{blue}$git_branch%f%F{green}😊%f"
+            PROMPT_STATUS="%F{blue} $python_venv%f%F{red}$git_branch%f%F{green}😊%f"
         fi
     else
         git_branch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/ (\1)/')
+        python_venv="($(basename "$VIRTUAL_ENV"))"
         if [[ $git_branch == "" ]];then
-            python_venv="($(basename "$VIRTUAL_ENV"))"
             PROMPT_STATUS="%F{yellow} $python_venv %f%F{green}❌%f"
         else
-            PROMPT_STATUS="%F{blue}$git_branch%f%F{green}❌%f"
+            PROMPT_STATUS="%F{blue} $python_venv%f%F{red}$git_branch%f%F{green}❌%f"
         fi
     fi
 
