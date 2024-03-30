@@ -32,6 +32,7 @@ create_link()
     makeLink ".gitconfig"
     makeLink ".zsh"
     makeLink ".zshenv"
+    makeLink "bin"
     if [[ -d $HOME/bin ]];then
         mv $HOME/bin $HOME/bin_back
         ln -s "$(pwd)/bin" ~/
@@ -51,10 +52,12 @@ initial_vim() {
     mkdir -p "$HOME/.vim"
     # make vim fold struct
     if [[ -d "$HOME/.vim" ]];then
-        mkdir autoload
-        mkdir backup
-        mkdir colors
-        mkdir plugged
+        mkdir -p $HOME/.vim/autoload
+        mkdir -p $HOME/.vim/backup
+        mkdir -p $HOME/.vim/colors
+        mkdir -p $HOME/.vim/plugged
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
 }
 
@@ -75,27 +78,39 @@ create_nvm() {
     fi
 }
 
+create_autosuggestion() {
+    echo -e "Installing autosuggestion model\n"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
+    && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 
+}
+
 ####The following code is used to interact with the user####
-echo "Whether to create a file for the following files:"
+echo "If to create a file for the following files:"
 echo ".profile"
 echo ".zshrc"
 echo ".bashrc"
 echo ".vimrc"
 echo ".gitconfig"
 echo ".zsh"
+echo ".dotfile/bin"
 read -p "yes/no: " n
 
 if [[ $n =~ ^[Y|y] ]];then
     create_link
 elif [[ $n =~ ^[N|n] ]];then
-    echo "No Link be created"
+    echo "No Link be created\n"
+fi
+
+
+if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
+    create_autosuggestion
 fi
 
 echo "Whether to create dirtion link for vim:"
-read -p "yes/no" n
+read -p "yes/no: " n
 
 if [[ $n =~ ^[Y|y] ]];then
     initial_vim
 elif [[ $n =~ ^[N|n] ]];then
-    echo "No Link be created"
+    echo "No Link be created\n"
 fi

@@ -6,6 +6,10 @@
 #        \/                         \/     \/     \/
 #                                       author:bear
 
+# print logo and change working drictory
+clear
+echo $logo
+cd $HOME
 
 
 # Function to check command exit status
@@ -17,21 +21,6 @@ HISTSIZE=2000
 SAVEHIST=2000
 setopt appendhistory
 
-#enable command sustitution in prompt
-setopt promptsubst 
-
-# this snipper be used to auto-suggesion when you type commands
-if [[ -L ~/.zsh ]];then
-    source ~/.zsh/zsh-autosuggestions/*.zsh
-else
-    read -p "Do you make symbol link to .zsh?" c
-    if [[ $c =~ ^(Y|y) ]];then
-        ln -s $HOME/.dotfile/.zsh $HOME/.zsh
-    else
-        echo "not insatll" 1>&2
-        #echo ".zsh folds is not exit" 1>&2
-    fi
-fi
 
 function check_command_status()
 {
@@ -66,6 +55,10 @@ precmd(){
     check_command_status
 }
 
+
+#enable command sustitution in prompt
+setopt promptsubst 
+
 # This code snip will be used to set Promopt
 PS1="%n@%m %1~ %#"
 
@@ -73,12 +66,19 @@ PS1="%n@%m %1~ %#"
 if [ -s $HOME/.dotfile/.alias ];then
     source $HOME/.dotfile/.alias
 fi
-# source download auto-suggestion
+# source download zsh_command_not_found
 if [[ -f /etc/zsh_command_not_found ]];then
     source /etc/zsh_command_not_found
 else
-    echo "/etc/zsh_command_not_found not installed"
-    echo "sudo apt install zsh_command_not_found"
+    echo "/etc/zsh_command_not_found not installed\n" 1>&2
+    echo "sudo apt install zsh_command_not_found"   1>&2
+fi
+
+# this snipper be used to auto-suggesion when you type commands
+if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions  ]];then
+    source ~/.zsh/zsh-autosuggestions/*.zsh
+else
+    echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2
 fi
 
 # Add PATH
@@ -93,7 +93,25 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR=vim
 export VISUAL=vim
 
-# print logo and change working drictory
-clear
-echo $logo
-cd $HOME
+# added by Anaconda3 5.3.1 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/bear/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/bear/anaconda3/etc/profile.d/conda.sh" ]; then
+        source "/home/bear/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        export PATH="/home/bear/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+# Add CUDA_PATH
+CUDA_PATH="/usr/local/cuda-12.1/bin"
+export PATH=$CUDA_PATH:$PATH
+
+
