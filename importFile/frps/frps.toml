@@ -1,0 +1,30 @@
+bindAddr = "0.0.0.0"
+bindPort = 7001
+
+vhostHTTPPort = 7003
+#vhostHTTPSPort = 443
+
+# tcpmuxHTTPConnectPort = 7002
+
+webServer.addr = "0.0.0.0"
+webServer.port = 8088
+webServer.user = "admin"
+webServer.password = "Bear@123456"
+webServer.pprofEnable = false
+
+# enablePrometheus will export prometheus metrics on webServer in /metrics api.
+enablePrometheus = true
+
+# console or real logFile path like ./frps.log
+log.to = "./frps.log"
+log.level = "info"
+log.maxDays = 3
+# disable log colors when log.to is console, default is false
+log.disablePrintColor = false
+
+detailedErrorsToClient = true
+
+auth.method = "token"
+auth.token = "bear"
+
+subDomainHost = "43.143.140.169"
