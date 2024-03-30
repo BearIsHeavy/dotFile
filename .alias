@@ -19,4 +19,5 @@ alias sshAgent='eval $(ssh-agent) && ssh-add'
 alias leetcode='cd $HOME/ACM/pythonLeetCode/ && code $_'
 alias dataStruct='code $HOME/408/DataStruct'
 alias Ai='~/bin/ChatAi'
+alias Aienv='source ~/408/network/AI/bin/activate'
 
