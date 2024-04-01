@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+which exa || sudo apt install exa
+
