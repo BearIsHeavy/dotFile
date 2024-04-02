@@ -16,15 +16,13 @@ fi
 
 
 
-makeLink()
-{
+makeLink() {
     fileName="$1"
     [ -f "$HOME/$fileName" ] ||  [ -L "$HOME/$fileName" ] && { rm "$HOME/$fileName"; } || echo "not exsits $fileName"
     ln -s "$HOME/.dotfile/$fileName" ~/
 }
 
-create_link()
-{
+create_link() {
     makeLink ".profile"
     makeLink ".zshrc"
     makeLink ".bashrc"
