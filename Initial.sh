@@ -65,7 +65,7 @@ create_autosuggestion() {
     #&& source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 }
 
-####The following code is used to interact with the user####
+# The following code is used to interact with the user
 echo "If to create a file for the following files:"
 echo ".profile"
 echo ".zshrc"
@@ -83,22 +83,24 @@ elif [[ $n =~ ^[N|n] ]];then
 fi
 
 
-if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
-    sudo apt install zsh && create_autosuggestion
-fi
 
-echo "Whether to create dirtion link for vim:"
+# Initial VIM
+echo "Whether to create stand-form directory link for vim:"
 read -r -p "yes/no: " n
-
 if [[ $n =~ ^[Y|y] ]];then
     initial_vim
 elif [[ $n =~ ^[N|n] ]];then
     echo -e "No Link be created\n"
 fi
 
+# Download common command
+sudo apt update && sudo apt upgrade \
+    && bash "$HOME/.dotfile/request_plugins"
 
 # Download common commands
-bash "$HOME/.dotfile/request_plugins"
+if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
+    sudo apt install zsh && create_autosuggestion
+fi
 
 
 

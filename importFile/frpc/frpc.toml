@@ -3,22 +3,22 @@ serverPort = 7001
 
 #loginFailExit = true
 
-## console or real logFile path like ./frpc.log
-#log.to = "./frpc.log"
-## trace, debug, info, warn, error
-#log.level = "info"
-#log.maxDays = 3
-## disable log colors when log.to is console, default is false
-#log.disablePrintColor = false
+# console or real logFile path like ./frpc.log
+log.to = "./frpc.log"
+# trace, debug, info, warn, error
+log.level = "info"
+log.maxDays = 3
+# disable log colors when log.to is console, default is false
+log.disablePrintColor = false
 
 auth.method="token"
 auth.token="bear"
 
 transport.protocol = "tcp"
-transport.connectServerLocalIp = "0.0.0.0"
+#transport.connectServerLocalIp = "0.0.0.0"
 
 [[proxies]]
-name = "ssh"
+name = "ssh1"
 type = "tcp"
 localIP = "127.0.0.1"
 localPort = 22

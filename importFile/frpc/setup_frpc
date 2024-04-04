@@ -1,0 +1,17 @@
+#!/bin/bash
+
+path='/etc/systemd/system'
+
+res=$([[ -f $path/frpc.service || -L $path/frpc.service ]] && rm -f $path/frpc.service 2>&1)
+
+
+if [[ $res =~ permission ]];then
+    echo -e "use below code: \n"
+    echo -e "sudo bash setup_frp"
+fi
+
+ln -s "$HOME"/.dotfile/importFile/frpc/frpc.service $path \
+    || echo -e "not initial frpc.server for systemctl command, may be your systemctl have frpc.server" 1>&2 \
+    && echo -e "initial frps to systemctl command is successful"
+
+
