@@ -38,3 +38,7 @@
 2024/04/03 14:46:48 [I] [service.go:299] [0fc12f9643071bc3] login to server success, get run id [0fc12f9643071bc3]
 2024/04/03 14:46:48 [I] [proxy_manager.go:156] [0fc12f9643071bc3] proxy added: [ssh1]
 2024/04/03 14:46:48 [I] [control.go:173] [0fc12f9643071bc3] [ssh1] start proxy success
+2024/04/04 18:57:07 [I] [root.go:139] start frpc service for config file [./frpc.toml]
+2024/04/04 18:57:07 [I] [service.go:299] [b5a62248a2207a2c] login to server success, get run id [b5a62248a2207a2c]
+2024/04/04 18:57:07 [I] [proxy_manager.go:156] [b5a62248a2207a2c] proxy added: [ssh1]
+2024/04/04 18:57:07 [I] [control.go:173] [b5a62248a2207a2c] [ssh1] start proxy success

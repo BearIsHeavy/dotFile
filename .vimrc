@@ -142,7 +142,7 @@ let mapleader = '\'
 nnoremap <leader>\ :nohlsearch<CR>
 
 " map <ESC>
-inoremap oo <ESC>
+inoremap kk <ESC>
 
 " Press \p to print the current file to the default printer 
 " from a Linux operating system.

@@ -80,3 +80,7 @@ export VISUAL=vim
 # print logo and change working drictory
 clear
 cd $HOME
+if [[ -f $HOME/DailyPlan ]];then
+    bat $HOME/DailyPlan
+fi
+#echo $logo
