@@ -31,6 +31,8 @@ create_link() {
     makeLink ".zsh"
     makeLink ".zshenv"
     makeLink "bin"
+    makeLink ".tmux.conf"
+    makeLink ".zlogin"
     if [[ -d $HOME/bin ]];then
         mv "$HOME"/bin "$HOME"/bin_back
         ln -s "$(pwd)/bin" ~/
@@ -68,12 +70,16 @@ create_autosuggestion() {
 # The following code is used to interact with the user
 echo "If to create a file for the following files:"
 echo ".profile"
-echo ".zshrc"
 echo ".bashrc"
 echo ".vimrc"
 echo ".gitconfig"
 echo ".zsh"
-echo ".dotfile/bin"
+echo ".zshenv"
+echo ".zshrc"
+echo "bin"
+echo ".tmux.conf"
+echo ".zlogin"
+
 read -r -p "yes/no: " n
 
 if [[ $n =~ ^[Y|y] ]];then
@@ -81,7 +87,6 @@ if [[ $n =~ ^[Y|y] ]];then
 elif [[ $n =~ ^[N|n] ]];then
     echo -e "No Link be created\n"
 fi
-
 
 
 # Initial VIM
@@ -99,7 +104,8 @@ sudo apt update && sudo apt upgrade \
 
 # Download common commands
 if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
-    sudo apt install zsh && create_autosuggestion
+    which zsh || sudo apt install zsh
+    create_autosuggestion
 fi
 
 
