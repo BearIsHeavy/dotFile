@@ -45,3 +45,8 @@ __________   __    __                        __
                                         author:Bear
 "
 
+# Add Editor
+export EDITOR=vim
+export VISUAL=vim
+
+

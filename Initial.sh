@@ -24,15 +24,15 @@ makeLink() {
 
 create_link() {
     makeLink ".profile"
-    makeLink ".zshrc"
     makeLink ".bashrc"
     makeLink ".vimrc"
     makeLink ".gitconfig"
     makeLink ".zsh"
+    makeLink ".zshrc"
     makeLink ".zshenv"
+    makeLink ".zlogin"
     makeLink "bin"
     makeLink ".tmux.conf"
-    makeLink ".zlogin"
     if [[ -d $HOME/bin ]];then
         mv "$HOME"/bin "$HOME"/bin_back
         ln -s "$(pwd)/bin" ~/

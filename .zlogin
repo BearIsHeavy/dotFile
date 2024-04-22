@@ -17,3 +17,7 @@ if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions  ]];then
 else                                                                       
     echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
 fi
+
+# change to home direction
+cd $HOME
+clear
