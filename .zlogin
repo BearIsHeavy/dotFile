@@ -1,7 +1,5 @@
-# souce necessary file                                                     
-if [ -s $HOME/.dotfile/.alias ];then                                       
-    source $HOME/.dotfile/.alias                                           
-fi                                                                         
+# bind '^A' to move cursor to begin of correct line
+bindkey '^A' beginning-of-line
 
 # source download zsh_command_not_found                                    
 if [[ -f /etc/zsh_command_not_found ]];then                                
@@ -16,6 +14,13 @@ if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions  ]];then
     source ~/.zsh/zsh-autosuggestions/*.zsh                                
 else                                                                       
     echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
+fi
+
+# add neovim path
+if [[ -d /opt/nvim-linux64 ]];then
+    export PATH="$PATH:/opt/nvim-linux64/bin"
+else
+    echo -e "not find neovim; please check out if have a directory /opt/vim-linux64"
 fi
 
 # change to home direction

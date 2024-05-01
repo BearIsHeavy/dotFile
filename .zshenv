@@ -15,9 +15,9 @@
 # +----------------+-----------+-----------+------+
 # |~/.zprofile     |    D      |           |      |
 # +----------------+-----------+-----------+------+
-# |/etc/zshrc      |    E      |    C      |      |
+# |/etc/zshrc      |    E      |    E      |      |
 # +----------------+-----------+-----------+------+
-# |~/.zshrc        |    F      |    D      |      |
+# |~/.zshrc        |    F      |    F      |      |
 # +----------------+-----------+-----------+------+
 # |/etc/zlogin     |    G      |           |      |
 # +----------------+-----------+-----------+------+
@@ -45,8 +45,14 @@ __________   __    __                        __
                                         author:Bear
 "
 
+
+# souce necessary file                                                     
+if [[ -s $HOME/.dotfile/.alias ]];then                                       
+    source $HOME/.dotfile/.alias                                           
+fi                                                                         
+
 # Add Editor
 export EDITOR=vim
 export VISUAL=vim
 
-
+export PATH="$PATH:$HOME/.local/bin"

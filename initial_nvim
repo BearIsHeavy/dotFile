@@ -1,0 +1,11 @@
+#!/bin/bash
+
+own_path = "$HOME/.dotfile"
+if [[ -d $HOME/.config/nvim || -L $HOME/.config/nvim ]];then
+  echo -e "nvim config file existed, do you want to override it? \n"
+  read -p "yes/no" ans
+  if [[ $ans ~= "^n|N" ]];then
+    exit 0
+  fi
+  ([[ -d $HOME/.config || -L $HOME/.config ]] || mkdir -p .config; ln -s $own_path/nvim $HOME/.config)
+fi

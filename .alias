@@ -7,7 +7,7 @@ alias ..='cd ..'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
-alias ll='exa --header --all --oneline --long --group --icons'
+alias ll='exa --all --oneline --long --group --icons'
 alias ltree="exa --tree --icons -I '.git|.vscode|__pycache__' "
 alias lt='exa --oneline --sort=time --reverse'
 alias la='exa --all'

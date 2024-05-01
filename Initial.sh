@@ -108,9 +108,11 @@ if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
     create_autosuggestion
 fi
 
+# initial nvim, if running have a error, return 3
+/bin/bash $HOME/.dotfile/initial_vim || exit 3 
 
 
-# Options
+# Optional
 create_nvm() {
     if [[ -s "$HOME/.nvm" || -d "$HOME/.nvm" ]];then
         echo -e "you had have nvm"

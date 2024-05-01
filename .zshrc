@@ -11,7 +11,7 @@ VIRTUAL_ENV=''
 
 # Set history model
 HISTSIZE=2000
-SAVEHIST=2
+SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
 setopt appendhistory
 
@@ -22,7 +22,7 @@ function check_command_status()
         branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
         [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=''
         [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
-        #conda_env="($( conda env list | grep -Ei '\*' | awk '{print $1}'))"
+        #conda_env="($(conda env list | grep -Ei '\*' | awk '{print $1}'))"
         #PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}$conda_env%f%F{yellow}😊%f"
         PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}😊%f"
     else
@@ -52,4 +52,3 @@ setopt promptsubst
 
 # Add PATH
 export PATH=$HOME/bin:$PATH
-
