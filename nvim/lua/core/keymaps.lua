@@ -24,6 +24,7 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- set save file
 keymap.set("n", "<C-S>", ":w<CR>")
+keymap.set("i", "<C-S>", "<ESC>:w<CR>")
 
 -- open termianl
 keymap.set("n", "<leader>term", ":split term://zsh<CR>")

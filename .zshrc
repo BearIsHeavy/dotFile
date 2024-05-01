@@ -45,10 +45,9 @@ precmd(){
     check_command_status
 }
 
-
 #enable command sustitution in prompt
 setopt promptsubst 
 
-
 # Add PATH
 export PATH=$HOME/bin:$PATH
+

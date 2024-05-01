@@ -46,17 +46,17 @@ return require('packer').startup(function(use)
   }
 
   -- auto-complete
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"  -- source for text in buffer
-  use "hrsh7th/cmp-path" -- file path
+  use ("hrsh7th/nvim-cmp")
+  use ("hrsh7th/cmp-nvim-lsp")
+  use ("hrsh7th/cmp-buffer")  -- source for text in buffer
+  use ("hrsh7th/cmp-path") -- file path
 
-  use "L3MON4D3/LuaSnip" -- snippets engine，not correctly working if you not install it
-  use "saadparwaiz1/cmp_luasnip"
-  use "rafamadriz/friendly-snippets"
+  use ("L3MON4D3/LuaSnip") -- snippets engine，not correctly working if you not install it
+  use ("saadparwaiz1/cmp_luasnip")
+  use ("rafamadriz/friendly-snippets")
 
-  use "numToStr/Comment.nvim" -- gcc and gc comments
-  use "windwp/nvim-autopairs" -- auto-complete backet
+  use ("numToStr/Comment.nvim") -- gcc and gc comments
+  use ("windwp/nvim-autopairs") -- auto-complete backet
 
   use "akinsho/bufferline.nvim" -- buffer split line
   use "lewis6991/gitsigns.nvim" -- left prompt for git
