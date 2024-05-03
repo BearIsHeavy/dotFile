@@ -29,7 +29,6 @@ keymap.set("i", "<C-S>", "<ESC>:w<CR>")
 -- open termianl
 keymap.set("n", "<leader>term", ":split term://zsh<CR>")
 
-
 --  ---------------------PLUGINS-----------------------
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
@@ -40,4 +39,5 @@ keymap.set("n", "<leader>d", ":bd<CR>")
 -- swithch buffer
 keymap.set("n", "<leader>j", ":bnext<CR>")
 keymap.set("n", "<leader>k", ":bprevious<CR>")
+
 

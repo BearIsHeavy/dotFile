@@ -7,7 +7,7 @@
     ```
 1. running initial.sh
     ``` bash
-    bash initial.sh
+    bash Initial.sh
     ```
 
 

@@ -2,3 +2,4 @@
 ./security
 ./importFile/frpc/frpc.log
 ./importFile/frps/frps.log
+./.gitconfig

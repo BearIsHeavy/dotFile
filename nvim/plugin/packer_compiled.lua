@@ -189,6 +189,11 @@ _G.packer_plugins = {
     path = "/home/Bear/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-sneak"] = {
+    loaded = true,
+    path = "/home/Bear/.local/share/nvim/site/pack/packer/start/vim-sneak",
+    url = "https://github.com/justinmk/vim-sneak"
+  },
   ["vim-tmux-navigator"] = {
     loaded = true,
     path = "/home/Bear/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",

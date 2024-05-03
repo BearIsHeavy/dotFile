@@ -1,8 +1,8 @@
 #! /bin/expect
 
-set ipAddress "43.143.140.169"
+set ipAddress ""
 set hostName "Bear"
-set Password "Bear@123456"
+set Password ""
 
 set patter [lindex $argv 0]
 set file [lindex $argv 1]

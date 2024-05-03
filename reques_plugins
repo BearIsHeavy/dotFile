@@ -1,5 +1,0 @@
-#!/bin/env bash
-
-which zsh || sudo apt install zsh -y
-which exa || sudo apt install exa -y
-

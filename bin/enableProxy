@@ -9,7 +9,7 @@ __________   __    __                        __
         \/                         \/     \/     \/
 "
 
-host_ip=$(ip route show | grep -i default | awk '{ print $3}')
+host_ip=$(ip route show | grep -i default | awk '{ print $3 }')
 echo "proxy ip address: $host_ip"
 
 export https_proxy=http://$host_ip:7890 
