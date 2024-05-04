@@ -4,12 +4,14 @@
 # $? 2 is not connect github
 # $? 3 is not install zsh
 
+. $HOME/.dotfile/initial/colors # import color file
+
 if ! which zsh 1>/dev/null; then
-	echo "read to running: sudo apt update && sudo apt install zsh"
+	echo -e -n "${GREEN}read to running: sudo apt update && sudo apt install zsh${RESET} \n"
 	if sudo apt update && sudo apt install zsh; then
-		echo -e "success \n"
+		echo -e "zsh auto-complete Successfully \n"
 	else
-		echo -e "fail please manuial install zsh \n" 1>&2 && exit 3
+		echo -e "Download Fail please manuial install zsh \n" 1>&2 && exit 3
 	fi
 fi
 
@@ -32,3 +34,6 @@ if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
     which zsh || sudo apt install zsh
     create_autosuggestion
 fi
+
+# Download command-not-found
+sudo apt install command-not-found

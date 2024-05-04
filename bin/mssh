@@ -1,10 +1,11 @@
 #!/usr/bin/expect -f
 
 set ipaddress ""
+set host_name ""
 set password ""
 set timeout 30
 
-spawn ssh Bear@$ipaddress
+spawn ssh $host_name@$ipaddress
 expect {
     "yes/no" {
         send "yes\r"

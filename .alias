@@ -7,7 +7,7 @@ alias ..='cd ..'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
-alias ll='exa --all --oneline --long --group --icons'
+alias ll='exa --all --long --group --icons'
 alias ltree="exa --tree --icons -I '.git|.vscode|__pycache__' "
 alias lt='exa --oneline --sort=time --reverse'
 alias la='exa --all'
@@ -16,6 +16,8 @@ alias tree='tree -a -C'
 alias publicIp='curl -s https://ipinfo.io/ip'
 alias setProxy='source $HOME/bin/enableProxy'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
+
+# Custom Option
 alias Ai='~/bin/ChatAi'
 alias Aienv='source ~/408/network/AI/bin/activate'
 alias chat='/mnt/d/WeChat/WeChat.exe'

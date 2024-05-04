@@ -25,4 +25,3 @@ fi
 
 # change to home direction
 cd $HOME
-clear

@@ -54,11 +54,19 @@ elif [[ $n =~ ^[N|n] ]];then
 fi
 
 
-# initial nvim, if running have a error, return 11
-/bin/bash $HOME/.dotfile/initial/initial_nvim || exit 11
+# initial vpn, if running have a error, return 11
+/bin/bash $HOME/.dotfile/initial/vim || exit 11
 
 # initial zsh, if running have a error, return 12
 /bin/bash $HOME/.dotfile/initial/zsh.sh || exit 12
+
+# initial vim, if running have a error, return 13
+/bin/bash $HOME/.dotfile/initial/vim || exit 13
+
+# initial nvim, if running have a error, return 14
+/bin/bash $HOME/.dotfile/initial/nvim || exit 14
+
+
 
 
 

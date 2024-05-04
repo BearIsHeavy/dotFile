@@ -1,7 +1,8 @@
 #! /bin/expect
 
+# this file will be used to connecte remote ssh
 set ipAddress ""
-set hostName "Bear"
+set hostName ""
 set Password ""
 
 set patter [lindex $argv 0]

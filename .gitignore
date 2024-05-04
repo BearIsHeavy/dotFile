@@ -1,6 +1,6 @@
 .zsh/spaceship
-./security
-./importFile/frpc/frpc.log
-./importFile/frps/frps.log
-./.gitconfig
-./Download/
+security
+importFile/frpc/frpc.log
+importFile/frps/frps.log
+.gitconfig
+Download/
