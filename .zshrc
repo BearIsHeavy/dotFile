@@ -24,7 +24,7 @@ function check_command_status()
         [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
         #conda_env="($(conda env list | grep -Ei '\*' | awk '{print $1}'))"
         #PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}$conda_env%f%F{yellow}😊%f"
-        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}😊%f"
+        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}🐻%f"
     else
         branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
         [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""

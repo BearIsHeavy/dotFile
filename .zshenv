@@ -45,7 +45,6 @@ __________   __    __                        __
                                         author:Bear
 "
 
-
 # souce necessary file                                                     
 if [[ -s $HOME/.dotfile/.alias ]];then                                       
     source $HOME/.dotfile/.alias                                           

@@ -1,6 +1,22 @@
 #!/bin/env bash
 
-initial_nvim() {
+install_nvm() {
+    if [[ -s "$HOME/.nvm" || -d "$HOME/.nvm" ]];then
+        echo -e "you had have nvm"
+    else
+       read -r -p "Do you decide to install nvm in this computer" dec
+       if [[ $dec != "no" && $dec != "N" && $dec != "n" ]];then
+           code="curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash"
+          if [[ $code == 0 ]];then
+              echo -e "Success \n"
+          else
+              echo -e "Fail \n"
+          fi
+      fi
+    fi
+}
+
+initial_nvim_config() {
   # create .config/nvim format
   if [[ -d $HOME/.config/nvim || -L $HOME/.config/nvim ]]; then
     echo -e "nvim config file existed, do you want to override it? \n"
@@ -56,7 +72,7 @@ fi
 echo "Whether to create stand-form directory link for Neovim: "
 read -r -p "yes/no: " ans
 if [[ $an =~ ^[Y|y] ]];then
-    initial_nvim
+   install_nvm && initial_nvim_config || {echo "Initial NVIM Fail" && exit 3}
 elif [[ $ans =~ ^[N|n] ]];then
     echo -e "No Link be created\n"
 fi
