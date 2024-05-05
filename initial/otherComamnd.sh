@@ -1,14 +1,16 @@
 #!/bin/env bash
 
+. $HOME/.dotfile/initial/colors.sh # import colors
+
 # install tmux command
 sudo apt install tmux -y || exit 2
 
 # install tldr command
 sudo apt install tldr || exit 3
-tldr test > /dev/null 2>&1 ||  echo "tldr --update fail"; exit 4 
+tldr test > /dev/null 2>&1 ||  echo -e -n "${RED}tldr --update fail${RESET}" 1>&2; exit 4 
 
 # install shellcheck
-sudo apt install shellcheck || echo "shellcheck faile"; exit 5
+sudo apt install shellcheck || echo -e -n "${RED}shellcheck faile${RESET}" 1>&2; exit 5
 
 # install exa comamnd
 version_ubuntu=$(lsb_release -a 2>/dev/null | grep -Ei 'description' | awk '{print $3}' | awk -F '.' '{print $1}')

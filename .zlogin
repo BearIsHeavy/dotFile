@@ -10,7 +10,7 @@ else
 fi                                                                         
 
 # this snipper be used to auto-suggesion when you type commands            
-if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions  ]];then
+if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions ]];then
     source ~/.zsh/zsh-autosuggestions/*.zsh                                
 else                                                                       
     echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
@@ -20,7 +20,7 @@ fi
 if [[ -d /opt/nvim-linux64 ]];then
     export PATH="$PATH:/opt/nvim-linux64/bin"
 else
-    echo -e "not find neovim; please check out if have a directory /opt/vim-linux64"
+    echo -e "not find neovim; please check out if have a directory /opt/vim-linux64 \n"
 fi
 
 # change to home direction

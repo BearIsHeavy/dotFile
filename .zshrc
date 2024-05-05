@@ -13,7 +13,6 @@ VIRTUAL_ENV=''
 HISTSIZE=2000
 SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
-setopt appendhistory
 
 
 function check_command_status()
@@ -22,14 +21,13 @@ function check_command_status()
         branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
         [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=''
         [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
-        #conda_env="($(conda env list | grep -Ei '\*' | awk '{print $1}'))"
-        #PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}$conda_env%f%F{yellow}😊%f"
-        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}🐻%f"
+        source $HOME/bin/trigger.sh
+        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f🐻"
     else
         branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
         [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""
         [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
-        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{green}❌%f"
+        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f❌"
     fi
 
     # root user

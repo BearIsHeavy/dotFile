@@ -55,16 +55,28 @@ fi
 
 
 # initial vpn, if running have a error, return 11
-/bin/bash $HOME/.dotfile/initial/vim || exit 11
+read -p -e "whether install zsh config" ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash $HOME/.dotfile/initial/vpn.sh || exit 11
+fi
 
 # initial zsh, if running have a error, return 12
-/bin/bash $HOME/.dotfile/initial/zsh.sh || exit 12
+read -p -e "whether install zsh config" ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash $HOME/.dotfile/initial/zsh.sh || exit 12
+fi
 
 # initial vim, if running have a error, return 13
-/bin/bash $HOME/.dotfile/initial/vim || exit 13
+read -p -e "whether install VIM" ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash $HOME/.dotfile/initial/vim.sh || exit 13
+fi
 
 # initial nvim, if running have a error, return 14
-/bin/bash $HOME/.dotfile/initial/nvim || exit 14
+read -p -e "whether install NeoVIM" ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash $HOME/.dotfile/initial/nvim.sh || exit 14
+fi
 
 
 

@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-. $HOME/.dotfile/initial/colors # import color file
+. $HOME/.dotfile/initial/colors.sh # import color file
 
 if ! curl --max-time 5 www.google.com -i; then
   echo -e -n "${RED}Not connection github etc${RESET} \n" 1>&2; exit 2
