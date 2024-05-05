@@ -14,7 +14,7 @@ alias la='exa --all'
 alias ls='exa --icons'
 alias tree='tree -a -C'
 alias publicIp='curl -s https://ipinfo.io/ip'
-alias setProxy='source $HOME/bin/enableProxy'
+alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
 
 # Custom Option

@@ -11,6 +11,7 @@ __________   __    __                        __
 
 host_ip=$(ip route show | grep -i default | awk '{ print $3 }')
 echo "proxy ip address: $host_ip"
+
 read -r -p "Whether modify this $host_ip:(y/n) " ans
 
 if [[ $ans =~ ^(y|Y) ]];then
@@ -18,6 +19,6 @@ if [[ $ans =~ ^(y|Y) ]];then
   echo "proxy ip address: $host_ip"
 fi
 
-export https_proxy=http://$host_ip:7890 
+(echo "export https_proxy=http://$host_ip:7890 
 export http_proxy=http://$host_ip:7890
-export all_proxy=socks5://$host_ip:7890
+export all_proxy=socks5://$host_ip:7890" > $HOME/tmp.txt && exit 0 || exit 1) && echo "Pip file is created successfully" || echo "created pip file is Fail" 1>&2

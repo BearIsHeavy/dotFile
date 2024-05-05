@@ -17,16 +17,14 @@ HISTFILE=$HOME/.zsh_history
 
 function check_command_status()
 {
+    branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
+    [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""
+    [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
+
     if [ $? -eq 0 ];then
-        branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-        [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=''
-        [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
         source $HOME/bin/trigger.sh
         PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f🐻"
     else
-        branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-        [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""
-        [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
         PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f❌"
     fi
 
