@@ -17,7 +17,7 @@ else
 fi
 
 # add neovim path
-if [[ -d /opt/nvim-linux64 ]];then
+if [[ -d /opt/nvim-linux64 || -s ~/bin/nvim ]];then
     export PATH="$PATH:/opt/nvim-linux64/bin"
 else
     echo -e "not find neovim; please check out if have a directory /opt/vim-linux64 \n"

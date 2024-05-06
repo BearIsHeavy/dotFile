@@ -6,15 +6,6 @@
 
 . $HOME/.dotfile/initial/colors.sh # import color fime
 
-if ! which zsh 1>/dev/null; then
-	echo -e -n "${GREEN}read to running: sudo apt update && sudo apt install zsh${RESET} \n"
-	if sudo apt update && sudo apt install zsh; then
-		echo -e "zsh auto-complete Successfully \n"
-	else
-		echo -e "Download Fail please manuial install zsh \n" 1>&2 && exit 3
-	fi
-fi
-
 create_autosuggestion() {
     echo -e "Installing autosuggestion model. \n"
 
@@ -28,15 +19,24 @@ create_autosuggestion() {
     fi
 }
 
+# Download install zsh
+if ! which zsh 1>/dev/null; then
+	echo -e -n "${GREEN}Prepare to running: sudo apt update && sudo apt install zsh${RESET} \n"
+
+	if sudo apt update && sudo apt install zsh; then
+		echo -e "Install zsh Successfully \n"
+	else
+		echo -e "Download Fail please manuial install zsh \n" 1>&2 && exit 2
+	fi
+fi
 
 # Download commands zsh-autosuggestions
 if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
-    which zsh || sudo apt install zsh
     create_autosuggestion
 fi
 
 # Download command-not-found
-if sudo apt install command-not-found; then
+if ! sudo apt install command-not-found; then
   echo -e -n "${RED}not install command-not-found${RESET}"
   exit 3
 fi

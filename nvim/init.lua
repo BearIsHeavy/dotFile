@@ -16,4 +16,4 @@ require("plugins/bufferline")
 require("plugins/gitsigns")
 require("plugins/telescope")
 require("plugins/vim-sneak")
-
+require("plugins/tokyonight")

@@ -35,9 +35,9 @@ return require('packer').startup(function(use)
   use("nvim-tree/nvim-tree.lua")  -- document tree
   use("nvim-tree/nvim-web-devicons") --documnet tree icons
 
-  use "christoomey/vim-tmux-navigator" -- use ctl-hjkl to local window
-  use "nvim-treesitter/nvim-treesitter" -- high light syntax
-  use "p00f/nvim-ts-rainbow" -- coordniate treesitter，difference backet have difference colors
+  use ("christoomey/vim-tmux-navigator") -- use ctl-hjkl to local window
+  use ("nvim-treesitter/nvim-treesitter") -- high light syntax
+  use ("p00f/nvim-ts-rainbow") -- coordniate treesitter，difference backet have difference colors
 
   use {
     "williamboman/mason.nvim",
@@ -58,9 +58,8 @@ return require('packer').startup(function(use)
   use ("numToStr/Comment.nvim") -- gcc and gc comments
   use ("windwp/nvim-autopairs") -- auto-complete backet
 
-  use "akinsho/bufferline.nvim" -- buffer split line
-  use "lewis6991/gitsigns.nvim" -- left prompt for git
-
+  use ("akinsho/bufferline.nvim") -- buffer split line
+  use ("lewis6991/gitsigns.nvim") -- left prompt for git
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.6',

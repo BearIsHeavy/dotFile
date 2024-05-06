@@ -54,10 +54,14 @@ elif [[ $n =~ ^[N|n] ]];then
 fi
 
 
+source ~/.dotfile/initial/colors.sh
+
 # initial vpn, if running have a error, return 11
-read -p -e "whether install zsh config" ans
+read -p -e "whether install vpn config, but recommand that Separate execution ${RED}bash vpn.sh${RESET} command" ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash $HOME/.dotfile/initial/vpn.sh || exit 11
+else
+  exit 0
 fi
 
 # initial zsh, if running have a error, return 12
