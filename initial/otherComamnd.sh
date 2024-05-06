@@ -7,10 +7,16 @@ sudo apt install tmux -y || exit 2
 
 # install tldr command
 sudo apt install tldr || exit 3
-tldr test > /dev/null 2>&1 ||  echo -e -n "${RED}tldr --update fail${RESET}" 1>&2; exit 4 
+if tldr test > /dev/null 2>&1;then
+  echo -e -n "${RED}tldr --update fail${RESET}" 1>&2
+  exit 4 
+fi
 
 # install shellcheck
-sudo apt install shellcheck || echo -e -n "${RED}shellcheck faile${RESET}" 1>&2; exit 5
+if sudo apt install shellcheck;then
+  echo -e -n "${RED}shellcheck faile${RESET}" 1>&2
+  exit 5
+fi
 
 # install exa comamnd
 version_ubuntu=$(lsb_release -a 2>/dev/null | grep -Ei 'description' | awk '{print $3}' | awk -F '.' '{print $1}')
@@ -20,8 +26,8 @@ else
   ( mkdir -p "$HOME"/Download \
     cd "$HOME"/Download/ \
     && wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip \
-    && apt install unzip  \
+    && sudo apt install unzip  \
     && unzip exa-linux-x86_64-0.9.0.zip \
-    && mv exa-linux-x86_64 /usr/local/bin/exa \
-    && rm -f "$HOME"/Download ) || exit 2
+    && mv exa-linux-x86_64 ~/bin \
+    && rm -rf "$HOME"/Download ) || exit 2
 fi

@@ -40,7 +40,7 @@ echo ".gitconfig"
 echo ".zsh"
 echo ".zshenv"
 echo ".zshrc"
-ehoc ".zlogin"
+echo ".zlogin"
 echo "bin"
 echo ".tmux.conf"
 echo ".zlogin"
@@ -54,32 +54,30 @@ elif [[ $n =~ ^[N|n] ]];then
 fi
 
 
-source ~/.dotfile/initial/colors.sh
 
 # initial vpn, if running have a error, return 11
-read -p -e "whether install vpn config, but recommand that Separate execution ${RED}bash vpn.sh${RESET} command" ans
+echo -e -n "whether install vpn config, but recommand that Separate execution ${RED}bash vpn.sh${RESET} command yes/no: "
+read ans
 if [[ $ans =~ ^(y|Y) ]];then
-  /bin/bash $HOME/.dotfile/initial/vpn.sh || exit 11
-else
-  exit 0
+  /bin/bash ~/.dotfile/initial/vpn.sh || exit 11
 fi
 
 # initial zsh, if running have a error, return 12
-read -p -e "whether install zsh config" ans
+read -p "whether install zsh config yes/no: " ans
 if [[ $ans =~ ^(y|Y) ]];then
-  /bin/bash $HOME/.dotfile/initial/zsh.sh || exit 12
+  /bin/bash ~/.dotfile/initial/zsh.sh || exit 12
 fi
 
 # initial vim, if running have a error, return 13
-read -p -e "whether install VIM" ans
+read -p "whether install VIM yes/no: " ans
 if [[ $ans =~ ^(y|Y) ]];then
-  /bin/bash $HOME/.dotfile/initial/vim.sh || exit 13
+  /bin/bash ~/.dotfile/initial/vim.sh || exit 13
 fi
 
 # initial nvim, if running have a error, return 14
-read -p -e "whether install NeoVIM" ans
+read -p "whether install NeoVIM yes/no: " ans
 if [[ $ans =~ ^(y|Y) ]];then
-  /bin/bash $HOME/.dotfile/initial/nvim.sh || exit 14
+  /bin/bash ~/.dotfile/initial/nvim.sh || exit 14
 fi
 
 
