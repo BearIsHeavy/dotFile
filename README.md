@@ -1,14 +1,12 @@
 # Intruction
 
 ## Intruction
-1. change workspace
-    ``` bash
-    cd ~/.dotfile # please sure in workspace
-    ```
-1. running initial.sh
-    ``` bash
-    bash Initial.sh
-    ```
-
-
-
+    1. Recommand your `bash ./initial/vpn.sh`, which will setup your vpn config. (recommand manaual !!!)
+    2. `bash ./Initial` this script will auto-compelte your configs (zsh, vim and nvim) <br>
+        notes: please setup your vpn before setup nvim, <br>
+        because install plugs for nvim will connecte github <br>
+    3. if have error, you can use `echo $?` command to dected your error. (Then add an error table for each error, building....)
+    4. public version is throught all test in a new computer of Ubuntu OS, but main version is not...
+    5. frp and frps need your manaual config, linux_realese in import file, if you want to use frp server you can use this file 
+    6. building...
+    

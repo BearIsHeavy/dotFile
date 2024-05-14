@@ -34,9 +34,6 @@ opt.smartcase = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
 
--- Theme
-vim.cmd[[colorscheme tokyonight-moon]]
-
 -- fold code
 opt.foldmethod = 'indent'
 

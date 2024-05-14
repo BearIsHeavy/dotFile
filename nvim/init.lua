@@ -6,6 +6,7 @@ require("core.keymaps")
 
 --plugins
 require("plugins.lualine")
+require("plugins/tokyonight")
 require("plugins/nvim-tree")
 require("plugins/treesitter")
 require("plugins/lsp")
@@ -16,4 +17,6 @@ require("plugins/bufferline")
 require("plugins/gitsigns")
 require("plugins/telescope")
 require("plugins/vim-sneak")
-require("plugins/tokyonight")
+
+-- neovide
+require("plugins.neovide")

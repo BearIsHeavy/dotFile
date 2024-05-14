@@ -40,4 +40,10 @@ keymap.set("n", "<leader>d", ":bd<CR>")
 keymap.set("n", "<leader>j", ":bnext<CR>")
 keymap.set("n", "<leader>k", ":bprevious<CR>")
 
+-- find next search result for utilize '/'
+keymap.set("n", "n", "*")
+keymap.set("n", "N", "#")
+
+-- exit terminal model
+keymap.set("t", "<leader>t", "<C-\\><C-n><C-w>k", {silent = true})
 

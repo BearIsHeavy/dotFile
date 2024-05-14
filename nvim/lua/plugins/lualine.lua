@@ -1,5 +1,7 @@
-require('lualine').setup({
+-- Lua
+require('lualine').setup {
   options = {
-    theme = 'tokyonight'
+    theme = 'tokyonight',
   }
-})
+}
+

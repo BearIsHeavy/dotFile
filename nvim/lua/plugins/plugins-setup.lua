@@ -69,6 +69,12 @@ return require('packer').startup(function(use)
   -- navigator
   use ("justinmk/vim-sneak")
 
+  -- preview markdown
+  -- use ("davidgranstrom/nvim-markdown-preview")
+
+  -- coc.nvim, which help user to consider C/C++ program
+  use {'neoclide/coc.nvim', branch = 'release'}
+
   if packer_bootstrap then
     require('packer').sync()
   end

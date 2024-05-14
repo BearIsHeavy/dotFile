@@ -1,4 +1,4 @@
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -13,11 +13,12 @@ alias lt='exa --oneline --sort=time --reverse'
 alias la='exa --all'
 alias ls='exa --icons'
 alias tree='tree -a -C'
-alias publicIp='curl -s https://ipinfo.io/ip'
+alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
 
-# Custom Option
+# Custom Option, not adopt all computers
 alias Ai='~/bin/ChatAi'
 alias Aienv='source ~/408/network/AI/bin/activate'
 alias chat='/mnt/d/WeChat/WeChat.exe'
+alias neovide='/mnt/d/Neovide/neovide.exe --wsl'

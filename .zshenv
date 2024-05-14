@@ -55,3 +55,6 @@ export EDITOR=vim
 export VISUAL=vim
 
 export PATH="$PATH:$HOME/.local/bin"
+if [ -d "$HOME/.cargo/env" ];then
+  . "$HOME/.cargo/env"
+fi
