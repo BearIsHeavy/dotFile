@@ -4,3 +4,8 @@ importFile/frpc/frpc.log
 importFile/frps/frps.log
 .gitconfig
 Download/
+bin/bat
+bin/ChatAi
+bin/checkoutSubnet.c
+bin/checkoutSubnet
+bin/getopt_test.sh

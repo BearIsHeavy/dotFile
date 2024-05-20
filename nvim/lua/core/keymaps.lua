@@ -45,5 +45,5 @@ keymap.set("n", "n", "*")
 keymap.set("n", "N", "#")
 
 -- exit terminal model
-keymap.set("t", "<leader>t", "<C-\\><C-n><C-w>k", {silent = true})
+keymap.set("t", "<C-t>", "<C-\\><C-n><C-w>k", {silent = true})
 
