@@ -9,3 +9,4 @@ bin/ChatAi
 bin/checkoutSubnet.c
 bin/checkoutSubnet
 bin/getopt_test.sh
+.zprofile

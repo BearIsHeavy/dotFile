@@ -1,17 +1,13 @@
-#alias ls='ls --color=auto'
+alias ..='cd ..'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
-alias ..='cd ..'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
-alias ll='exa --all --long --group --icons'
-alias ltree="exa --tree --icons -I '.git|.vscode|__pycache__' "
-alias lt='exa --oneline --sort=time --reverse'
-alias la='exa --all'
-alias ls='exa --icons'
+
+# Custom script for daily work
 alias tree='tree -a -C'
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt'
@@ -22,3 +18,18 @@ alias Ai='~/bin/ChatAi'
 alias Aienv='source ~/408/network/AI/bin/activate'
 alias chat='/mnt/d/WeChat/WeChat.exe'
 alias neovide='/mnt/d/Neovide/neovide.exe --wsl'
+
+
+# ls commands
+if type exa > /dev/null;then
+  alias ll='exa --all --long --group --icons'
+  alias ltree="exa --tree --icons -I '.git|.vscode|__pycache__' "
+  alias lt='exa --oneline --sort=time --reverse'
+  alias la='exa --all'
+  alias ls='exa --icons'
+else
+  alias ls='/bin/ls --color=auto'
+  alias la='ls -a'
+  alias ll='ls -al'
+  alias lt='ls -alt'
+fi

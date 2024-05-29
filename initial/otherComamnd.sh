@@ -20,7 +20,7 @@ else
 fi
 
 # install exa comamnd
-version_ubuntu=$(lsb_release -a 2>/dev/null | grep -Ei 'description' | awk '{print $3}' | awk -F '.' '{print $1}')
+version_ubuntu="$(lsb_release -a 2>/dev/null | grep -Ei 'description' | awk '{print $3}' | awk -F '.' '{print $1}')"
 if [[ $version_ubuntu -ge 24 ]]; then
   sudo apt install exa || exit 1
 else

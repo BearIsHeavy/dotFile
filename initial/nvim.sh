@@ -27,7 +27,7 @@ initial_nvim_config() {
     echo -e -n "Installing...\n"
     mkdir -p "$HOME"/.config/nvim && ln -s "$HOME"/.dotfile/nvim "$HOME"/.config
   fi
-  echo -e "${GREEN}please access nvim/lua/plugins/plugins-setup.lua the type :PackerSync \n${RESET}"
+  echo -e "${GREEN}please access '$HOME'/.config/nvim/lua/plugins/plugins-setup.lua and then type :PackerSync \n${RESET}"
 }
 
 

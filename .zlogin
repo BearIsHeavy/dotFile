@@ -1,3 +1,7 @@
+# This script file used to config third party script
+# and used to add third party PATH
+
+
 # bind '^A' to move cursor to begin of correct line
 bindkey '^A' beginning-of-line
 
@@ -18,7 +22,7 @@ fi
 
 # add neovim path
 if [[ -d /opt/nvim-linux64 || -s ~/bin/nvim ]];then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
+    export PATH=$PATH:/opt/nvim-linux64/bin
 else
     echo -e "not find neovim; please check out if have a directory /opt/vim-linux64 \n"
 fi

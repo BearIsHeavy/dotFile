@@ -56,7 +56,7 @@ fi
 
 
 # initial vpn, if running have a error, return 11
-echo -e -n "whether install vpn config, but recommand that Separate execution ${RED}bash vpn.sh${RESET} command yes/no: "
+echo -e -n "whether install vpn config, and recommand that Separate execution ${RED}bash vpn.sh${RESET} command yes/no: "
 read ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/vpn.sh || exit 11

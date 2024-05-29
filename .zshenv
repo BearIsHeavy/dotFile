@@ -50,11 +50,12 @@ if [[ -s $HOME/.dotfile/.alias ]];then
     source $HOME/.dotfile/.alias                                           
 fi                                                                         
 
+# source ld file to list only directory
+[ -f $HOME/.dotfile/bin/ldir.sh ] && source $HOME/.dotfile/bin/ldir.sh
+
 # Add Editor
 export EDITOR=vim
 export VISUAL=vim
 
 export PATH="$PATH:$HOME/.local/bin"
-if [ -d "$HOME/.cargo/env" ];then
-  . "$HOME/.cargo/env"
-fi
+
