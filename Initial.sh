@@ -32,7 +32,7 @@ create_link() {
 }
 
 # The following code is used to interact with the user
-echo "If to create a file for the following files:"
+echo "Whether to create a file for the following files:"
 echo ".profile"
 echo ".bashrc"
 echo ".vimrc"

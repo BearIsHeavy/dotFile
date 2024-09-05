@@ -30,5 +30,5 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if [ -d "$HOME/.cargo/env" ];then
-  . "$HOME/.cargo/env" 
+    . "$HOME/.cargo/env" 
 fi

@@ -7,7 +7,7 @@ res=$([[ -f $path/frpc.service || -L $path/frpc.service ]] && rm -f $path/frpc.s
 
 
 if [[ $res =~ permission ]];then
-    echo -e -n "use below code before ${RED}you modify frpc.service file \n${RESET}"
+    echo -e -n "use below code after ${RED}you modify frpc.service file \n${RESET}"
     echo -e -n "sudo bash setup_frp"
 fi
 

@@ -1,9 +1,0 @@
-#!/bin/expect
-
-spawn mysql -p
-expect {
-    "password" {
-        send "123\r"
-    }
-}
-interact

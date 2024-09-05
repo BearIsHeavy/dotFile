@@ -37,8 +37,8 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 keymap.set("n", "<leader>d", ":bd<CR>")
 
 -- swithch buffer
-keymap.set("n", "<leader>j", ":bnext<CR>")
-keymap.set("n", "<leader>k", ":bprevious<CR>")
+keymap.set("n", "<leader>k", ":bnext<CR>")
+keymap.set("n", "<leader>j", ":bprevious<CR>")
 
 -- find next search result for utilize '/'
 keymap.set("n", "n", "*")

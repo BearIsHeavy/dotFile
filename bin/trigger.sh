@@ -6,22 +6,14 @@ YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
 
-# # trigger for conda_env
-# last_command="$(tail -n 1 <(history) | cut -d " " -f 4-)"
-# # inherit activate_env from .zprofile
-# # fetch conda_checkout command
-# conda_checkout="$(echo $last_command | awk '{print substr($0, 0, 32)}')"
-#
-# if [[ "$conda_checkout" =~ "^(conda) (activate)" ]];then
-#   conda_activate_env="(🐍 $(echo $conda_checkout | awk '{print $3}'))"
-# elif [[ "$conda_checkout" =~ "^(conda) (deactivate)" ]];then
-#   unset conda_activate_env
-# fi
-# unset last_command && unset conda_checkout
 if [[ -z "$CONDA_DEFAULT_ENV" ]];then
   unset conda_activate_env
 else
-  conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
+  if [[ ${CONDA_DEFAULT_ENV} == "base" ]];then
+    unset conda_activate_env
+  else
+    conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
+  fi
 fi
 
 node_version="$(node -v)"
