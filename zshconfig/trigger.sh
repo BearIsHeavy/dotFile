@@ -16,9 +16,11 @@ else
   fi
 fi
 
+# optional open
 node_version="$(node -v)"
-if [[ -n $node_version ]];then
-  node_version="(${RED}node${RESET}: $node_version)"
-else
-  unset node_version
+node_version="(🚀: $node_version)"
+_currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
+if [[ -z ${_currentPwd} ]];then
+  _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
+  [ -z ${_parentPwd} ] && unset node_version
 fi

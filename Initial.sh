@@ -6,23 +6,24 @@ if [[ $(basename "$(pwd)") != ".dotfile" ]];then
 fi
 
 makeLink() {
-    fileName="$1"
+    fileName="$(basename $1)"
     [ -f "$HOME/$fileName" ] ||  [ -L "$HOME/$fileName" ] \
       && { rm "$HOME/$fileName"; } || echo -e "not exsits $fileName \n"
-    ln -s "$HOME/.dotfile/$fileName" ~/
+    ln -s "$HOME/.dotfile/$1" ~/
 }
 
 create_link() {
-    makeLink ".profile"
-    makeLink ".bashrc"
-    makeLink ".vimrc"
-    makeLink ".gitconfig"
     makeLink ".zsh"
-    makeLink ".zshrc"
-    makeLink ".zshenv"
-    makeLink ".zlogin"
-    makeLink "bin"
-    makeLink ".tmux.conf"
+
+    makeLink "generalConfig/.profile"
+    makeLink "generalConfig/.bashrc"
+    makeLink "generalConfig/.vimrc"
+    makeLink "generalConfig/.gitconfig"
+    makeLink "generalConfig/.tmux.conf"
+
+    makeLink "zshconfig/.zshrc"
+    makeLink "zshconfig/.zshenv"
+    makeLink "zshconfig/.zlogin"
     if [[ -d $HOME/bin ]];then
         mv "$HOME"/bin "$HOME"/bin_back
         ln -s "$(pwd)/bin" ~/
@@ -37,13 +38,12 @@ echo ".profile"
 echo ".bashrc"
 echo ".vimrc"
 echo ".gitconfig"
-echo ".zsh"
+echo "bin"
+echo ".tmux.conf"
 echo ".zshenv"
 echo ".zshrc"
 echo ".zlogin"
-echo "bin"
-echo ".tmux.conf"
-echo ".zlogin"
+echo ".zsh"
 
 read -r -p "yes/no: " n
 

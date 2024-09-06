@@ -29,6 +29,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# This directory was used for rust language
 if [ -d "$HOME/.cargo/env" ];then
     . "$HOME/.cargo/env" 
 fi

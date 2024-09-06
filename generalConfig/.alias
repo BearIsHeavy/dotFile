@@ -10,7 +10,7 @@ alias mv='mv -i'
 # Custom script for daily work
 alias tree='tree -a -C'
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
-alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt'
+alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
 
 # Custom Option, not adopt all computers
