@@ -1,7 +1,7 @@
 # This script file used to config third party script
 # and used to add third party PATH
 
-
+ZLOGIN_SOURCED=True
 # bind '^A' to move cursor to begin of correct line
 bindkey '^A' beginning-of-line
 
@@ -18,13 +18,6 @@ if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions ]];then
     source ~/.zsh/zsh-autosuggestions/*.zsh                                
 else                                                                       
     echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
-fi
-
-# add neovim path
-if [[ -d /opt/nvim-linux64 || -s ~/bin/nvim ]];then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
-else
-    echo -e "not find neovim; please check out if have a directory /opt/vim-linux64 \n"
 fi
 
 # change to home direction

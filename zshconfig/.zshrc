@@ -17,25 +17,25 @@ HISTFILE=$HOME/.zsh_history
 
 function check_command_status()
 {
-    if [ $? -eq 0 ];then
-        branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-        [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""
-        [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
-        source $HOME/.dotfile/zshconfig/trigger.sh
-        PROMPT_STATUS="%F{green} ${python_venv}${node_version}%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f🐻"
-    else
-        branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-        [[ ! -z $branch ]] && git_branch="( $branch)" || git_branch=""
-        [[ ! -z $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
-        PROMPT_STATUS="%F{green} $python_venv%f%F{red}$git_branch%f%F{blue}$conda_activate_env%f❌"
-    fi
 
-    # root user
-    if [ $(whoami) = 'root' ];then
-        PROMPT="%S%F{red}%n%f%s${PROMPT_STATUS} %B%F{cyan}%1~%f%b %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
-    else
-        PROMPT="%S%F{yellow}%n%f%s${PROMPT_STATUS} %B%F{cyan}%1~%f%b %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
-    fi
+[ $? -eq 0 ] && command_verification="🐻" || command_verification="❌"
+[ -f $HOME/.dotfile/zshconfig/trigger.sh ] && source "$HOME/.dotfile/zshconfig/trigger.sh"
+STATUS_1="(%f⛈  %B%F{cyan}%~%f%b%F{blue})"
+STATUS_2=" %n@"
+STATUS_3="${command_verification}%F{green}${vpn_proxy}${docker_environment}%f%F{red}$git_branch%f%F{magenta}${python_venv}${node_version}${conda_activate_env}%f"
+STATUS_4=" "
+[ ${#STATUS_3} -gt 34 ] && unset STATUS_2 && unset STATUS_4
+PROMPT_STATUS="%F{blue}${STATUS_1}%f - [%F{yellow}${STATUS_2}%f${STATUS_3}${STATUS_4}]"
+
+PROMPT="${PROMPT_STATUS} 
+%B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
+
+# root user
+if [ $(whoami) = 'root' ];then
+PROMPT="${PROMPT_STATUS} 
+💀 %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
+fi
+
 }
 
 # this funcation will be execute before execute next command
@@ -49,3 +49,11 @@ setopt promptsubst
 # Add PATH
 export PATH="$PATH:$HOME/bin"
 
+
+# Add key array
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search

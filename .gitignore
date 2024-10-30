@@ -11,3 +11,4 @@ bin/checkoutSubnet
 bin/getopt_test.sh
 zshconfig/.zprofile
 .gitconfig
+bin/conda
