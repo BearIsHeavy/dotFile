@@ -1,0 +1,34 @@
+# For all computer
+alias ..='cd ..'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias mkdir='mkdir -p'
+alias rm='rm -i'
+alias mv='mv -i'
+
+# Custom script for daily work
+alias tree='tree -a -C'
+alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
+alias sshAgent='eval $(ssh-agent) && ssh-add'
+alias setProxy='export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897'
+alias unsetProxy='unset https_proxy && unset http_proxy && unset all_proxy'
+
+# ls commands
+if type exa > /dev/null;then
+  alias ll='exa --all --long --group --icons'
+  alias ltree="exa --tree --icons -I '.git|.vscode|__pycache__' "
+  alias lt='exa --oneline --sort=time --reverse'
+  alias la='exa --all'
+  alias ls='exa --icons'
+else
+  alias ls='/bin/ls --color=auto'
+  alias la='ls -a'
+  alias ll='ls -al'
+  alias lt='ls -alt'
+fi
+
+# These cmd need third-party software
+alias trans='trans -t zh'
+alias setup_qq='rm -rf $HOME/.config/QQ/'
