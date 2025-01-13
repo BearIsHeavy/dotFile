@@ -6,6 +6,8 @@ YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
 
+PREVIOUS_PATH="$(pwd)"
+
 # check whether the vpn is opened
 vpn_proxy="$(env | grep -Ei '.*_proxy=')"
 if [[ -n $vpn_proxy ]];then
@@ -27,7 +29,7 @@ fi
 if [[ ${PREVIOUS_PATH} == "$(pwd)" ]];then
   return 0
 fi
-PREVIOUS_PATH="$(pwd)"
+
 # if judgment logic is related to
 # Please place the relevant code snippet below
 # ---------------------------------------relevant code snippet-------------------------------------------------------
@@ -37,12 +39,14 @@ branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')"
 [[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
 
 # node_version optional open
-node_version="$(node -v)"
-node_version="(🚀: $node_version)"
-_currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
-if [[ -z ${_currentPwd} ]];then
-  _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-  [ -z ${_parentPwd} ] && unset node_version
+if type node > /dev/null;then
+  node_version="$(node -v)"
+  node_version="(🚀: $node_version)"
+  _currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
+  if [[ -z ${_currentPwd} ]];then
+    _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
+    [ -z ${_parentPwd} ] && unset node_version
+  fi
 fi
 
 # docker environment

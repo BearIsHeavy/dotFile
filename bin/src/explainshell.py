@@ -1,5 +1,4 @@
 import requests
-from typing import List
 import argparse
 from bs4 import BeautifulSoup
 

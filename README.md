@@ -9,4 +9,9 @@
     4. public version is throught all test in a new computer of Ubuntu OS, but main version is not...
     5. frp and frps need your manaual config, linux_realese in import file, if you want to use frp server you can use this file 
     6. building...
-    
+
+# Download folder
+This folder will store some install file, if you running initial script, but not successful, you can manaual install it to Download folder
+
+# DailyTools
+This folder will store some daiy work tools

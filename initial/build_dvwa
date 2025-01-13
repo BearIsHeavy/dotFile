@@ -1,4 +1,5 @@
 #!/bin/bash
+# plase checkout this code before you running it !!!
 
 read -p "wheher update and upgrade your package (recommand)[y/n]" response
 read -p "input proxy ip" your_proxy_ip

@@ -1,4 +1,7 @@
 #!/bin/bash
+# This file will be used to install conda,
+# but unrecommand you use this meath,
+# please download and install the laster version
 
 source ~/.dotfile/initial/colors.sh
 

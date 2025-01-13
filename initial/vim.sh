@@ -19,13 +19,12 @@ initial_vim() {
           curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         else
-          echo -e -n "${RED}not connect github${RESET} \n"
+          echo -e -n "${RED}Don't connect github${RESET} \n"
           exit 2
         fi
 
     fi
 }
-
 
 # Initial VIM
 echo "Whether to create stand-form directory link for vim: "

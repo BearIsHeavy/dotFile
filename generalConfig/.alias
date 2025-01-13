@@ -8,17 +8,10 @@ alias rm='rm -i'
 alias mv='mv -i'
 
 # Custom script for daily work
-alias tree='tree -a -C'
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
-
-# Custom Option, not adopt all computers
-alias Ai='~/bin/ChatAi'
-alias Aienv='source ~/408/network/AI/bin/activate'
-alias chat='/mnt/d/WeChat/WeChat.exe'
-alias neovide='/mnt/d/Neovide/neovide.exe --wsl'
-
+alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
 
 # ls commands
 if type exa > /dev/null;then
@@ -34,5 +27,11 @@ else
   alias lt='ls -alt'
 fi
 
+# Custom Option, not adopt all computers
+alias Ai='~/bin/ChatAi'
+alias Aienv='source ~/408/network/AI/bin/activate'
+alias chat='/mnt/d/WeChat/WeChat.exe'
+alias neovide='/mnt/d/Neovide/neovide.exe --wsl'
 
-# docker alias command
+
+

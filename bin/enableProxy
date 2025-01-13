@@ -24,4 +24,3 @@ fi
 (echo "export https_proxy=http://$host_ip:7890 
 export http_proxy=http://$host_ip:7890
 export all_proxy=socks5://$host_ip:7890" > $HOME/tmp.txt && exit 0 || exit 1) && echo "Pip file is created successfully" || echo "created pip file is Fail" 1>&2
-

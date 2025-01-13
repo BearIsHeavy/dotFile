@@ -1,8 +1,7 @@
 .zsh/spaceship
-.gitconfig
 zshconfig/.zprofile
-Download/
-ImportantFile/
+Download/*
+DailyTools/*
 securityNote/
 bin/bat
 bin/ChatAi
