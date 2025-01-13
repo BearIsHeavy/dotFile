@@ -18,7 +18,6 @@ create_link() {
     makeLink "generalConfig/.profile"
     makeLink "generalConfig/.bashrc"
     makeLink "generalConfig/.vimrc"
-    makeLink "generalConfig/.gitconfig"
     makeLink "generalConfig/.tmux.conf"
 
     makeLink "zshconfig/.zshrc"
@@ -26,9 +25,11 @@ create_link() {
     makeLink "zshconfig/.zlogin"
     if [[ -d $HOME/bin ]];then
         mv "$HOME"/bin "$HOME"/bin_back
-        ln -s "$(pwd)/bin" ~/
+        ln -s $HOME/.dotfile/bin ~/
         cp "$HOME"/bin_back/* "$HOME"/bin
         rm -r "$HOME"/bin_back
+    else
+        ln -s $HOME/.dotfile/bin $HOME/
     fi
 }
 
@@ -81,7 +82,7 @@ if [[ $ans =~ ^(y|Y) ]];then
 fi
 
 # install other command wich used in daily work
-read -p "install other command which used in daily work"
+read -p "install other command which used in daily work yse/no " ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
 fi

@@ -56,4 +56,3 @@ if [[ -z ${_currentPwd} ]];then
   _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
   [ -z ${_parentPwd} ] && unset docker_environment
 fi
-
