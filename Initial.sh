@@ -56,7 +56,7 @@ fi
 
 
 # initial vpn, if running have a error, return 11
-echo -e -n "whether install vpn config, and recommand that Separate execution ${RED}bash vpn.sh${RESET} command yes/no: "
+echo -e -n "whether install vpn config.(Note: This command recommand you Separate execution ${RED}bash vpn.sh${RESET} command) yes/no: "
 read ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/vpn.sh || exit 11
@@ -79,6 +79,13 @@ read -p "whether install NeoVIM yes/no: " ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/nvim.sh || exit 14
 fi
+
+# install other command wich used in daily work
+read -p "install other command which used in daily work"
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
+fi
+
 
 
 

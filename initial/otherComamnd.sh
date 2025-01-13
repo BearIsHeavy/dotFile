@@ -7,7 +7,7 @@ sudo apt install tmux -y || exit 2 && echo -e -r "${GREEN}\ntmux download succes
 
 # install tldr command
 sudo apt install tldr || echo -e -n "${RED}\ntldr install faile${RESET}\n" && echo -e -n "${GREEN}\ntldr success ${RESET} \n"
-if tldr test > /dev/null 2>&1;then
+if tldr test > /dev/null;then
   echo -e -n "${RED}\ntldr --update fail${RESET}" 1>&2
 fi
 

@@ -1,14 +1,12 @@
 .zsh/spaceship
-security
-importFile/frpc/frpc.log
-importFile/frps/frps.log
 .gitconfig
+zshconfig/.zprofile
 Download/
+ImportantFile/
+securityNote/
 bin/bat
 bin/ChatAi
 bin/checkoutSubnet.c
 bin/checkoutSubnet
 bin/getopt_test.sh
-zshconfig/.zprofile
-.gitconfig
 bin/conda

@@ -18,7 +18,7 @@ if ( ! cd ~/Download \
   fi
 else
   # not connecte network
-  echo -e -n "${READ}network connection error, now is reading local file...${RESET}" 
+  echo -e -n "${READ}network connection error, now is loading local file...${RESET}" 
   if [[ -s ~/Download/Anaconda3-2024.02-1-Linux-x86_64.sh ]];then
     check_sha=$(sha256sum ~/Download/Anaconda3-2024.02-1-Linux-x86_64.sh | awk '{print $1}')
     echo -e -n "\n ${GREEN}$check_sha${RESET} \n"

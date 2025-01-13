@@ -19,13 +19,9 @@ fi
 
 # conda environment
 if [[ -z "$CONDA_DEFAULT_ENV" ]];then
-  unset conda_activate_env
-else
-  if [[ ${CONDA_DEFAULT_ENV} == "base" ]];then
     unset conda_activate_env
-  else
+else
     conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
-  fi
 fi
 
 if [[ ${PREVIOUS_PATH} == "$(pwd)" ]];then
