@@ -72,6 +72,5 @@ clean_path() {
   export PATH=$(echo "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' | sed 's/:$//')
 }
 clean_path
-# Source zsh plugins
-[[ -z $ZPROFILE_SOURCED ]] && source $HOME/.zprofile
-
+# Source zsh Profile
+[[ -z $ZPROFILE_SOURCED ]] && echo ".zprofile not be loaded"# Source zsh plugins

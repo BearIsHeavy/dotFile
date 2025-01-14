@@ -1,4 +1,5 @@
 require("mason").setup({
+    automatic_installation = false, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
         icons = {
             package_installed = "✓",

@@ -4,24 +4,6 @@ source ~/.dotfile/initial/colors.sh
 
 declare -a fonts=(
     0xProto
-    # BitstreamVeraSansMono
-    # CodeNewRoman
-    # DroidSansMono
-    # FiraCode
-    #FiraMono
-    # Go-Mono
-    # Hack
-    # Hermit
-    # JetBrainsMono
-    # Meslo
-    # Noto
-    # Overpass
-    # ProggyClean
-    # RobotoMono
-    # SourceCodePro
-    # SpaceMono
-    # Ubuntu
-    # UbuntuMono
 )
 
 version='3.3.0'
@@ -38,9 +20,8 @@ for font in "${fonts[@]}"; do
     echo -e -n "Downloading $echo_download_url \n"
     read -p "please make sure this url is correct(y/n): " ans
     if [[ $ans =~ ^[Y|y] ]];then
-      wget "$download_url"
-      unzip "$zip_file" -d "$fonts_dir"
-      rm "$zip_file"
+      wget "$download_url" || echo -en "\n${RED}please update version in curl${RESET}\n"
+      unzip "$zip_file" -d "$fonts_dir" && rm "$zip_file"
     fi
 done
 

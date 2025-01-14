@@ -12,6 +12,12 @@
 
 # Download folder
 This folder will store some install file, if you running initial script, but not successful, you can manaual install it to Download folder
+incldue ".vim" for vim config file
+include ".nvim" for nvim config file
 
 # DailyTools
 This folder will store some daiy work tools
+
+# repair bug
+Check if .zlogin, .zprofile file is be loaded
+repair nvim initial scirpt bug

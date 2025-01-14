@@ -25,11 +25,13 @@ create_link() {
     makeLink "zshconfig/.zlogin"
     if [[ -d $HOME/bin ]];then
         mv "$HOME"/bin "$HOME"/bin_back
-        ln -s "$(pwd)/bin" ~/
+        ln -s $HOME/.dotfile/bin ~/
         cp "$HOME"/bin_back/* "$HOME"/bin
         rm -r "$HOME"/bin_back
     else
         ln -s $HOME/.dotfile/bin ~/
+    else
+        ln -s $HOME/.dotfile/bin $HOME/
     fi
 }
 
@@ -82,14 +84,14 @@ if [[ $ans =~ ^(y|Y) ]];then
 fi
 
 # install other command wich used in daily work
-read -p "install other command which used in daily work"
+read -p "install other command which used in daily work yse/no " ans
 if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
 fi
 
-
-
-
-
-
+# install termianl font
+read -p "install termianl fonts which used in daily work to display exa icons etc. yse/no " ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
+fi
 

@@ -39,5 +39,5 @@ opt.foldmethod = 'indent'
 
 -- length of an actual \t character:
 opt.tabstop = 4
--- length to use when editing text (eg. TAB and BS keys)
+-- length to use when shifting text (eg. <<, >> and == commands)
 opt.shiftwidth = 0
