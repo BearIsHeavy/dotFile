@@ -87,9 +87,9 @@ if [[ $ans =~ ^(y|Y) ]];then
   /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
 fi
 
-
-
-
-
-
+# install termianl font
+read -p "install termianl fonts which used in daily work to display exa icons etc. yse/no " ans
+if [[ $ans =~ ^(y|Y) ]];then
+  /bin/bash ~/.dotfile/initial/otherCommand.sh || exit 15
+fi
 

@@ -25,4 +25,3 @@ echo -e "[Service]\n Environment=\"HTTPS_PROXY=http://$your_proxy_ip:$your_proxy
 
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-

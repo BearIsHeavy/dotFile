@@ -9,3 +9,4 @@ bin/checkoutSubnet.c
 bin/checkoutSubnet
 bin/getopt_test.sh
 bin/conda
+bug_fixes.log
