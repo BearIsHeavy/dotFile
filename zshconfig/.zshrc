@@ -15,7 +15,7 @@ SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
 
 # Set Host Name
-HOST='Ubuntu'
+HOST='UbuntuVM'
 
 
 function check_command_status()
@@ -72,4 +72,6 @@ clean_path() {
   export PATH=$(echo "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' | sed 's/:$//')
 }
 clean_path
+# Source zsh plugins
+[[ -z $ZPROFILE_SOURCED ]] && source $HOME/.zprofile
 

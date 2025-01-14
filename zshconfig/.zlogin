@@ -15,10 +15,7 @@ fi
 
 # this snipper be used to auto-suggesion when you type commands            
 if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions ]];then
-    source ~/.zsh/zsh-autosuggestions/*.zsh                                
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh                                
 else                                                                       
     echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
 fi
-
-# change to home direction
-cd $HOME

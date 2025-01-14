@@ -9,6 +9,7 @@ install_nvm() {
         && tar -xvzf "$HOME"/.dotfile/Download/nvim-linux64.tar.gz \
         && sudo mv nvim-linux64/ /opt/nvim-linux64 \
     ) || exit 2
+    ln -s /opt/nvim-linux64/bin/nvim $HOME/bin/
   fi
 }
 

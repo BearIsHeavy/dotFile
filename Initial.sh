@@ -18,7 +18,6 @@ create_link() {
     makeLink "generalConfig/.profile"
     makeLink "generalConfig/.bashrc"
     makeLink "generalConfig/.vimrc"
-    makeLink "generalConfig/.gitconfig"
     makeLink "generalConfig/.tmux.conf"
 
     makeLink "zshconfig/.zshrc"
@@ -29,6 +28,8 @@ create_link() {
         ln -s "$(pwd)/bin" ~/
         cp "$HOME"/bin_back/* "$HOME"/bin
         rm -r "$HOME"/bin_back
+    else
+        ln -s $HOME/.dotfile/bin ~/
     fi
 }
 
