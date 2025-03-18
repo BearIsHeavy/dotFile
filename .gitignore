@@ -1,5 +1,6 @@
 .zsh/spaceship
 zshconfig/.zprofile
+zshconfig/.zprofile.back
 Download/*
 DailyTools/*
 securityNote/
@@ -9,3 +10,5 @@ bin/checkoutSubnet.c
 bin/checkoutSubnet
 bin/getopt_test.sh
 bin/conda
+bin/clion
+bin/gcc-4.8

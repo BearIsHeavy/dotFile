@@ -1,12 +1,13 @@
 #!/bin/env bash
 
+# Used to check whether the script is loaded
+TRIGGER_SOURCED=True
+
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
-
-PREVIOUS_PATH="$(pwd)"
 
 # check whether the vpn is opened
 vpn_proxy="$(env | grep -Ei '.*_proxy=')"
@@ -26,17 +27,13 @@ else
     conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
 fi
 
-if [[ ${PREVIOUS_PATH} == "$(pwd)" ]];then
-  return 0
-fi
-
-# if judgment logic is related to
-# Please place the relevant code snippet below
-# ---------------------------------------relevant code snippet-------------------------------------------------------
-
 # branch 
 branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
 [[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
+
+# If the judgment logic is related to the following code snippet, you can modify it
+# Put the code that detects the logic associated with the path under the horizontal line
+# ---------------------------------------relevant code snippet-------------------------------------------------------
 
 # node_version optional open
 if type node > /dev/null;then
@@ -45,7 +42,10 @@ if type node > /dev/null;then
   _currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
   if [[ -z ${_currentPwd} ]];then
     _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-    [ -z ${_parentPwd} ] && unset node_version
+    if [[ -z ${_parentPwd} ]];then
+        _double_parentPwd="$(/usr/bin/ls $(pwd)/../.. | grep 'package.json')"
+        [ -z ${_double_parentPwd} ] && unset node_version
+    fi
   fi
 fi
 
@@ -53,6 +53,6 @@ fi
 docker_environment="(🐳)"
 _currentPwd="$(/usr/bin/ls $(pwd) | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
 if [[ -z ${_currentPwd} ]];then
-  _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
+  _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
   [ -z ${_parentPwd} ] && unset docker_environment
 fi
