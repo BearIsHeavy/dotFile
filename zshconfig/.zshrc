@@ -62,7 +62,7 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
 # Avoid duplicates in history
-setopt hist_ignore_all_dups
+# setopt hist_ignore_all_dups
 
 # Sync history immediately between sessions
 setopt share_history inc_append_history

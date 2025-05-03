@@ -6,8 +6,6 @@ YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0m"
 
-PREVIOUS_PATH="$(pwd)"
-
 # check whether the vpn is opened
 vpn_proxy="$(env | grep -Ei '.*_proxy=')"
 if [[ -n $vpn_proxy ]];then
@@ -26,17 +24,11 @@ else
     conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
 fi
 
-if [[ ${PREVIOUS_PATH} == "$(pwd)" ]];then
-  return 0
-fi
-
-# if judgment logic is related to
-# Please place the relevant code snippet below
-# ---------------------------------------relevant code snippet-------------------------------------------------------
-
 # branch 
-branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-[[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
+if which git > /dev/null;then
+    branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
+    [[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
+fi
 
 # node_version optional open
 if type node > /dev/null;then
@@ -49,10 +41,17 @@ if type node > /dev/null;then
   fi
 fi
 
-# docker environment
-docker_environment="(🐳)"
-_currentPwd="$(/usr/bin/ls $(pwd) | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
-if [[ -z ${_currentPwd} ]];then
-  _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-  [ -z ${_parentPwd} ] && unset docker_environment
+# The execution of the following code is related to whether the path has changed 
+# and consumes large resources 
+# and can be optimized by detecting whether the path has changed
+# ---------------------------------------relevant code snippet-------------------------------------------------------
+PREVIOUS_PATH="tail -n 1 ${HOME}/.zsh_history"
+if [[ ${PREVIOUS_PATH} =~ 'cd' ]];then
+    # docker environment
+    docker_environment="(🐳)"
+    _currentPwd="$(/usr/bin/ls $(pwd) | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
+    if [[ -z ${_currentPwd} ]];then
+      _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
+      [ -z ${_parentPwd} ] && unset docker_environment
+    fi
 fi
