@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+# Used to check whether the script is loaded
+TRIGGER_SOURCED=True
+
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -30,6 +33,10 @@ if which git > /dev/null;then
     [[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
 fi
 
+# If the judgment logic is related to the following code snippet, you can modify it
+# Put the code that detects the logic associated with the path under the horizontal line
+# ---------------------------------------relevant code snippet-------------------------------------------------------
+
 # node_version optional open
 if type node > /dev/null;then
   node_version="$(node -v)"
@@ -37,7 +44,10 @@ if type node > /dev/null;then
   _currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
   if [[ -z ${_currentPwd} ]];then
     _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-    [ -z ${_parentPwd} ] && unset node_version
+    if [[ -z ${_parentPwd} ]];then
+        _double_parentPwd="$(/usr/bin/ls $(pwd)/../.. | grep 'package.json')"
+        [ -z ${_double_parentPwd} ] && unset node_version
+    fi
   fi
 fi
 

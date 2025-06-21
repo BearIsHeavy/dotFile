@@ -29,6 +29,8 @@ create_link() {
         cp "$HOME"/bin_back/* "$HOME"/bin
         rm -r "$HOME"/bin_back
     else
+        ln -s $HOME/.dotfile/bin ~/
+    else
         ln -s $HOME/.dotfile/bin $HOME/
     fi
 }
