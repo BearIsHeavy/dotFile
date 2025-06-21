@@ -14,9 +14,6 @@ HISTSIZE=2000
 SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
 
-# Set Host Name
-HOST='Ubuntu'
-
 
 function check_command_status()
 {
