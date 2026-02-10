@@ -1,6 +1,0 @@
-#/bin/bash
-
-if type python3 > /dev/null;then
-  /usr/bin/python3 $HOME/bin/src/explainshell.py "$1" || \
-  echo -n "please check out if installed 'requests', installed command 'pip install requests'"
-fi

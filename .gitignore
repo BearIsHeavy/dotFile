@@ -6,3 +6,5 @@ DailyTools/*
 securityNote/
 bin/workshop/*
 bin/shell/*
+bin/adb
+bin/nvim

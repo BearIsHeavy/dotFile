@@ -31,7 +31,7 @@ URIs: http://mirrors.163.com/ubuntu/
 Suites: noble noble-updates noble-security
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-" >> 1.txt
+" > $apt_sources
 
 # Update and Upgrade
 sudo apt update && sudo apt upgrade
