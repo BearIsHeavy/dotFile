@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# This file will be used 'alias' command, which key word is 'setProxy'
+
+echo "
+__________   __    __                        __
+\______   \_/  |__/  |_____________    ____ |  | __
+ |    |  _/\   __\   __\_  __ \__  \ _/ ___\|  |/ /
+ |    |   \ |  |  |  |  |  | \// __ \\  \___|    <
+ |______  / |__|  |__|  |__|  (____  /\___  >__|_ \ 🐻
+        \/                         \/     \/     \/
+"
+
+# Detect OS to determine default IP
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS: Proxy is usually running locally
+  host_ip="127.0.0.1"
+else
+  # Linux/WSL: Attempt to find gateway IP
+  if command -v ip >/dev/null 2>&1; then
+      host_ip=$(ip route show | grep -i default | awk '{ print $3 }')
+  else
+      host_ip="127.0.0.1"
+  fi
+fi
+
+echo "proxy ip address: $host_ip"
+
+read -r -p "Whether modify this $host_ip:(y/n) " ans
+
+if [[ $ans =~ ^(y|Y) ]];then
+  read -r -p "please input ip that your want used:" host_ip
+  echo "proxy ip address: $host_ip"
+fi
+
+# Note: Port 7890 is standard for Clash/ClashX. 
+# If using Surge (usually 6152) or others, you might need to edit the port below.
+(echo "export https_proxy=http://$host_ip:7890 
+export http_proxy=http://$host_ip:7890
+export all_proxy=socks5://$host_ip:7890" > $HOME/tmp.txt && exit 0 || exit 1) && echo "Pip file is created successfully" || echo "created pip file is Fail" 1>&2

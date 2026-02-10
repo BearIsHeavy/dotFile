@@ -1,0 +1,30 @@
+alias ..='cd ..'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias mkdir='mkdir -p'
+alias rm='rm -i'
+alias mv='mv -i'
+
+alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
+alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
+alias sshAgent='eval $(ssh-agent) && ssh-add --apple-use-keychain'
+alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
+alias cli='iflow'
+
+# ls commands
+# Note: On macOS M4, install eza via: brew install eza
+if type eza > /dev/null;then
+  alias ll='eza --all --long --group --icons'
+  alias ltree="eza -all --tree --icons -I '.git|.vscode|__pycache__' --git-ignore"
+  alias lt='eza --long --sort=time --reverse'
+  alias la='eza --all'
+  alias ls='eza --icons'
+else
+  # CHANGED: macOS native ls configuration
+  alias ls='/bin/ls -G' 
+  alias la='ls -a'
+  alias ll='ls -al'
+  alias lt='ls -alt'
+fi
