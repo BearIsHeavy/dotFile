@@ -52,7 +52,7 @@ function check_command_status() {
     fi
 
     # Define Prompt Visuals
-    STATUS_1="(%f$HOST🍎 %B%F{cyan}%~%f%b%F{blue})"
+    STATUS_1="(%f$HOST  %B%F{cyan}%~%f%b%F{blue})"
     STATUS_2=" %n@"
     STATUS_3="${command_verification}%F{green}${vpn_proxy}${docker_environment}%f%F{red}${git_branch}%f%F{magenta}${python_venv}${node_version}${conda_activate_env}%f"
     STATUS_4=" "

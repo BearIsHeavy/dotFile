@@ -40,9 +40,9 @@
     }
   ],
   
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 15,
   "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font Mono",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -83,6 +83,8 @@
     "editor.insertSpaces": true
   },
   "workbench.settings.applyToAllProfiles": [
+
+
   
   ]
 }
