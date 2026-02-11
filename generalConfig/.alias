@@ -6,6 +6,7 @@ alias diff='diff --color=auto'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
+alias remount='$HOME/bin/remount.sh'
 
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
