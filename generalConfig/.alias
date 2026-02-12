@@ -6,13 +6,17 @@ alias diff='diff --color=auto'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
-alias remount='$HOME/bin/remount.sh'
 
+// script
+alias remount='$HOME/bin/remount.sh'
+alias uninstallApp='$HOME/bin/uninstall_mac_app.sh'
+
+
+# relative network operations
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias sshAgent='eval $(ssh-agent) && ssh-add --apple-use-keychain ~/.ssh/id_ed25519'
 alias setProxy='eval $(bash $HOME/bin/enableProxy.sh)'
 alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
-alias cli='iflow'
 
 # ls commands
 # Note: On macOS M4, install eza via: brew install eza
