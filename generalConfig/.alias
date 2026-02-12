@@ -7,8 +7,9 @@ alias mkdir='mkdir -p'
 alias rm='rm -i'
 alias mv='mv -i'
 
-// script
-alias remount='$HOME/bin/remount.sh'
+# script
+alias remount='$HOME/bin/remote_mount.sh'
+alias sshmount='$HOME/bin/sshfs_mount.sh'
 alias uninstallApp='$HOME/bin/uninstall_mac_app.sh'
 
 
