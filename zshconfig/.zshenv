@@ -36,7 +36,7 @@
 # This file used to add zsh-set envirement
 ZSHENV_SOURCE=True
 
-logo="
+LOGO="
 
 __________   __    __                        __
 \______   \_/  |__/  |_____________    ____ |  | __
@@ -45,6 +45,7 @@ __________   __    __                        __
  |______  / |__|  |__|  |__|  (____  /\___  >__|_ \ 🐻
         \/                         \/     \/     \/ author:Bear
 "
+logo=$LOGO
 
 # Add Editor
 export EDITOR=vim

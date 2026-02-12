@@ -9,8 +9,8 @@ alias mv='mv -i'
 alias remount='$HOME/bin/remount.sh'
 
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
-alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
 alias sshAgent='eval $(ssh-agent) && ssh-add --apple-use-keychain ~/.ssh/id_ed25519'
+alias setProxy='eval $(bash $HOME/bin/enableProxy.sh)'
 alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
 alias cli='iflow'
 
