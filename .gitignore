@@ -1,9 +1,10 @@
 .zsh/spaceship
 zshconfig/.zprofile
 zshconfig/.zprofile.back
-Download/*
 DailyTools/*
-securityNote/
+securityNote
+Download
+Download.back
 bin/workshop/*
 bin/shell/*
 bin/adb
