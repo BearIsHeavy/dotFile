@@ -104,8 +104,11 @@ mount_remote_drive() {
 }
 
 unmount_remote_drive() {
-    if ! mount | grep -q "on $LOCAL_MOUNT_POINT"; then
-        log_yellow "Drive is not mounted."
+    
+    if ! mount | grep -q -Ei "on $LOCAL_MOUNT_POINT"; then
+        log_red "Drive is not mounted."
+        log_yellow "[ * ] Please manual unmout specifical volume."
+        log_yellow "[cmd] diskutil unmount /Volumes/G (e.g)"
         exit 0
     fi
 

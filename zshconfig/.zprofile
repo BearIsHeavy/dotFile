@@ -1,6 +1,7 @@
 ZSHPROFILE_SOURCE=True
 
 export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
+export PATH="$PATH:/Applications/010 Editor.app/Contents/CmdLine" #ADDED BY 010 EDITOR
 
 # --- Autosuggestions (Adjusted for Homebrew) ---
 # Install via: brew install zsh-autosuggestions

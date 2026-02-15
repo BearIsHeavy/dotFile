@@ -8,8 +8,8 @@ alias rm='rm -i'
 alias mv='mv -i'
 
 # script
-alias remount='$HOME/bin/remote_mount.sh'
-alias sshmount='$HOME/bin/sshfs_mount.sh'
+alias SMBmount='$HOME/bin/SMB_mount.sh'
+alias SSHmount='$HOME/bin/SSHFS_mount.sh'
 alias uninstallApp='$HOME/bin/uninstall_mac_app.sh'
 
 
@@ -34,3 +34,6 @@ else
   alias ll='ls -al'
   alias lt='ls -alt'
 fi
+
+alias wsl='ssh bear@192.168.10.7 -p 2222'
+alias vmware='ssh bear@192.168.10.7 -p 2223'
