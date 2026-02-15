@@ -12,10 +12,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- save this file to install all plugins
--- Note PackerCompile chanage to PackerSync
--- plugins.lua chage to plugins-setup.lua，to adapta local file name
-
+-- Reload neovim whenever you save the plugins-setup.lua file
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -37,11 +34,13 @@ return require('packer').startup(function(use)
 
   use ("christoomey/vim-tmux-navigator") -- use ctl-hjkl to local window
   use ("nvim-treesitter/nvim-treesitter") -- high light syntax
-  use ("p00f/nvim-ts-rainbow") -- coordniate treesitter，difference backet have difference colors
+  
+  -- REMOVED: p00f/nvim-ts-rainbow (Deprecated/Broken)
+  -- Optional Replacement: use "HiPhish/rainbow-delimiters.nvim"
 
   use {
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",  -- This is equivalent to the bridge between mason.nvim and lspconfig
+    "williamboman/mason-lspconfig.nvim",  -- Bridge between mason and lspconfig
     "neovim/nvim-lspconfig"
   }
 
@@ -51,12 +50,12 @@ return require('packer').startup(function(use)
   use ("hrsh7th/cmp-buffer")  -- source for text in buffer
   use ("hrsh7th/cmp-path") -- file path
 
-  use ("L3MON4D3/LuaSnip") -- snippets engine，not correctly working if you not install it
+  use ("L3MON4D3/LuaSnip") -- snippets engine
   use ("saadparwaiz1/cmp_luasnip")
   use ("rafamadriz/friendly-snippets")
 
   use ("numToStr/Comment.nvim") -- gcc and gc comments
-  use ("windwp/nvim-autopairs") -- auto-complete backet
+  use ("windwp/nvim-autopairs") -- auto-complete bracket
 
   use ("akinsho/bufferline.nvim") -- buffer split line
   use ("lewis6991/gitsigns.nvim") -- left prompt for git
@@ -66,14 +65,9 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  -- navigator
   use ("justinmk/vim-sneak")
 
-  -- preview markdown
-  -- use ("davidgranstrom/nvim-markdown-preview")
-
-  -- coc.nvim, which help user to consider C/C++ program
-  use {'neoclide/coc.nvim', branch = 'release'}
+  -- REMOVED: coc.nvim (Conflict with nvim-cmp)
 
   if packer_bootstrap then
     require('packer').sync()
