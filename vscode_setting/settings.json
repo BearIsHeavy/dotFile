@@ -11,6 +11,7 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.foldfix": true,
+  "vim.timeout": 1000,
   "vim.leader": "<space>",
   "vim.handleKeys": {
     "<C-f>": false,

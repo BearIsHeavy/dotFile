@@ -72,5 +72,15 @@ keymap.set("n", "<leader>x", ":bd<CR>")
 keymap.set("n", "n", "nzzzv") -- Keep search result centered
 keymap.set("n", "N", "Nzzzv")
 
--- Terminal Exit
-keymap.set("t", "<C-t>", "<C-\\><C-n><C-w>k", { silent = true })
+-- =========================================================
+-- Terminal Management
+-- =========================================================
+
+-- Normal Mode: Open terminal in a horizontal split and immediately enter insert mode
+keymap.set("n", "<C-`>", ":split | terminal<CR>i", { silent = true })
+
+-- Terminal Mode: Force close the terminal buffer and window with the same shortcut
+keymap.set("t", "<C-`>", "<C-\\><C-n>:bd!<CR>", { silent = true })
+
+-- (Optional) Escape to Normal mode without killing the terminal process
+-- keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { silent = true })

@@ -7,11 +7,14 @@ export PATH="$PATH:/Applications/010 Editor.app/Contents/CmdLine" #ADDED BY 010 
 # Install via: brew install zsh-autosuggestions
 if [[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ -d ~/.zsh/zsh-autosuggestions ]]; then
-    # Keep your manual fallback just in case
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     echo "zsh-autosuggestions not found. Try: brew install zsh-autosuggestions"
+fi
+# Install via: brew install zsh-syntax-highlighting
+if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    echo "zsh-autosuggestions not found. Try: brew install zsh-syntax-highlighting.zsh"
 fi
 
 # --- NEW: Homebrew Setup for Apple Silicon ---
