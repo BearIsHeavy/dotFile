@@ -44,4 +44,20 @@ require("mason-lspconfig").setup_handlers({
       },
     })
   end,
+
+  -- 3. C/C++ specific configuration for clangd
+  ["clangd"] = function()
+    require("lspconfig").clangd.setup({
+      capabilities = capabilities,
+      cmd = {
+        "clangd",
+        "--background-index",           -- Enable background indexing for faster completion
+        "--clang-tidy",                 -- Enable clang-tidy diagnostics
+        "--header-insertion=iwyu",      -- Include-What-You-Use header insertion
+        "--completion-style=detailed",  -- Detailed completion items
+        "--function-arg-placeholders",  -- Show function argument placeholders
+      },
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+    })
+  end,
 })

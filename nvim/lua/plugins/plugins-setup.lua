@@ -67,6 +67,11 @@ return require('packer').startup(function(use)
 
   use ("justinmk/vim-sneak")
 
+  -- DAP (Debug Adapter Protocol) for debugging
+  use ("mfussenegger/nvim-dap")
+  use ("rcarriga/nvim-dap-ui")
+  use ("theHamsta/nvim-dap-virtual-text")
+
   -- REMOVED: coc.nvim (Conflict with nvim-cmp)
 
   if packer_bootstrap then

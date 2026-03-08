@@ -42,6 +42,19 @@ keymap.set({ "n", "i", "v" }, "<C-f>", "<ESC>:Telescope current_buffer_fuzzy_fin
 -- (ADDED: Matches VS Code native "Go to Definition" via LSP)
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 
+-- C/C++ LSP Navigation
+keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
+keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
+keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Find references" })
+keymap.set("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
+keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover documentation" })
+keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
+
+-- Diagnostic navigation
+keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous diagnostic" })
+keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { desc = "Next diagnostic" })
+keymap.set("n", "<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "Open diagnostic list" })
+
 
 -- =========================================================
 -- General Neovim Enhancements (Preserved if non-conflicting)

@@ -27,6 +27,7 @@ safe_require("plugins/bufferline")
 safe_require("plugins/gitsigns")
 safe_require("plugins/telescope")
 safe_require("plugins/vim-sneak")
+safe_require("plugins/dap")
 
 -- Neovide (Optional)
 safe_require("plugins.neovide")

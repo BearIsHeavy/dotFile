@@ -1,0 +1,76 @@
+" ==============================================================================
+" IDEA Vim 配置文件 (适配 VS Code Vim 习惯)
+" ==============================================================================
+
+" --- 基础设置 ---
+set number              " 显示行号 (nu)
+set relativenumber      " 相对行号 (可选，VS Code 用户常喜欢)
+set scrolloff=5         " 滚动边距
+set incsearch           " 增量搜索
+set hlsearch            " 高亮搜索结果
+set ignorecase          " 搜索忽略大小写
+set smartcase           " 智能大小写
+set clipboard=unnamed   " 使用系统剪贴板
+
+" --- Leader Key 设置 ---
+" 保持与 VS Code 一致，使用空格作为 Leader
+let mapleader=" "
+
+" --- 通用映射 (VS Code 风格适配) ---
+
+" 1. 清除搜索高亮 (ESC)
+nnoremap <Esc> :noh<CR>
+
+" 2. 代码导航与信息 (核心映射)
+" gh: 显示悬停信息/类型提示 (VS Code: ShowHoverInfo -> IDEA: QuickImplementations / ShowErrorDescription)
+" 这里映射为 'QuickImplementations' (显示文档/类型)，这是最接近 VS Code Hover 的体验
+nnoremap gh :action QuickImplementations<CR>
+
+" gd: 跳转到定义 (GotoDeclaration)
+nnoremap gd :action GotoDeclaration<CR>
+
+" gi: 跳转到实现 (GotoImplementation)
+nnoremap gi :action GotoImplementation<CR>
+
+" gr: 查找引用 (ShowUsages)
+nnoremap gr :action FindUsages<CR>
+
+" gf: 格式化代码 (FormatCode)
+" 注意：IDEA 中 Reformat Code 的 Action ID 通常是 ReformatCode
+nnoremap gf :action ReformatCode<CR>
+
+" 3. UI 控制
+" <leader>e: 打开项目视图 (ActivateProjectToolWindow)
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+
+" <leader>f: 查找文件 (GotoFile / Search Everywhere)
+" IDEA 中 'SearchEverywhere' 更强大，或者用 'GotoFile'
+nnoremap <leader>f :action GotoFile<CR>
+
+" 4. 重构 (Refactoring)
+" <leader>rn: 重命名 (RenameElement)
+nnoremap <leader>rn :action RenameElement<CR>
+
+" <leader>ca: 显示意图动作/快速修复 (ShowIntentionActions / Alt+Enter)
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+
+" 5. 编辑器标签/窗口管理
+" <leader>w: 关闭当前标签页 (CloseContent)
+nnoremap <leader>w :action CloseContent<CR>
+
+" L / H: 切换下一个/上一个标签页 (NextTab / PreviousTab)
+nnoremap L :action NextTab<CR>
+nnoremap H :action PreviousTab<CR>
+
+" --- 剪贴板行为 (VS Code 风格) ---
+" 在视觉模式下粘贴时，不覆盖寄存器 (保持被替换的内容不在剪贴板中)
+" 注意：IDEA Vim 对 "_dP 的支持取决于版本，如果无效可尝试以下替代方案
+vnoremap p "_dP
+vnoremap P "_dP
+
+" --- 额外优化 (可选) ---
+" 让 j/k 在长行中按视觉行移动 (VS Code 默认行为)
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk

@@ -7,7 +7,7 @@
   "editor.fontWeight": "400",
   "vim.easymotion": true,
   "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
+  "vim.useSystemClipboard": false,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.foldfix": true,
@@ -84,9 +84,8 @@
     "editor.insertSpaces": true
   },
   "workbench.settings.applyToAllProfiles": [
-
-
   
   ],
-  "workbench.secondarySideBar.defaultVisibility": "hidden"
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "python.defaultInterpreterPath": "/Users/quanqing/Repository/YanZhuShou/.venv"
 }
