@@ -6,12 +6,52 @@ This document describes the utility scripts in the `bin/` directory.
 
 | Script | Description |
 |--------|-------------|
+| `mount.sh` | Unified SMB and SSHFS mount manager |
 | `enableProxy.sh` | Configure system proxy settings |
-| `SMB_mount.sh` | Mount SMB network shares |
-| `SSHFS_mount.sh` | Mount remote filesystems via SSHFS |
 | `uninstall_mac_app.sh` | Completely uninstall macOS applications |
 
 ## Usage
+
+### mount.sh
+
+Unified mount script supporting both SMB (Windows/NAS) and SSHFS (SSH mounting).
+
+```bash
+# Interactive mode (choose mount type)
+./bin/mount.sh
+
+# Show help
+./bin/mount.sh -h
+
+# Mount SMB share directly
+./bin/mount.sh -t smb mount
+
+# Unmount SSHFS
+./bin/mount.sh -t sshfs unmount
+
+# Reinitialize configuration
+./bin/mount.sh -t smb init
+
+# Check mount status
+./bin/mount.sh status
+```
+
+**Mount Types:**
+
+| Type | Description | Best For |
+|------|-------------|----------|
+| `smb` | SMB/CIFS mount | Windows file sharing, NAS devices (Synology, QNAP) |
+| `sshfs` | SSH File System | Remote Linux servers, cloud VMs, secure connections |
+
+**Configuration Files:**
+- SMB: `~/configs/.smb_mount_config`
+- SSHFS: `~/configs/.sshfs_mount_config`
+
+**Prerequisites for SSHFS:**
+```bash
+brew install --cask macfuse
+brew install sshfs
+```
 
 ### enableProxy.sh
 
@@ -23,37 +63,6 @@ Enable or disable proxy settings for development environments.
 
 # Disable proxy
 ./bin/enableProxy.sh off
-```
-
-### SMB_mount.sh
-
-Mount SMB network shares on macOS.
-
-```bash
-./bin/SMB_mount.sh <server> <share> <mountpoint>
-```
-
-**Example:**
-```bash
-./bin/SMB_mount.sh 192.168.1.100 public /Volumes/smb-share
-```
-
-### SSHFS_mount.sh
-
-Mount remote filesystems using SSHFS.
-
-```bash
-./bin/SSHFS_mount.sh <user@host> <remote-path> <local-mountpoint>
-```
-
-**Example:**
-```bash
-./bin/SSHFS_mount.sh user@server.com:/home/user/project ~/mnt/project
-```
-
-**Prerequisites:**
-```bash
-brew install macfuse sshfs
 ```
 
 ### uninstall_mac_app.sh

@@ -8,13 +8,12 @@ alias rm='rm -i'
 alias mv='mv -i'
 
 # script
-alias SMBmount='$HOME/bin/SMB_mount.sh'
-alias SSHmount='$HOME/bin/SSHFS_mount.sh'
+alias sshMount='$HOME/bin/mount.sh'
 alias uninstallApp='$HOME/bin/uninstall_mac_app.sh'
 
 
 # relative network operations
-alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
+alias getip='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
 alias sshAgent='eval $(ssh-agent) && ssh-add --apple-use-keychain ~/.ssh/id_ed25519'
 alias setProxy='eval $(bash $HOME/bin/enableProxy.sh)'
 alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
