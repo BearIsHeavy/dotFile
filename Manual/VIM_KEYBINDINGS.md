@@ -58,8 +58,8 @@ This document provides a unified keybinding reference for seamless switching bet
 
 ## Editor-Specific Configuration Files
 
-- **IDEA**: `~/.dotfile/idea_config/.ideavimrc`
-- **VSCode**: `~/.dotfile/vscode_setting/settings.json`
+- **IDEA**: `idea_config/.ideavimrc`
+- **VSCode**: `vscode_setting/settings.json`
 
 ## Setup Instructions
 

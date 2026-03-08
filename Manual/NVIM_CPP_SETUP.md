@@ -2,6 +2,14 @@
 
 This guide explains how to set up your Neovim configuration for C/C++ development.
 
+## Configuration Location
+
+Your Neovim config is located at `~/.dotfile/nvim/`. Symlink it to:
+
+```bash
+ln -s ~/.dotfile/nvim/init.lua ~/.config/nvim/init.lua
+```
+
 ## Prerequisites
 
 ### 1. Install LLVM/Clang
