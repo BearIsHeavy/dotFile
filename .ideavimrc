@@ -74,3 +74,10 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+" --- 视觉模式 Leader 映射 ---
+" 重命名 (支持视觉模式选中后重命名)
+vnoremap <leader>rn :action RenameElement<CR>
+
+" 格式化代码 (视觉模式)
+vnoremap gf :action ReformatCode<CR>
