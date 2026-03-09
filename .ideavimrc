@@ -1,10 +1,10 @@
 " ==============================================================================
-" IDEA Vim Configuration (Adapted for VS Code Vim Habits)
+" IDEA Vim Configuration (Aligned with NVim and VSCode)
 " ==============================================================================
 
 " --- Basic Settings ---
-set number              " Show line numbers (nu)
-set relativenumber      " Relative line numbers (optional, VS Code users often prefer)
+set number              " Show line numbers
+set relativenumber      " Relative line numbers
 set scrolloff=5         " Scroll offset
 set incsearch           " Incremental search
 set hlsearch            " Highlight search results
@@ -13,21 +13,23 @@ set smartcase           " Smart case sensitivity
 set clipboard=unnamed   " Use system clipboard
 
 " --- Leader Key Settings ---
-" Keep consistent with VS Code, use space as Leader
+" Use space as Leader (consistent with VSCode and NVim)
 let mapleader=" "
 
-" --- General Mappings (VS Code Style Adaptation) ---
+" --- General Mappings (Aligned with NVim) ---
 
 " 1. Clear search highlight (ESC)
 nnoremap <Esc> :noh<CR>
 
-" 2. Code Navigation & Info (Core Mappings)
-" gh: Show hover info / type hints (VS Code: ShowHoverInfo -> IDEA: QuickImplementations / ShowErrorDescription)
-" Mapped to 'QuickImplementations' (shows docs/type), closest to VS Code Hover experience
+" 2. Code Navigation & Info (Core Mappings - Aligned with NVim)
+" gh: Hover documentation (QuickImplementations shows docs/type)
 nnoremap gh :action QuickImplementations<CR>
 
 " gd: Go to definition (GotoDeclaration)
 nnoremap gd :action GotoDeclaration<CR>
+
+" gD: Go to declaration
+nnoremap gD :action GotoDeclaration<CR>
 
 " gi: Go to implementation (GotoImplementation)
 nnoremap gi :action GotoImplementation<CR>
@@ -35,49 +37,62 @@ nnoremap gi :action GotoImplementation<CR>
 " gr: Find references (ShowUsages)
 nnoremap gr :action FindUsages<CR>
 
-" gf: Format code (FormatCode)
-" Note: In IDEA, the Action ID for Reformat Code is typically ReformatCode
+" gR: Rename symbol (RenameElement)
+nnoremap gR :action RenameElement<CR>
+
+" gs: Signature help (ParameterInfo)
+nnoremap gs :action ParameterInfo<CR>
+
+" gf: Format code (ReformatCode)
 nnoremap gf :action ReformatCode<CR>
 
 " 3. UI Controls
 " <leader>e: Open project view (ActivateProjectToolWindow)
 nnoremap <leader>e :action ActivateProjectToolWindow<CR>
 
-" <leader>f: Find file (GotoFile / Search Everywhere)
-" In IDEA, 'SearchEverywhere' is more powerful, or use 'GotoFile'
+" <leader>f: Find file (GotoFile)
 nnoremap <leader>f :action GotoFile<CR>
 
 " 4. Refactoring
 " <leader>rn: Rename symbol (RenameElement)
 nnoremap <leader>rn :action RenameElement<CR>
 
-" <leader>ca: Show intention actions / quick fix (ShowIntentionActions / Alt+Enter)
+" <leader>ca: Show intention actions / quick fix (ShowIntentionActions)
 nnoremap <leader>ca :action ShowIntentionActions<CR>
 
 " 5. Editor Tab / Window Management
-" <leader>w: Close current tab (CloseContent)
+" <leader>w: Close current editor (CloseContent)
 nnoremap <leader>w :action CloseContent<CR>
 
 " L / H: Switch to next / previous tab (NextTab / PreviousTab)
 nnoremap L :action NextTab<CR>
 nnoremap H :action PreviousTab<CR>
 
+" Diagnostic navigation
+nnoremap [d :action PreviousError<CR>
+nnoremap ]d :action NextError<CR>
+
 " --- Clipboard Behavior (VS Code Style) ---
-" When pasting in visual mode, do not overwrite register (keep replaced content out of clipboard)
-" Note: IDEA Vim support for "_dP depends on version, try alternative if invalid
+" When pasting in visual mode, do not overwrite register
 vnoremap p "_dP
 vnoremap P "_dP
 
-" --- Additional Optimizations (Optional) ---
-" Make j/k move by visual lines in long lines (VS Code default behavior)
+" --- Additional Optimizations ---
+" Make j/k move by visual lines (VS Code default behavior)
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" --- Visual Mode Leader Mappings ---
-" Rename (supports renaming after visual selection)
-vnoremap <leader>rn :action RenameElement<CR>
+" --- Insert Mode ---
+" jj to exit insert mode (consistent with NVim and VSCode)
+inoremap jj <Esc>
 
-" Format code (visual mode)
+" --- Visual Mode Leader Mappings ---
+vnoremap <leader>rn :action RenameElement<CR>
 vnoremap gf :action ReformatCode<CR>
+
+" --- VS Code Native Override Simulations ---
+" Ctrl+S: Save (handled by IDEA natively)
+" Ctrl+A: Select All (handled by IDEA natively)
+" Ctrl+F: Find (handled by IDEA natively)

@@ -34,6 +34,14 @@
     {
       "before": ["k"],
       "after": ["g", "k"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "f"],
+      "commands": ["editor.action.formatDocument"]
     }
   ],
   "vim.insertModeKeyBindings": [
@@ -65,12 +73,24 @@
       "commands": ["editor.action.revealDefinition"]
     },
     {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDeclaration"]
+    },
+    {
       "before": ["g", "i"],
       "commands": ["editor.action.goToImplementation"]
     },
     {
       "before": ["g", "r"],
       "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": ["g", "R"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.triggerParameterHints"]
     },
     {
       "before": ["g", "f"],
@@ -103,9 +123,17 @@
     {
       "before": ["H"],
       "commands": ["workbench.action.previousEditorInGroup"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prevInFile"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.nextInFile"]
     }
   ],
-  
+
   "terminal.integrated.fontSize": 15,
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
@@ -152,6 +180,5 @@
   
   
   ],
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "python.defaultInterpreterPath": "/Users/quanqing/Repository/YanZhuShou/.venv"
+  "workbench.secondarySideBar.defaultVisibility": "hidden"
 }

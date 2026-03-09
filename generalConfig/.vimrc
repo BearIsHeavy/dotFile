@@ -142,7 +142,7 @@ nnoremap <leader>\ :nohlsearch<CR>
 " map <ESC>
 inoremap kk <ESC>
 
-" Press \p to print the current file to the default printer 
+" Press \p to print the current file to the default printer
 " from a Linux/Mac operating system (requires configured printer).
 " View available printers:   lpstat -v
 " Set default printer:       lpoptions -d <printer_name>

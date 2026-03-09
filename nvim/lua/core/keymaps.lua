@@ -2,53 +2,63 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 -- =========================================================
--- VS Code Consistency Mappings (Source: settings.json)
+-- VS Code / IDEA Vim Consistency Mappings
 -- =========================================================
 
 -- Insert Mode: Exit with jj
 keymap.set("i", "jj", "<ESC>")
 
--- Normal Mode: Delete line with <leader>d 
--- (CHANGED: Previously mapped to :bd<CR>. Now matches VS Code "dd" behavior)
+-- Normal Mode: Clear highlight with ESC
+keymap.set("n", "<Esc>", ":nohl<CR>")
+
+-- Normal Mode: Delete line with <leader>d (matches VS Code "dd" behavior)
 keymap.set("n", "<leader>d", "dd")
 
--- Normal Mode: Clear highlight with <C-n>
--- (CHANGED: Matches VS Code :nohl. Previous <leader>nh removed for consistency)
-keymap.set("n", "<C-n>", ":nohl<CR>")
-
 -- Normal Mode: Insert line break with K
--- (CHANGED: Matches VS Code "lineBreakInsert". Standard Vim 'K' is hover.)
 keymap.set("n", "K", "i<CR><ESC>")
 
 
 -- =========================================================
 -- VS Code Native Override Simulations ("vim.handleKeys": false)
 -- =========================================================
--- These keys are handled by VS Code natively, so we simulate that behavior in Neovim.
 
 -- Ctrl+S: Save File
 keymap.set({ "n", "i", "v" }, "<C-s>", "<ESC>:w<CR>")
 
 -- Ctrl+A: Select All
--- (ADDED: Neovim default is increment. VS Code native is Select All.)
 keymap.set({ "n", "i", "v" }, "<C-a>", "<ESC>ggVG")
 
--- Ctrl+F: Find
--- (ADDED: Neovim default is PageDown. VS Code native is Find.)
--- We use Telescope for a rich "Find" experience similar to VS Code's widget.
+-- Ctrl+F: Find (using Telescope)
 keymap.set({ "n", "i", "v" }, "<C-f>", "<ESC>:Telescope current_buffer_fuzzy_find<CR>")
 
--- gd: Go to Definition
--- (ADDED: Matches VS Code native "Go to Definition" via LSP)
-keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 
--- C/C++ LSP Navigation
-keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
-keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Find references" })
-keymap.set("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
+-- =========================================================
+-- Code Navigation & Info (Aligned with VSCode and IDEA Vim)
+-- =========================================================
+
+-- gh: Hover documentation
 keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover documentation" })
+
+-- gd: Go to definition
+keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
+
+-- gD: Go to declaration
+keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
+
+-- gi: Go to implementation
+keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
+
+-- gr: Find references
+keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Find references" })
+
+-- gR: Rename symbol
+keymap.set("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
+
+-- gs: Signature help
 keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature help" })
+
+-- gf: Format code
+keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format code" })
 
 -- Diagnostic navigation
 keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { desc = "Previous diagnostic" })
@@ -57,43 +67,69 @@ keymap.set("n", "<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc
 
 
 -- =========================================================
--- General Neovim Enhancements (Preserved if non-conflicting)
+-- UI Controls (Aligned with VSCode and IDEA Vim)
 -- =========================================================
 
--- View mode: Move text up and down (Enhanced J/K behavior)
+-- <leader>e: Toggle file explorer (NvimTree)
+keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+
+-- <leader>f: Find file (using Telescope)
+keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+
+-- <leader>rn: Rename symbol
+keymap.set({ "n", "v" }, "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
+
+-- <leader>ca: Show code actions / quick fix
+keymap.set({ "n", "v" }, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })
+
+-- <leader>w: Close current buffer
+keymap.set("n", "<leader>w", ":bd<CR>", { desc = "Close buffer" })
+
+-- L / H: Switch to next / previous buffer
+keymap.set("n", "L", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "H", ":bprevious<CR>", { desc = "Previous buffer" })
+
+
+-- =========================================================
+-- Clipboard Behavior (VS Code Style)
+-- =========================================================
+
+-- When pasting in visual mode, do not overwrite register
+keymap.set("v", "p", '"_dP')
+keymap.set("v", "P", '"_dP')
+
+-- Make j/k move by visual lines (VS Code default behavior)
+keymap.set({ "n", "v" }, "j", "gj")
+keymap.set({ "n", "v" }, "k", "gk")
+
+
+-- =========================================================
+-- General Neovim Enhancements
+-- =========================================================
+
+-- View mode: Move text up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 
 -- Window Splitting
-keymap.set("n", "<leader>sh", "<C-w>v") -- Horizontal split
-keymap.set("n", "<leader>sv", "<C-w>s") -- Vertical split
+keymap.set("n", "<leader>sh", "<C-w>v", { desc = "Split horizontal" })
+keymap.set("n", "<leader>sv", "<C-w>s", { desc = "Split vertical" })
 
--- NvimTree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-
--- Buffer Navigation
-keymap.set("n", "<leader>k", ":bnext<CR>")
-keymap.set("n", "<leader>j", ":bprevious<CR>")
-
--- Since we mapped <leader>d to 'dd' (VS Code style), we need a new key to close buffers.
--- Mapped to <leader>x (Common convention)
-keymap.set("n", "<leader>x", ":bd<CR>")
+-- Buffer Navigation (alternative)
+keymap.set("n", "<leader>k", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<leader>j", ":bprevious<CR>", { desc = "Previous buffer" })
 
 -- Search Navigation
--- (REVERTED: Your previous config mapped 'n' to '*'. I reverted this to standard 'next'
--- because your VS Code config does not override 'n', implying standard behavior.)
-keymap.set("n", "n", "nzzzv") -- Keep search result centered
+keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
+
 
 -- =========================================================
 -- Terminal Management
 -- =========================================================
 
--- Normal Mode: Open terminal in a horizontal split and immediately enter insert mode
+-- Normal Mode: Open terminal in a horizontal split
 keymap.set("n", "<C-`>", ":split | terminal<CR>i", { silent = true })
 
--- Terminal Mode: Force close the terminal buffer and window with the same shortcut
+-- Terminal Mode: Force close the terminal buffer and window
 keymap.set("t", "<C-`>", "<C-\\><C-n>:bd!<CR>", { silent = true })
-
--- (Optional) Escape to Normal mode without killing the terminal process
--- keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { silent = true })
