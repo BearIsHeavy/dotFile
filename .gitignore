@@ -1,4 +1,22 @@
+# Personal data and downloads
 Download
 securityNote
+
+# Local scripts (keep bin structure but ignore personal scripts)
 bin/*
+!bin/shell/
+!bin/src/
+!bin/workshop/
+
+# Zsh plugins (managed separately)
 .zsh/*
+
+# Machine-specific zprofile
+zshconfig/.zprofile
+
+# Backup files
+*.bak
+*~
+
+# Log files
+*.log
