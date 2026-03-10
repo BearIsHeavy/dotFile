@@ -1,233 +1,169 @@
 # Dotfiles Configuration
 
-Personal dotfiles configuration supporting both **Ubuntu** and **Arch Linux** distributions.
+Personal dotfiles configuration for **Ubuntu/Debian** systems.
 
 ## Directory Structure
 
 ```
 .dotfile/
-├── Ubuntu/                       # Ubuntu-specific files
-│   ├── requirements_ubuntu.sh    # Ubuntu package requirements
-│   ├── setup_ubuntu.sh           # Ubuntu setup entry point
-│   ├── ubuntu_initial_script.sh  # Fresh Ubuntu install script
-│   └── ubuntu_initial.sh         # Ubuntu post-install config
+├── main.sh                     # Unified entry point (run this first)
 │
-├── Arch/                         # Arch-specific files
-│   ├── requirements_arch.sh      # Arch package requirements
-│   ├── setup_arch.sh             # Arch setup entry point
-│   ├── arch_install.sh           # Fresh Arch install script
-│   └── arch_initial.sh           # Arch post-install config
+├── scripts/                    # All setup scripts
+│   ├── setup/                  # Distro setup entry points
+│   │   └── ubuntu.sh
+│   │
+│   ├── install/                # OS installation scripts
+│   │   └── ubuntu.sh
+│   │
+│   ├── post_install/           # Post-install configuration
+│   │   └── ubuntu.sh
+│   │
+│   ├── requirements/           # Package requirements
+│   │   └── ubuntu.sh
+│   │
+│   └── init/                   # Module initialization
+│       ├── vpn.sh              # VPN configuration
+│       ├── zsh.sh              # Zsh setup
+│       ├── vim.sh              # Vim setup
+│       ├── nvim.sh             # Neovim setup
+│       ├── tools.sh            # Additional tools
+│       ├── fonts.sh            # Terminal fonts
+│       ├── conda.sh            # Conda setup
+│       ├── colors.sh           # Colorscheme setup
+│       ├── neovide.sh          # Neovide setup
+│       └── build_dvwa.sh       # DVWA build script
 │
-├── initial/                      # Shared initialization scripts
-│   ├── build_dvwa.sh
-│   ├── colors.sh
-│   ├── conda.sh
-│   ├── neovide.sh
-│   ├── nvim.sh
-│   ├── otherCommand.sh
-│   ├── terminal_fonts.sh
-│   ├── vim.sh
-│   ├── vpn.sh
-│   └── zsh.sh
-│
-├── generalConfig/                # Shared configuration files
+├── config/                     # Configuration files
 │   ├── .alias
 │   ├── .bashrc
 │   ├── .profile
 │   ├── .tmux.conf
 │   └── .vimrc
 │
-├── zshconfig/                    # Zsh configuration
+├── zshconfig/                  # Zsh configuration
 │   ├── .zlogin
 │   ├── .zprofile
 │   ├── .zshenv
 │   ├── .zshrc
 │   └── trigger.sh
 │
-├── nvim/                         # Neovim configuration
+├── nvim/                       # Neovim configuration
 │   ├── coc-settings.json
 │   ├── init.lua
 │   ├── lua/
 │   └── plugin/
 │
-├── .zsh/                         # Zsh plugins
+├── .zsh/                       # Zsh plugins
 │   ├── spaceship/
 │   └── zsh-autosuggestions/
 │
-├── bin/                          # Custom scripts
+├── bin/                        # Custom scripts
 │   ├── shell/
 │   ├── src/
 │   └── workshop/
 │
-├── main.sh                       # Symlink creator (shared)
+├── vscode_config/
 ├── README.md
-├── .gitignore
-└── bug_fixes.log
+└── .gitignore
 ```
 
 ---
 
 ## Quick Start
 
-### Ubuntu / Debian
-
 ```bash
 # Clone the repository
 cd ~
 git clone <your-repo-url> .dotfile
 cd .dotfile
 
-# Run the Ubuntu setup script
-bash Ubuntu/setup_ubuntu.sh
-```
-
-### Arch Linux / Manjaro
-
-```bash
-# Clone the repository
-cd ~
-git clone <your-repo-url> .dotfile
-cd .dotfile
-
-# Run the Arch setup script
-bash Arch/setup_arch.sh
-```
-
----
-
-## Installation Guide
-
-### Fresh OS Installation
-
-#### Ubuntu
-
-1. **Install Ubuntu** (22.04 LTS or later recommended)
-2. **Run initial setup script:**
-   ```bash
-   cd ~/path/to/.dotfile/Ubuntu
-   bash ubuntu_initial_script.sh
-   ```
-3. **Configure dotfiles:**
-   ```bash
-   cd ~/path/to/.dotfile
-   bash Ubuntu/setup_ubuntu.sh
-   ```
-
-#### Arch Linux
-
-1. **Install Arch Linux** (follow the [Arch Wiki Installation Guide](https://wiki.archlinux.org/title/Installation_guide))
-2. **Run initial setup script:**
-   ```bash
-   cd ~/path/to/.dotfile/Arch
-   bash arch_install.sh
-   ```
-3. **Configure desktop environment (optional):**
-   ```bash
-   cd ~/path/to/.dotfile/Arch
-   bash arch_initial.sh
-   ```
-4. **Configure dotfiles:**
-   ```bash
-   cd ~/path/to/.dotfile
-   bash Arch/setup_arch.sh
-   ```
-
----
-
-## Manual Setup (Advanced)
-
-### Step 1: Install System Packages
-
-**Ubuntu:**
-```bash
-bash Ubuntu/requirements_ubuntu.sh
-```
-
-**Arch Linux:**
-```bash
-bash Arch/requirements_arch.sh
-```
-
-### Step 2: Create Symlinks
-
-```bash
+# Run the unified setup
 bash main.sh
 ```
 
-This will create symlinks for:
-- `.profile`
-- `.bashrc`
-- `.vimrc`
-- `.tmux.conf`
-- `.zshrc`
-- `.zshenv`
-- `.zlogin`
-- `.zsh/`
-- `bin/`
+---
 
-### Step 3: Configure Individual Modules
+## Usage
 
-Each module can be configured independently:
+### Interactive Menu
 
-| Module | Script | Error Code |
-|--------|--------|------------|
-| VPN | `initial/vpn.sh` | 11 |
-| Zsh | `initial/zsh.sh` | 12 |
-| Vim | `initial/vim.sh` | 13 |
-| Neovim | `initial/nvim.sh` | 14 |
-| Other Tools | `initial/otherCommand.sh` | 15 |
-| Terminal Fonts | `initial/terminal_fonts.sh` | 16 |
+Running `bash main.sh` will show an interactive menu:
+
+```
+========================================
+  Dotfiles Setup
+  OS: Ubuntu 24.04 LTS
+========================================
+
+Please select an option:
+  1) Full setup (recommended)
+  2) Install packages only
+  3) Create symlinks only
+  4) Setup individual modules
+  5) Exit
+```
+
+### Full Setup
+
+Option 1 will:
+1. Install system packages
+2. Create symlinks for config files
+3. Setup all modules (VPN, Zsh, Vim, Neovim, Tools, Fonts)
+
+### Individual Modules
+
+Option 4 allows you to setup specific modules:
+- VPN
+- Zsh
+- Vim
+- Neovim
+- Tools
+- Fonts
+- Conda
+- Colors
+- Neovide
+- Build DVWA
+
+---
+
+## Manual Setup
+
+### Install Packages
+
+```bash
+bash scripts/requirements/ubuntu.sh
+```
+
+### Create Symlinks
+
+```bash
+bash main.sh  # Select option 3
+```
+
+### Setup Individual Module
+
+```bash
+bash scripts/init/vpn.sh
+bash scripts/init/zsh.sh
+bash scripts/init/vim.sh
+bash scripts/init/nvim.sh
+bash scripts/init/tools.sh
+bash scripts/init/fonts.sh
+```
 
 ---
 
 ## Recommended Setup Order
 
-1. **VPN Setup** (Recommended first - needed for GitHub access in some regions)
+1. **VPN** (if behind firewall - needed for GitHub access)
    ```bash
-   bash initial/vpn.sh
+   bash scripts/init/vpn.sh
    ```
 
-2. **Zsh Configuration**
+2. **Full Setup**
    ```bash
-   bash initial/zsh.sh
+   bash main.sh
    ```
-
-3. **Vim Configuration**
-   ```bash
-   bash initial/vim.sh
-   ```
-
-4. **Neovim Configuration**
-   ```bash
-   bash initial/nvim.sh
-   ```
-
-5. **Additional Tools**
-   ```bash
-   bash initial/otherCommand.sh
-   ```
-
-6. **Terminal Fonts**
-   ```bash
-   bash initial/terminal_fonts.sh
-   ```
-
----
-
-## Distribution-Specific Notes
-
-### Ubuntu
-
-- Package manager: `apt`
-- Tested on: Ubuntu 22.04 LTS, 24.04 LTS
-- Default shell: Bash (Zsh needs to be installed)
-
-### Arch Linux
-
-- Package manager: `pacman` + `yay` (AUR helper)
-- Tested on: Arch Linux (latest)
-- Default shell: Bash (Zsh needs to be installed)
-- AUR packages are installed automatically via `yay`
 
 ---
 
@@ -240,8 +176,7 @@ Each module can be configured independently:
    - Check if target files already exist in `$HOME`
 
 2. **Package installation fails**
-   - Ubuntu: Run `sudo apt update` first
-   - Arch: Run `sudo pacman -Sy` first
+   - Run `sudo apt update` first
 
 3. **Neovim plugins fail to install**
    - Ensure VPN/proxy is configured if behind a firewall
@@ -256,11 +191,6 @@ Each module can be configured independently:
 | Code | Module | Description |
 |------|--------|-------------|
 | 2 | main.sh | Wrong working directory |
-| 11 | vpn.sh | VPN setup failed |
-| 12 | zsh.sh | Zsh setup failed |
-| 13 | vim.sh | Vim setup failed |
-| 14 | nvim.sh | Neovim setup failed |
-| 15 | otherCommand.sh | Additional tools setup failed |
 
 ---
 
@@ -272,17 +202,10 @@ Edit `zshconfig/.zprofile` for machine-specific settings. This file is git-ignor
 
 ### Adding New Packages
 
-- **Ubuntu:** Add to `Ubuntu/requirements_ubuntu.sh`
-- **Arch:** Add to `Arch/requirements_arch.sh`
+Add to `scripts/requirements/ubuntu.sh`
 
 ---
 
 ## License
 
 Personal configuration files. Feel free to use and modify for your own setup.
-
----
-
-## Contributing
-
-This is a personal dotfiles repository. If you find any issues, feel free to open an issue or submit a PR.
