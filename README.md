@@ -5,37 +5,20 @@ Personal dotfiles configuration supporting both **Ubuntu** and **Arch Linux** di
 ## Directory Structure
 
 ```
-.dotfile
-├── .gitignore
-├── .zsh                        # Third-party plugins for zsh
-│   ├── spaceship
-│   └── zsh-autosuggestions
-├── Download                    # Third-party tools storage
-│   ├── Clash
-│   ├── nvim
-│   └── frp
-├── Linux_Install               # OS installation scripts (fresh install)
-│   ├── Arch
-│   │   └── arch_install.sh
-│   └── Ubuntu
-│       └── ubuntu_initial_script.sh
-├── Linux-Initial               # Post-install desktop configuration
-│   ├── Arch
-│   │   └── arch_initial.sh
-│   └── Ubuntu
-│       └── ubuntu_initial.sh
-├── README.md
-├── bin                         # Custom scripts and utilities
-│   ├── shell/
-│   ├── src/
-│   └── workshop/
-├── generalConfig               # General configuration files
-│   ├── .alias
-│   ├── .bashrc
-│   ├── .profile
-│   ├── .tmux.conf
-│   └── .vimrc
-├── initial                     # Module initialization scripts
+.dotfile/
+├── Ubuntu/                       # Ubuntu-specific files
+│   ├── requirements_ubuntu.sh    # Ubuntu package requirements
+│   ├── setup_ubuntu.sh           # Ubuntu setup entry point
+│   ├── ubuntu_initial_script.sh  # Fresh Ubuntu install script
+│   └── ubuntu_initial.sh         # Ubuntu post-install config
+│
+├── Arch/                         # Arch-specific files
+│   ├── requirements_arch.sh      # Arch package requirements
+│   ├── setup_arch.sh             # Arch setup entry point
+│   ├── arch_install.sh           # Fresh Arch install script
+│   └── arch_initial.sh           # Arch post-install config
+│
+├── initial/                      # Shared initialization scripts
 │   ├── build_dvwa.sh
 │   ├── colors.sh
 │   ├── conda.sh
@@ -46,26 +29,40 @@ Personal dotfiles configuration supporting both **Ubuntu** and **Arch Linux** di
 │   ├── vim.sh
 │   ├── vpn.sh
 │   └── zsh.sh
-├── nvim                        # Neovim configuration
+│
+├── generalConfig/                # Shared configuration files
+│   ├── .alias
+│   ├── .bashrc
+│   ├── .profile
+│   ├── .tmux.conf
+│   └── .vimrc
+│
+├── zshconfig/                    # Zsh configuration
+│   ├── .zlogin
+│   ├── .zprofile
+│   ├── .zshenv
+│   ├── .zshrc
+│   └── trigger.sh
+│
+├── nvim/                         # Neovim configuration
 │   ├── coc-settings.json
 │   ├── init.lua
 │   ├── lua/
 │   └── plugin/
-├── requirements_arch.sh        # Arch Linux package requirements
-├── requirements_ubuntu.sh      # Ubuntu package requirements
-├── setup_arch.sh               # Arch Linux setup entry point
-├── setup_ubuntu.sh             # Ubuntu setup entry point
-├── main.sh                     # Cross-distribution symlink creator
-├── bug_fixes.log               # Bug fix history
-├── securityNote/
-├── vscode_config
-│   └── settings.json
-└── zshconfig                   # Zsh configuration
-    ├── .zlogin
-    ├── .zprofile
-    ├── .zshenv
-    ├── .zshrc
-    └── trigger.sh
+│
+├── .zsh/                         # Zsh plugins
+│   ├── spaceship/
+│   └── zsh-autosuggestions/
+│
+├── bin/                          # Custom scripts
+│   ├── shell/
+│   ├── src/
+│   └── workshop/
+│
+├── main.sh                       # Symlink creator (shared)
+├── README.md
+├── .gitignore
+└── bug_fixes.log
 ```
 
 ---
@@ -81,7 +78,7 @@ git clone <your-repo-url> .dotfile
 cd .dotfile
 
 # Run the Ubuntu setup script
-bash setup_ubuntu.sh
+bash Ubuntu/setup_ubuntu.sh
 ```
 
 ### Arch Linux / Manjaro
@@ -93,7 +90,7 @@ git clone <your-repo-url> .dotfile
 cd .dotfile
 
 # Run the Arch setup script
-bash setup_arch.sh
+bash Arch/setup_arch.sh
 ```
 
 ---
@@ -107,13 +104,13 @@ bash setup_arch.sh
 1. **Install Ubuntu** (22.04 LTS or later recommended)
 2. **Run initial setup script:**
    ```bash
-   cd ~/path/to/.dotfile/Linux_Install/Ubuntu
+   cd ~/path/to/.dotfile/Ubuntu
    bash ubuntu_initial_script.sh
    ```
 3. **Configure dotfiles:**
    ```bash
    cd ~/path/to/.dotfile
-   bash setup_ubuntu.sh
+   bash Ubuntu/setup_ubuntu.sh
    ```
 
 #### Arch Linux
@@ -121,18 +118,18 @@ bash setup_arch.sh
 1. **Install Arch Linux** (follow the [Arch Wiki Installation Guide](https://wiki.archlinux.org/title/Installation_guide))
 2. **Run initial setup script:**
    ```bash
-   cd ~/path/to/.dotfile/Linux_Install/Arch
+   cd ~/path/to/.dotfile/Arch
    bash arch_install.sh
    ```
 3. **Configure desktop environment (optional):**
    ```bash
-   cd ~/path/to/.dotfile/Linux-Initial/Arch
+   cd ~/path/to/.dotfile/Arch
    bash arch_initial.sh
    ```
 4. **Configure dotfiles:**
    ```bash
    cd ~/path/to/.dotfile
-   bash setup_arch.sh
+   bash Arch/setup_arch.sh
    ```
 
 ---
@@ -143,12 +140,12 @@ bash setup_arch.sh
 
 **Ubuntu:**
 ```bash
-bash requirements_ubuntu.sh
+bash Ubuntu/requirements_ubuntu.sh
 ```
 
 **Arch Linux:**
 ```bash
-bash requirements_arch.sh
+bash Arch/requirements_arch.sh
 ```
 
 ### Step 2: Create Symlinks
@@ -275,8 +272,8 @@ Edit `zshconfig/.zprofile` for machine-specific settings. This file is git-ignor
 
 ### Adding New Packages
 
-- **Ubuntu:** Add to `requirements_ubuntu.sh`
-- **Arch:** Add to `requirements_arch.sh`
+- **Ubuntu:** Add to `Ubuntu/requirements_ubuntu.sh`
+- **Arch:** Add to `Arch/requirements_arch.sh`
 
 ---
 
