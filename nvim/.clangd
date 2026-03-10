@@ -1,0 +1,52 @@
+---
+# Clangd configuration file
+# Place this file in your project root or ~/.config/clangd/config.yaml
+
+CompileFlags:
+  # Add include paths for your project
+  Add: [-Iinclude, -Isrc]
+  
+  # C++ standard
+  - -std=c++17
+  
+  # Additional compiler flags
+  - -Wall
+  - -Wextra
+  - -Wpedantic
+
+Diagnostics:
+  # Enable clang-tidy checks
+  ClangTidy:
+    Enable: true
+    Checks:
+      - bugprone-*
+      - cert-*
+      - clang-analyzer-*
+      - cppcoreguidelines-*
+      - misc-*
+      - performance-*
+      - portability-*
+      - readability-*
+      - unused-*
+
+Completion:
+  # Show all available completions
+  AllScopes: true
+  # Include results from background index
+  IncludeInsertion: IWYU
+
+Index:
+  # Enable background indexing
+  Background: Build
+  # Directory for storing index files
+  Directory: .clangd-index
+
+InlayHints:
+  # Show parameter names in function calls
+  ParameterNames: true
+  # Show deduced types for placeholders
+  DeducedTypes: true
+  # Show variable types
+  VariableTypes: true
+
+...
