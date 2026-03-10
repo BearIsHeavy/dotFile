@@ -180,5 +180,6 @@
   
   
   ],
-  "workbench.secondarySideBar.defaultVisibility": "hidden"
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.secondarySideBar.showLabels": false
 }

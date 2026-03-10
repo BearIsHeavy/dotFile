@@ -21,7 +21,7 @@ alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && un
 # ls commands
 # Note: On macOS M4, install eza via: brew install eza
 if type eza > /dev/null;then
-  alias ll='eza --all --long --group --icons'
+  alias ll='eza --all --long --icons'
   alias ltree="eza -all --tree --icons -I '.git|.vscode|__pycache__' --git-ignore"
   alias lt='eza --long --sort=time --reverse'
   alias la='eza --all'

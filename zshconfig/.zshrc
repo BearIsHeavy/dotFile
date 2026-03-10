@@ -21,6 +21,7 @@ VIRTUAL_ENV=''
 HISTSIZE=10000
 SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
+[[ "$(uname)" == "Darwin" ]] && HOST_NAME="MAC" || HOST_NAME="Linux"
 
 # --- MacOS Specific: Key Bindings ---
 # macOS terminals often don't populate the ${key} array by default.
@@ -52,7 +53,7 @@ function check_command_status() {
     fi
 
     # Define Prompt Visuals
-    STATUS_1="(%f$HOST  %B%F{cyan}%~%f%b%F{blue})"
+    STATUS_1="(%f$HOST_NAME  %B%F{cyan}%~%f%b%F{blue})"
     STATUS_2=" %n@"
     STATUS_3="${command_verification}%F{green}${vpn_proxy}${docker_environment}%f%F{red}${git_branch}%f%F{magenta}${python_venv}${node_version}${conda_activate_env}%f"
     STATUS_4=" "
