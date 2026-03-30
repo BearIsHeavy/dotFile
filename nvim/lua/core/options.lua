@@ -4,9 +4,9 @@ local opt = vim.opt
 vim.opt.relativenumber = true
 vim.opt.number = true
 
--- retract
-opt.tabstop = 2
-opt.shiftwidth = 2
+-- retract (consistent 4-space indentation)
+opt.tabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 
@@ -26,7 +26,7 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
--- search 
+-- search
 opt.ignorecase = true
 opt.smartcase = true
 
@@ -36,8 +36,3 @@ opt.signcolumn = "yes"
 
 -- fold code
 opt.foldmethod = 'indent'
-
--- length of an actual \t character:
-opt.tabstop = 4
--- length to use when shifting text (eg. <<, >> and == commands)
-opt.shiftwidth = 0

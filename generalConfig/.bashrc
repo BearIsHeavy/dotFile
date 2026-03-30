@@ -61,8 +61,8 @@ alias ls='ls -G' # macOS color flag
 alias alert='osascript -e "display notification \"Task finished\" with title \"Terminal\""'
 
 # Source aliases
-if [ -f "$HOME"/.dotfile/.alias ]; then
-    source "$HOME"/.dotfile/.alias
+if [ -f "$HOME"/.dotfile/generalConfig/.alias ]; then
+    source "$HOME"/.dotfile/generalConfig/.alias
 fi
 
 # enable programmable completion features

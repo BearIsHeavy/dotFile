@@ -15,7 +15,7 @@ fi
 if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
-    echo "zsh-autosuggestions not found. Try: brew install zsh-syntax-highlighting.zsh"
+    echo "zsh-syntax-highlighting not found. Try: brew install zsh-syntax-highlighting"
 fi
 
 
@@ -62,6 +62,8 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # <<< uv Initialize <<<
 . "$HOME/.local/bin/env"
 # <<< uv END <<<
+
+
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :

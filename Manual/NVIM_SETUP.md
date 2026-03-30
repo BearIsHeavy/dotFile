@@ -129,9 +129,9 @@ nvim
 | Keys | Action |
 |------|--------|
 | `<leader>e` | Toggle file explorer |
-| `<leader>f` | Find files |
-| `<leader>ff` | Fuzzy find files |
-| `<leader>fg` | Live grep |
+| `<leader>f` | Find files (Telescope) |
+| `<leader>ff` | Fuzzy find files (same as `<leader>f`) |
+| `<leader>fg` | Live grep in project |
 | `<leader>fb` | List buffers |
 | `<leader>fh` | Help tags |
 | `<leader>w` | Close buffer |

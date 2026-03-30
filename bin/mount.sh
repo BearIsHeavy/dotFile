@@ -126,8 +126,6 @@ load_smb_config() {
         init_smb_config
     fi
     source "$config_file"
-    # Expand tilde in paths
-    SSH_KEY_PATH="${SSH_KEY_PATH/#\~/$HOME}"
 }
 
 load_sshfs_config() {

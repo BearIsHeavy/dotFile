@@ -46,8 +46,7 @@ function check_command_status() {
         command_verification="❌"
     fi
 
-    # CRITICAL: Ensure the path to trigger.sh matches where you saved the file
-    # We use the previous context location, but verify this on your Mac:
+    
     if [ -f "$HOME/.dotfile/zshconfig/trigger.sh" ]; then
         source "$HOME/.dotfile/zshconfig/trigger.sh"
     fi
@@ -55,23 +54,23 @@ function check_command_status() {
     # Define Prompt Visuals
     STATUS_1="(%f$HOST_NAME  %B%F{cyan}%~%f%b%F{blue})"
     STATUS_2=" %n@"
-    STATUS_3="${command_verification}%F{green}${vpn_proxy}${docker_environment}%f%F{red}${git_branch}%f%F{magenta}${python_venv}${node_version}${conda_activate_env}%f"
+    STATUS_3="${command_verification}%F{green}${vpn_proxy:-}${docker_environment:-}%f%F{red}${git_branch:-}%f%F{magenta}${python_venv:-}${node_version:-}${conda_activate_env:-}%f"
     STATUS_4=" "
-    
+
     # Logic to shorten prompt if it gets too long
     if [ ${#STATUS_3} -gt 34 ]; then
-        unset STATUS_2 
+        unset STATUS_2
         unset STATUS_4
     fi
 
     PROMPT_STATUS="%F{blue}${STATUS_1}%f - [%F{yellow}${STATUS_2}%f${STATUS_3}${STATUS_4}]"
 
-    PROMPT="${PROMPT_STATUS} 
+    PROMPT="${PROMPT_STATUS}
 %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
 
     # Root user check
     if [ $(whoami) = 'root' ]; then
-        PROMPT="${PROMPT_STATUS} 
+        PROMPT="${PROMPT_STATUS}
 💀 %B%F{red}>%f%F{blue}>%f%F{green}>%f%b "
     fi
 }
@@ -84,7 +83,15 @@ precmd(){
 # --- Completion System (Highly Recommended for macOS/Homebrew) ---
 # This enables tab completion for git, brew, etc.
 autoload -Uz compinit
-compinit
+
+# Security check: only run compinit if directories are secure
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS: skip security check for homebrew directories
+  compinit -C
+else
+  # Linux: standard security check
+  compinit
+fi
 
 # Add PATH (Ensure ~/bin exists on your Mac)
 export PATH="$HOME/bin:$PATH"

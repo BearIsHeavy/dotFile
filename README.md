@@ -59,8 +59,8 @@ Unified Vim keybindings for seamless switching between editors:
 
 | Editor | Config File |
 |--------|-------------|
-| IntelliJ IDEA | `idea_config/.ideavimrc` |
-| VSCode | `vscode_setting/settings.json` |
+| IntelliJ IDEA | `.ideavimrc` |
+| VSCode | `settings.json` |
 
 See [Manual/VIM_KEYBINDINGS.md](Manual/VIM_KEYBINDINGS.md) for complete keybinding reference.
 
@@ -70,8 +70,7 @@ Utility scripts for common tasks:
 | Script | Description |
 |--------|-------------|
 | `enableProxy.sh` | Configure proxy settings |
-| `SMB_mount.sh` | Mount SMB network shares |
-| `SSHFS_mount.sh` | Mount remote filesystems via SSHFS |
+| `mount.sh` | Mount SMB/SSHFS network shares |
 | `uninstall_mac_app.sh` | Clean uninstall macOS applications |
 
 ## Documentation

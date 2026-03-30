@@ -38,10 +38,6 @@
     {
       "before": ["<leader>", "r", "n"],
       "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["g", "f"],
-      "commands": ["editor.action.formatDocument"]
     }
   ],
   "vim.insertModeKeyBindings": [
@@ -103,10 +99,6 @@
     {
       "before": ["<leader>", "f"],
       "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["<leader>", "r", "n"],
-      "commands": ["editor.action.rename"]
     },
     {
       "before": ["<leader>", "c", "a"],

@@ -133,6 +133,6 @@ keymap.set("n", "<leader>du", function()
   dapui.toggle()
 end, { desc = "DAP: Toggle UI" })
 
-keymap.set("n", "<leader>de", function()
+keymap.set("n", "<leader>dv", function()
   dapui.eval(nil, { enter = true })
 end, { desc = "DAP: Evaluate expression" })

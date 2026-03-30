@@ -7,8 +7,6 @@
 # Usage: ./uninstall_mac_app.sh "AppName" OR ./uninstall_mac_app.sh "/path/to/App.app"
 # ==============================================================================
 
-echo $LOGO
-
 # ANSI Color Codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'

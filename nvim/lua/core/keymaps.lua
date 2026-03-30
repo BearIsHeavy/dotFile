@@ -155,8 +155,15 @@ keymap.set("n", "<leader>dt", toggle_diagnostic_float, { desc = "Toggle diagnost
 
 -- Helper function for toggling linewise comments in visual mode
 local function toggle_linewise_comment()
-  local fn = require("Comment.api").toggle.linewise
-  fn(vim.fn.line("v"), vim.fn.line("."))
+  local mode = vim.fn.mode()
+  if mode == 'v' or mode == 'V' or mode == '\22' then
+    -- Visual mode: use visual selection boundaries
+    local fn = require("Comment.api").toggle.linewise
+    fn(vim.fn.line("v"), vim.fn.line("."))
+  else
+    -- Normal mode: comment current line
+    require("Comment.api").toggle.linewise(vim.fn.line("."))
+  end
 end
 
 -- Visual mode: Select lines then press Ctrl+/ to toggle comment
@@ -167,7 +174,7 @@ keymap.set("v", "<C-_>", toggle_linewise_comment, { desc = "Toggle comment for s
 -- For Neovide specifically, enable Command+/ (macOS style comment toggle)
 if vim.g.neovide then
   keymap.set("v", "<D-/>", toggle_linewise_comment, { desc = "Toggle comment for selected lines" })
-  keymap.set("n", "<D-/>", "<cmd>lua require('Comment.api').toggle.linewise(vim.fn.line('.'))<CR>", { desc = "Toggle comment for current line" })
+  keymap.set("n", "<D-/>", toggle_linewise_comment, { desc = "Toggle comment for current line" })
 end
 
 -- Make j/k move by visual lines (VS Code default behavior)

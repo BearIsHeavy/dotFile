@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # ==============================================================================
-# Script: set_proxy.sh
+# Script: enableProxy.sh
 # Description: Manages shell proxy settings with persistent configuration.
-# Usage: eval $(bash set_proxy.sh)
+# Usage: eval $(bash enableProxy.sh)
+# Note: This script uses interactive prompts to configure proxy settings.
+#       It does NOT accept command-line arguments like on/off.
 # ==============================================================================
 
 # ANSI Color Codes (Sent to stderr to avoid breaking eval)
@@ -16,12 +18,12 @@ log_yellow() { echo -e "${YELLOW}$1${NC}" >&2; }
 
 # ASCII Art (Sent to stderr)
 echo "
-__________   __   __                   __          
-\______   \_/  |__/  |_____________    ____ |  | __  
- |    |  _/\   __\   __\_  __ \__  \ _/ ___\|  |/ /  
- |    |    \ |  |  |  |  |  | \// __ \\  \___|    <   
+__________   __   __                   __
+\______   \_/  |__/  |_____________    ____ |  | __
+ |    |  _/\   __\   __\_  __ \__  \ _/ ___\|  |/ /
+ |    |    \ |  |  |  |  |  | \// __ \\  \___|    <
  |______  / |__|  |__|  |__|  (____  /\___  >__|_ \ 🐻
-        \/                         \/     \/     \/  
+        \/                         \/     \/     \/
 " >&2
 
 # --- Config Setup ---

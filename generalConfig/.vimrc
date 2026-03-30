@@ -133,10 +133,10 @@ endif
 " }}}
 
 " MAPPINGS --------------------------------------------------------------- {{{
-" Set the backslash as the leader key.
-let mapleader = '\'
+" Set the space as the leader key (consistent with Neovim/IDEA/VSCode).
+let mapleader = ' '
 
-" Press \\ to jump back to the last cursor position.
+" Press \l to jump back to the last cursor position.
 nnoremap <leader>\ :nohlsearch<CR>
 
 " map <ESC>

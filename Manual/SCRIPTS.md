@@ -55,15 +55,14 @@ brew install sshfs
 
 ### enableProxy.sh
 
-Enable or disable proxy settings for development environments.
+Configure proxy settings with persistent configuration.
 
 ```bash
-# Enable proxy
-./bin/enableProxy.sh on
-
-# Disable proxy
-./bin/enableProxy.sh off
+# Enable proxy (interactive mode)
+eval $(bash ~/.dotfile/bin/enableProxy.sh)
 ```
+
+**Note:** This script uses interactive prompts to configure proxy settings. It does NOT accept command-line arguments like `on` or `off`. On first run, it will prompt for the proxy IP address and save it to `~/configs/.proxy_config` for future use.
 
 ### uninstall_mac_app.sh
 
