@@ -34,5 +34,5 @@ else
   alias lt='ls -alt'
 fi
 
-alias wsl='ssh bear@192.168.10.7 -p 2222'
-alias vmware='ssh bear@192.168.10.7 -p 2223'
+alias wsl='ssh bear@win11.local -p 2222'
+alias vmware='ssh bear@win11.local -p 2223'

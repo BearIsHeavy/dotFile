@@ -19,7 +19,7 @@ fi
 
 # python virtual environment, not conda environment
 if [[ -n $VIRTUAL_ENV ]]; then
-  python_venv="(⚕️ $(basename "$VIRTUAL_ENV"))"
+  python_venv="(🐍 $(basename "$VIRTUAL_ENV"))"
 fi
 
 # conda environment

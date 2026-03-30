@@ -21,7 +21,7 @@ VIRTUAL_ENV=''
 HISTSIZE=10000
 SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
-[[ "$(uname)" == "Darwin" ]] && HOST_NAME="MAC" || HOST_NAME="Linux"
+[[ "$(uname)" == "Darwin" ]] && HOST_NAME="Mac" || HOST_NAME="Linux"
 
 # --- MacOS Specific: Key Bindings ---
 # macOS terminals often don't populate the ${key} array by default.

@@ -1,0 +1,28 @@
+# --- Font (Using macOS Native SF Mono) ---
+# SF Mono is installed by default with Xcode or System Tools
+font-family = "SF Mono"
+font-size = 13
+font-thicken = true
+
+# --- Window & Glass Effects (Optimized for M4 GPU) ---
+background-opacity = 0.85
+background-blur = 20
+macos-titlebar-style = transparent
+window-padding-x = 12
+window-padding-y = 12
+
+# --- Performance & Native Integration ---
+# Use the M4 GPU for smooth rendering
+macos-icon = official
+
+# --- Developer Workflow (Shortcuts) ---
+# Split Panes (Standard dev layout)
+keybind = cmd+d=new_split:right
+# Focus Navigation
+keybind = cmd+opt+left=goto_split:left
+keybind = cmd+opt+right=goto_split:right
+
+# --- Mouse & Selection ---
+copy-on-select = clipboard
+# Hides cursor while typing to keep the M4 display clean
+mouse-hide-while-typing = true

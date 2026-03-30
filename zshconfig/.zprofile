@@ -45,7 +45,7 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
+# <<< conda END <<<
 
 
 # <<< Docker Initialize <<<
@@ -56,10 +56,12 @@ compinit
 # End of Docker CLI completions
 # <<< Docker END <<<
 
-# <<< pyenv Initialize <<<
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-# <<< pyenv END <<<
-
-# ADD LLVM
+# ADD LLVM(c/c++ using it in nvim)
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# <<< uv Initialize <<<
+. "$HOME/.local/bin/env"
+# <<< uv END <<<
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
