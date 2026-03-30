@@ -1,8 +1,17 @@
-# --- Font (Using macOS Native SF Mono) ---
-# SF Mono is installed by default with Xcode or System Tools
-font-family = "SF Mono"
-font-size = 13
-font-thicken = true
+# --- Font & Appearance ---
+# Ensure "Maple Mono NF CN" is installed via Brew or manually
+font-family = "Maple Mono NF CN"
+font-size = 14
+
+# Modern Ghostty uses 'background-opacity' and 'background-blur'
+background-opacity = 0.95
+background-blur = 20
+
+# Premium macOS look
+macos-titlebar-style = transparent
+# Adds a slight "breathing room" for your code
+window-padding-x = 10
+window-padding-y = 10
 
 # --- Window & Glass Effects (Optimized for M4 GPU) ---
 background-opacity = 0.85

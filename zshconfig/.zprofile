@@ -65,3 +65,23 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+
+# --- Zoxide (Smarter 'cd' command) ---
+# This lets you type 'z' instead of 'cd'. It remembers where you've been.
+eval "$(zoxide init zsh)"
+
+# --- Fzf (Fuzzy Finder) Shell Integration ---
+# This enables Ctrl+R for history search and Alt+C for fuzzy directory jumping.
+source <(fzf --zsh)
+
+# --- Yazi Shell Wrapper (The 'y' command) ---
+# This function allows you to quit Yazi and remain in the directory you were browsing.
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
