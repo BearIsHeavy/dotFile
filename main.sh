@@ -81,6 +81,7 @@ create_link() {
     makeLink "zshconfig/.zshrc"
     makeLink "zshconfig/.zshenv"
     makeLink "zshconfig/.zlogin"
+    makeLink "zshconfig/.zprofile"
 
     # Handle bin/ directory symlink
     if [[ -d "$HOME/bin" && ! -L "$HOME/bin" ]]; then
@@ -171,8 +172,32 @@ full_setup() {
     echo -e "${BLUE}Please restart your terminal or run: ${RESET}source ~/.zshrc"
 }
 
+# Configure proxy (optional)
+configure_proxy() {
+    echo -e "\n${YELLOW}Do you need to configure a network proxy? (y/N):${RESET}"
+    read -r ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        read -r -p "Enter proxy address (e.g. 127.0.0.1:7890): " proxy_addr
+        if [[ -n "$proxy_addr" ]]; then
+            export http_proxy="http://$proxy_addr"
+            export https_proxy="http://$proxy_addr"
+            export all_proxy="socks5://$proxy_addr"
+            export HTTP_PROXY="$http_proxy"
+            export HTTPS_PROXY="$https_proxy"
+            export ALL_PROXY="$all_proxy"
+            echo -e "${GREEN}Proxy configured: ${YELLOW}$proxy_addr${RESET}"
+            echo -e "${GREEN}  http_proxy  = $http_proxy${RESET}"
+            echo -e "${GREEN}  https_proxy = $https_proxy${RESET}"
+            echo -e "${GREEN}  all_proxy   = $all_proxy${RESET}"
+        else
+            echo -e "${YELLOW}No proxy address provided, skipping.${RESET}"
+        fi
+    fi
+}
+
 # Main loop
 print_banner
+configure_proxy
 
 while true; do
     show_menu

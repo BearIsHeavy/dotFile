@@ -76,3 +76,9 @@ clean_path() {
   export PATH=$(echo "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':' | sed 's/:$//')
 }
 clean_path
+
+# Enable zsh completion system
+autoload -Uz compinit
+compinit
+
+. "$HOME/.local/bin/env"
