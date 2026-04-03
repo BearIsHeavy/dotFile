@@ -12,6 +12,7 @@ conda_url="https://repo.anaconda.com/archive/$conda_installer"
 expected_sha="267955097a0e6902f761584062872168a6555cdc102708971a05a122a124d45e"
 
 DOWNLOAD_DIR="$HOME/Downloads"
+mkdir -p "$DOWNLOAD_DIR"
 
 if curl --max-time 120 -o "$DOWNLOAD_DIR/$conda_installer" -OL "$conda_url"; then
   check_sha=$(sha256sum "$DOWNLOAD_DIR/$conda_installer" | awk '{print $1}')

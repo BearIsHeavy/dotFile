@@ -19,10 +19,8 @@ config_clash() {
 
 install_clash() {
   if [[ ! -d ~/Download/Clash ]]; then
-    mkdir -p ~/Download \
-      && cd ~/Download \
-      && git clone https://github.com/Elegycloud/clash-for-linux-backup.git \
-      && mv clash-for-linux-backup Clash \
+    mkdir -p ~/Download && \
+    git clone https://github.com/Elegycloud/clash-for-linux-backup.git ~/Download/Clash \
       && config_clash \
       || { echo -e "${RED}Installation failed${RESET}" 1>&2; return 3; }
   else

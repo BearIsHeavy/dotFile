@@ -72,4 +72,3 @@ tmux_installer || exit 101
 tldr_installer || exit 102
 shellcheck_installer || exit 103
 eza_installer || exit 104
-config_terminal_font || exit 105

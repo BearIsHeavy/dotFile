@@ -6,8 +6,9 @@ securityNote
 bin/*
 !bin/src/
 
-# Zsh plugins (managed separately)
+# Zsh plugins (managed separately, content cloned by scripts/init/zsh.sh)
 .zsh/*
+!.zsh/zsh-autosuggestions/.gitkeep
 
 # Machine-specific zprofile
 zshconfig/.zprofile
