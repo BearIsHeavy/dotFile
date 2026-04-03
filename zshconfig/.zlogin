@@ -10,9 +10,7 @@ if [[ -f /etc/zsh_command_not_found ]]; then
     source /etc/zsh_command_not_found
 fi
 
-# this snipper be used to auto-suggesion when you type commands            
-if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions ]];then
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh                                
-else                                                                       
-    echo -e "not found $HOME/.zsh/zsh-autosuggestions folder\n" 1>&2           
+# this snipper be used to auto-suggesion when you type commands
+if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
