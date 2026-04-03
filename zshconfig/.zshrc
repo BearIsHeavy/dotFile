@@ -81,4 +81,5 @@ clean_path
 autoload -Uz compinit
 compinit
 
-. "$HOME/.local/bin/env"
+# Cursor shape: thin vertical bar (I-beam)
+echo -ne "\e[6 q"

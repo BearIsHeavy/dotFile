@@ -26,3 +26,8 @@ unset __conda_setup
 # Add CUDA_PATH
 CUDA_PATH="/usr/local/cuda-12.1/bin"
 [[ -f $CUDA_PATH ]] && export PATH=$CUDA_PATH:$PATH
+
+# UV PATH
+if [[ -f "$HOME/.local/bin/env" ]]; then
+    . "$HOME/.local/bin/env"
+fi
