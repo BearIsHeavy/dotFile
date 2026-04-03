@@ -142,9 +142,9 @@ full_setup() {
     echo -e "\n${BLUE}Step 2: Creating symlinks...${RESET}"
     create_link
 
-    # Setup modules
+    # Setup modules (vpn excluded — requires user interaction)
     echo -e "\n${BLUE}Step 3: Setup modules...${RESET}"
-    for module in vpn zsh vim nvim tools fonts; do
+    for module in zsh vim nvim tools fonts; do
         echo -e "\n${YELLOW}Setting up $module...${RESET}"
         bash "$SCRIPT_DIR/scripts/init/${module}.sh" || echo -e "${RED}Failed: $module (continuing)${RESET}"
     done

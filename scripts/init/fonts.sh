@@ -2,6 +2,12 @@
 
 source "$HOME/.dotfile/scripts/init/colors.sh"
 
+# Ensure unzip is available (required for Nerd Fonts)
+if ! command -v unzip &> /dev/null; then
+    echo -e "${YELLOW}unzip not found, installing...${RESET}"
+    sudo apt install -y unzip || { echo -e "${RED}Failed to install unzip${RESET}" 1>&2; exit 1; }
+fi
+
 declare -a fonts=(
     0xProto
 )

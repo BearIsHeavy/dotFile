@@ -30,6 +30,16 @@ if ! which zsh 1>/dev/null; then
 	fi
 fi
 
+# Offer to set zsh as default shell
+if which zsh &> /dev/null && [[ "$SHELL" != *"zsh"* ]]; then
+    echo -e "${YELLOW}zsh is installed but not set as your default shell.${RESET}"
+    read -r -p "Set zsh as default shell? (y/N): " chsh_ans
+    if [[ "$chsh_ans" =~ ^[Yy]$ ]]; then
+        chsh -s "$(which zsh)" && echo -e "${GREEN}Default shell changed to zsh. Please re-login to apply.${RESET}" \
+            || echo -e "${RED}Failed to change default shell${RESET}" 1>&2
+    fi
+fi
+
 # Download commands zsh-autosuggestions
 if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
     create_autosuggestion

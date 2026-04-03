@@ -14,9 +14,9 @@ initial_vim() {
         mkdir -p "$HOME"/.vim/backup
         mkdir -p "$HOME"/.vim/colors
         mkdir -p "$HOME"/.vim/plugged
-  
-        if curl --max-time 5 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim;then
-          curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+
+        if curl -fsSL --max-time 5 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > /dev/null; then
+          curl -fsSL -o ~/.vim/autoload/plug.vim \
           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         else
           echo -e -n "${RED}Don't connect github${RESET} \n"

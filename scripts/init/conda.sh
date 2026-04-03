@@ -1,21 +1,17 @@
 #!/bin/bash
 # This file is used to install conda,
 # but it is not recommended to use this method.
-# Please download and install the latest version from the official website.
+# Please download and install the latest version from the official website:
+# https://www.anaconda.com/download
 
 source "$HOME/.dotfile/scripts/init/colors.sh"
 
-(nvcc --version || sudo apt install nvidia-cuda-toolkit -y) && nvcc --version
-
-# Install prerequisites
-sudo apt install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
-
 # Installation
-conda_installer="Anaconda3-2024.02-1-Linux-x86_64.sh"
+conda_installer="Anaconda3-2024.10-1-Linux-x86_64.sh"
 conda_url="https://repo.anaconda.com/archive/$conda_installer"
-expected_sha="c536ddb7b4ba738bddbd4e581b29308cb332fa12ae3fa2cd66814bd735dff231"
+expected_sha="267955097a0e6902f761584062872168a6555cdc102708971a05a122a124d45e"
 
-if curl --max-time 30 -o "$HOME/Download/$conda_installer" -OL "$conda_url"; then
+if curl --max-time 120 -o "$HOME/Download/$conda_installer" -OL "$conda_url"; then
   check_sha=$(sha256sum "$HOME/Download/$conda_installer" | awk '{print $1}')
   if [[ $check_sha == "$expected_sha" ]]; then
     bash "$HOME/Download/$conda_installer"

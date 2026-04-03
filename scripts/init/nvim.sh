@@ -9,7 +9,7 @@ install_neovim() {
     local nvim_url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
     local download_dir="$HOME/.dotfile/Download"
     mkdir -p "$download_dir"
-    curl -L --max-time 60 "$nvim_url" -o "$download_dir/nvim-linux-x86_64.tar.gz" || {
+    curl -L --max-time 180 "$nvim_url" -o "$download_dir/nvim-linux-x86_64.tar.gz" || {
       echo -e "${RED}Failed to download neovim${RESET}" 1>&2
       return 2
     }
