@@ -1,80 +1,27 @@
 # Dotfiles Configuration
 
-Personal dotfiles configuration for **Ubuntu/Debian** systems.
-
-## Directory Structure
-
-```
-.dotfile/
-├── main.sh                     # Unified entry point (run this first)
-│
-├── scripts/                    # All setup scripts
-│   ├── bootstrap/              # Fresh OS bootstrap
-│   │   └── ubuntu.sh
-│   │
-│   ├── requirements/           # Package requirements
-│   │   └── ubuntu.sh
-│   │
-│   └── init/                   # Module initialization
-│       ├── vpn.sh              # VPN configuration
-│       ├── zsh.sh              # Zsh setup
-│       ├── vim.sh              # Vim setup
-│       ├── nvim.sh             # Neovim setup
-│       ├── tools.sh            # Additional tools
-│       ├── fonts.sh            # Terminal fonts
-│       ├── conda.sh            # Conda setup
-│       ├── colors.sh           # Color variables
-│       ├── neovide.sh          # Neovide setup
-│       └── uv.sh               # UV Python package manager
-│
-├── generalConfig/              # Configuration files
-│   ├── .alias
-│   ├── .bashrc
-│   ├── .profile
-│   ├── .tmux.conf
-│   └── .vimrc
-│
-├── zshconfig/                  # Zsh configuration
-│   ├── .zlogin
-│   ├── .zshenv
-│   ├── .zshrc
-│   └── trigger.sh
-│
-├── nvim/                       # Neovim configuration
-│   ├── coc-settings.json
-│   ├── init.lua
-│   ├── lua/
-│   └── plugin/
-│
-├── bin/                        # Custom scripts
-│   └── src/
-│
-├── vscode_config/
-├── README.md
-└── .gitignore
-```
+Personal dotfiles for **Ubuntu/Debian** systems with automated setup.
 
 ---
 
 ## Quick Start
 
 ```bash
-# Clone the repository
+# 1. Install Git (may not be pre-installed on fresh systems)
+sudo apt update && sudo apt install -y git
+
+# 2. Clone the repository (MUST be ~/.dotfile)
 cd ~
 git clone <your-repo-url> .dotfile
 cd .dotfile
 
-# Run the unified setup
+# 3. Run the unified setup
 bash main.sh
 ```
 
 ---
 
-## Usage
-
-### Interactive Menu
-
-Running `bash main.sh` will show an interactive menu:
+## Interactive Menu
 
 ```
 ========================================
@@ -90,105 +37,262 @@ Please select an option:
   5) Exit
 ```
 
-### Full Setup
+### Options
 
-Option 1 will:
-1. Install system packages
-2. Create symlinks for config files
-3. Setup all modules (VPN, Zsh, Vim, Neovim, Tools, Fonts)
-
-### Individual Modules
-
-Option 4 allows you to setup specific modules:
-- VPN
-- Zsh
-- Vim
-- Neovim
-- Tools
-- Fonts
-- Conda
-- Neovide
-- UV (Python package manager)
+| # | Feature | Description |
+|---|---------|-------------|
+| **1** | Full setup | One-click: packages → symlinks → modules → optional (VPN/Conda/Docker/UV) |
+| **2** | Packages only | Run `scripts/requirements/ubuntu.sh` |
+| **3** | Symlinks only | Link config files to `~` |
+| **4** | Individual modules | Pick specific modules to install |
+| **5** | Exit | Do nothing |
 
 ---
 
-## Manual Setup
+## Full Setup Flow
 
-### Install Packages
+### Step 1: Install System Packages
 
-```bash
-bash scripts/requirements/ubuntu.sh
+`scripts/requirements/ubuntu.sh` installs:
+
+| Category | Packages |
+|----------|----------|
+| **Version control** | `git` |
+| **Network** | `curl`, `wget`, `httpie`, `net-tools`, `openssh-client`, `openssh-server` |
+| **Editors** | `vim`, `neovim` |
+| **Terminal** | `tmux`, `zsh` |
+| **Build tools** | `build-essential`, `gcc`, `g++`, `make`, `cmake` |
+| **Python/Node** | `python3`, `python3-pip`, `nodejs`, `npm` |
+| **Search/Browse** | `ripgrep`, `fd-find`, `fzf`, `eza`, `bat`, `tree` |
+| **Utilities** | `jq`, `htop`, `tldr`, `gnupg` |
+
+### Step 2: Create Symlinks
+
+| Source | Target |
+|--------|--------|
+| `.zsh/` | `~/.zsh/` |
+| `generalConfig/.profile` | `~/.profile` |
+| `generalConfig/.bashrc` | `~/.bashrc` |
+| `generalConfig/.vimrc` | `~/.vimrc` |
+| `generalConfig/.tmux.conf` | `~/.tmux.conf` |
+| `zshconfig/.zshrc` | `~/.zshrc` |
+| `zshconfig/.zshenv` | `~/.zshenv` |
+| `zshconfig/.zlogin` | `~/.zlogin` |
+| `zshconfig/.zprofile` | `~/.zprofile` |
+| `bin/` | `~/bin/` |
+
+Existing files are backed up to `.bak` automatically.
+
+### Step 3: Auto-Setup Modules
+
+| Module | Script | What it does |
+|--------|--------|-------------|
+| **Zsh** | `scripts/init/zsh.sh` | Installs zsh, zsh-autosuggestions, zsh-syntax-highlighting, zsh-history-substring-search, z, offers to set as default shell |
+| **Vim** | `scripts/init/vim.sh` | Installs vim-plug plugin manager |
+| **Neovim** | `scripts/init/nvim.sh` | Downloads latest Neovim binary, symlinks `~/.config/nvim` |
+| **Tools** | `scripts/init/tools.sh` | Installs tmux, shellcheck, eza, tealdeer (tldr replacement) |
+| **Fonts** | `scripts/init/fonts.sh` | Downloads and installs 0xProto Nerd Font |
+
+### Step 4: Optional Modules (interactive prompts)
+
+After the auto-setup, you'll be asked:
+
+```
+VPN/Clash is optional. Install now? (y/N):
+Conda (Anaconda) — install now? (y/N):
+Docker CE — install now? (y/N):
+UV (Python package manager) — install now? (y/N):
 ```
 
-### Create Symlinks
+All default to **No** — select `y` only if you need them.
+
+---
+
+## Individual Modules (Menu Option 4)
+
+| # | Module | Script |
+|---|--------|--------|
+| 1 | VPN | `scripts/init/vpn.sh` |
+| 2 | Zsh | `scripts/init/zsh.sh` |
+| 3 | Vim | `scripts/init/vim.sh` |
+| 4 | Neovim | `scripts/init/nvim.sh` |
+| 5 | Tools | `scripts/init/tools.sh` |
+| 6 | Fonts | `scripts/init/fonts.sh` |
+| 7 | Conda | `scripts/init/conda.sh` |
+| 8 | Neovide | `scripts/init/neovide.sh` |
+| 9 | UV | `scripts/init/uv.sh` |
+| 10 | Docker | `scripts/init/docker.sh` |
+
+---
+
+## After Setup
+
+### Reload Shell
 
 ```bash
-bash main.sh  # Select option 3
+source ~/.zshrc
 ```
 
-### Setup Individual Module
+Or simply exit and re-open the terminal.
+
+### Neovim Plugins
 
 ```bash
-bash scripts/init/vpn.sh
-bash scripts/init/zsh.sh
-bash scripts/init/vim.sh
-bash scripts/init/nvim.sh
-bash scripts/init/tools.sh
-bash scripts/init/fonts.sh
+nvim
+# packer.nvim auto-installs on first launch
+# Then run:
+:PackerSync
+```
+
+### Vim Plugins
+
+```bash
+vim +PlugInstall +qall
+```
+
+### Tmux Config
+
+```bash
+tmux source-file ~/.tmux.conf
+```
+
+### Zsh Plugins
+
+Four plugins are installed and loaded automatically:
+
+| Plugin | Effect |
+|--------|--------|
+| **zsh-autosuggestions** | Grey hints as you type, → to complete |
+| **zsh-syntax-highlighting** | Commands turn green (valid) or red (invalid) in real-time |
+| **zsh-history-substring-search** | ↑/↓ arrows search history by what you've typed |
+| **z** | Smart directory jumper — `z proj` jumps to most-visited path containing "proj" |
+
+---
+
+## Directory Structure
+
+```
+.dotfile/
+├── main.sh                     # Unified entry point (run this first)
+│
+├── scripts/
+│   ├── bootstrap/              # Fresh OS bootstrap
+│   │   └── ubuntu.sh           # Mirror/NVIDIA/firewall setup
+│   ├── requirements/           # Package requirements
+│   │   └── ubuntu.sh           # apt install list
+│   └── init/                   # Module initialization
+│       ├── vpn.sh              # VPN/Clash
+│       ├── zsh.sh              # Zsh + plugins
+│       ├── vim.sh              # Vim + vim-plug
+│       ├── nvim.sh             # Neovim binary + config
+│       ├── tools.sh            # tmux, eza, shellcheck, tealdeer
+│       ├── fonts.sh            # Nerd Font download
+│       ├── conda.sh            # Anaconda installer
+│       ├── docker.sh           # Docker CE auto-install
+│       ├── neovide.sh          # Neovide dependencies
+│       ├── uv.sh               # UV Python package manager
+│       └── colors.sh           # Color variables (sourced by other scripts)
+│
+├── generalConfig/              # Shell/terminal config
+│   ├── .alias                  # Shell aliases
+│   ├── .bashrc
+│   ├── .profile
+│   ├── .tmux.conf
+│   └── .vimrc
+│
+├── zshconfig/                  # Zsh config
+│   ├── .zshrc
+│   ├── .zshenv
+│   ├── .zlogin
+│   ├── .zprofile
+│   └── trigger.sh              # Dynamic prompt (git branch, proxy status, etc.)
+│
+├── nvim/                       # Neovim config
+│   ├── init.lua
+│   ├── coc-settings.json
+│   ├── lua/
+│   └── plugin/
+│
+├── bin/                        # Custom scripts
+│   └── src/
+│
+├── vscode_config/              # VS Code settings
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## Recommended Setup Order
+## Proxy Setup
 
-1. **VPN** (if behind firewall - needed for GitHub access)
-   ```bash
-   bash scripts/init/vpn.sh
-   ```
+When running `bash main.sh`, you'll be asked:
 
-2. **Full Setup**
-   ```bash
-   bash main.sh
-   ```
+```
+Do you need to configure a network proxy? (y/N):
+```
+
+If `y`, enter your proxy address (e.g. `127.0.0.1:7890`). This sets `http_proxy`/`https_proxy`/`all_proxy` for all subsequent operations (apt, git clone, curl, etc.).
 
 ---
 
 ## Troubleshooting
 
-### Common Issues
+### Symlink creation fails
 
-1. **Symlink creation fails**
-   - Ensure you're running from the `.dotfile` directory
-   - Check if target files already exist in `$HOME`
+- Ensure you're running from the `.dotfile` directory
+- Existing files are automatically backed up to `.bak`
 
-2. **Package installation fails**
-   - Run `sudo apt update` first
+### Package installation fails
 
-3. **Neovim plugins fail to install**
-   - Ensure VPN/proxy is configured if behind a firewall
-   - Check internet connection
+```bash
+sudo apt update
+```
 
-4. **Font display issues**
-   - Install a Nerd Font (e.g., JetBrains Mono Nerd Font)
-   - Configure your terminal to use the installed font
+Then re-run `bash main.sh`.
 
-### Error Codes
+### Neovim plugins fail
 
-| Code | Module | Description |
-|------|--------|-------------|
-| 2 | main.sh | Wrong working directory |
+- Ensure network/proxy is configured
+- Run `:checkhealth` inside Neovim for diagnostics
+
+### Font display issues
+
+- Install a Nerd Font (0xProto is included by this project)
+- Set your terminal font to the installed Nerd Font
+
+### Zsh auto-completion not working
+
+- Ensure `~/.zsh/zsh-autosuggestions/` exists
+- If not: `bash ~/.dotfile/scripts/init/zsh.sh`
+
+### Docker commands require sudo
+
+- After Docker install, you must re-login for the `docker` group to take effect
+- Or run: `newgrp docker`
 
 ---
 
 ## Customization
 
-### Per-Machine Configuration
+### Per-Machine Config
 
 Edit `zshconfig/.zprofile` for machine-specific settings. This file is git-ignored by default.
 
 ### Adding New Packages
 
 Add to `scripts/requirements/ubuntu.sh`
+
+---
+
+## ⚠️ Known Limitations
+
+| Item | Details |
+|------|---------|
+| **Repo path** | Must be cloned to `~/.dotfile` (`.bashrc` hardcodes this path) |
+| **Conda init** | Commented out in `.bashrc` — run `conda init` manually after installing Anaconda |
+| **Anaconda version** | `conda.sh` pins `Anaconda3-2024.10-1` — if the URL is stale, download manually |
+| **setProxy alias** | Depends on `~/bin/enableProxy` which is not in this repo — create your own |
+| **tealdeer (tldr)** | Requires Rust/cargo — if not available, install manually: `cargo install tealdeer` |
 
 ---
 
