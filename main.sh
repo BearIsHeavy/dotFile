@@ -113,6 +113,7 @@ setup_module() {
     echo "  6) Fonts"
     echo "  7) Conda"
     echo "  8) Neovide"
+    echo "  9) UV (Python package manager)"
     echo "  0) Back to main menu"
     echo ""
     read -p "Choice: " choice
@@ -126,6 +127,7 @@ setup_module() {
         6) bash "$SCRIPT_DIR/scripts/init/fonts.sh" ;;
         7) bash "$SCRIPT_DIR/scripts/init/conda.sh" ;;
         8) bash "$SCRIPT_DIR/scripts/init/neovide.sh" ;;
+        9) bash "$SCRIPT_DIR/scripts/init/uv.sh" ;;
         0) return ;;
         *) echo -e "${RED}Invalid choice${RESET}" ;;
     esac
@@ -142,12 +144,26 @@ full_setup() {
     echo -e "\n${BLUE}Step 2: Creating symlinks...${RESET}"
     create_link
 
-    # Setup modules (vpn excluded — requires user interaction)
+    # Setup modules
     echo -e "\n${BLUE}Step 3: Setup modules...${RESET}"
     for module in zsh vim nvim tools fonts; do
         echo -e "\n${YELLOW}Setting up $module...${RESET}"
         bash "$SCRIPT_DIR/scripts/init/${module}.sh" || echo -e "${RED}Failed: $module (continuing)${RESET}"
     done
+
+    # VPN — optional, prompt user
+    echo -e "\n${YELLOW}VPN/Clash is optional. Install now? (y/N): ${RESET}"
+    read -r ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        bash "$SCRIPT_DIR/scripts/init/vpn.sh" || echo -e "${RED}Failed: vpn (continuing)${RESET}"
+    fi
+
+    # UV — optional, prompt user
+    echo -e "\n${YELLOW}UV (Python package manager) — install now? (y/N): ${RESET}"
+    read -r ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        bash "$SCRIPT_DIR/scripts/init/uv.sh" || echo -e "${RED}Failed: uv (continuing)${RESET}"
+    fi
 
     echo -e "\n${GREEN}========================================${RESET}"
     echo -e "${GREEN}  Full Setup Complete!${RESET}"
