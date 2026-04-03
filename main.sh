@@ -115,6 +115,7 @@ setup_module() {
     echo "  7) Conda"
     echo "  8) Neovide"
     echo "  9) UV (Python package manager)"
+    echo "  10) Docker"
     echo "  0) Back to main menu"
     echo ""
     read -p "Choice: " choice
@@ -129,6 +130,7 @@ setup_module() {
         7) bash "$SCRIPT_DIR/scripts/init/conda.sh" ;;
         8) bash "$SCRIPT_DIR/scripts/init/neovide.sh" ;;
         9) bash "$SCRIPT_DIR/scripts/init/uv.sh" ;;
+        10) bash "$SCRIPT_DIR/scripts/init/docker.sh" ;;
         0) return ;;
         *) echo -e "${RED}Invalid choice${RESET}" ;;
     esac
@@ -157,6 +159,20 @@ full_setup() {
     read -r ans
     if [[ "$ans" =~ ^[Yy]$ ]]; then
         bash "$SCRIPT_DIR/scripts/init/vpn.sh" || echo -e "${RED}Failed: vpn (continuing)${RESET}"
+    fi
+
+    # Conda — optional, prompt user
+    echo -e "\n${YELLOW}Conda (Anaconda) — install now? (y/N): ${RESET}"
+    read -r ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        bash "$SCRIPT_DIR/scripts/init/conda.sh" || echo -e "${RED}Failed: conda (continuing)${RESET}"
+    fi
+
+    # Docker — optional, prompt user
+    echo -e "\n${YELLOW}Docker CE — install now? (y/N): ${RESET}"
+    read -r ans
+    if [[ "$ans" =~ ^[Yy]$ ]]; then
+        bash "$SCRIPT_DIR/scripts/init/docker.sh" || echo -e "${RED}Failed: docker (continuing)${RESET}"
     fi
 
     # UV — optional, prompt user
