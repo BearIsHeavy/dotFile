@@ -46,9 +46,6 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 │   ├── lua/
 │   └── plugin/
 │
-├── .zsh/                       # Zsh plugins
-│   └── zsh-autosuggestions/
-│
 ├── bin/                        # Custom scripts
 │   └── src/
 │

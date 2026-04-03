@@ -14,3 +14,21 @@ fi
 if [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+# zsh-syntax-highlighting: command color feedback
+if [[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# zsh-history-substring-search: up/down arrow search history by input
+if [[ -f ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+fi
+
+# z: smart directory jumper (tracks frequently visited dirs)
+# Usage: z <partial-name>  (e.g. `z proj` jumps to ~/projects/myproject)
+if [[ -f ~/.zsh/z/z.sh ]]; then
+    source ~/.zsh/z/z.sh
+fi

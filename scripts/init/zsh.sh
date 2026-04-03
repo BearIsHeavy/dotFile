@@ -6,17 +6,19 @@
 
 . "$HOME/.dotfile/scripts/init/colors.sh"
 
-create_autosuggestion() {
-    echo -e "Installing autosuggestion model. \n"
+install_autosuggestion() {
+    echo -e "${BLUE}Installing zsh-autosuggestions...${RESET}"
 
-    # .zsh including import file that is necessary for zsh
-    if [[ -d ${HOME}/.dotfile/.zsh ]]; then
-      [[ ! -d $HOME/.zsh ]] && ln -s "$HOME/.dotfile/.zsh/" "$HOME"/
-      echo -e -n "${GREEN}please execute command: source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh${RESET} \n"
-    else
-      git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
-      || { echo -e "${RED}Check your proxy, unable to connect to GitHub${RESET}" 1>&2; exit 2; }
+    # Priority 1: Clone from GitHub
+    if git clone https://github.com/zsh-users/zsh-autosuggestions \
+        "$HOME/.zsh/zsh-autosuggestions" 2>/dev/null; then
+        echo -e "${GREEN}Cloned from GitHub successfully${RESET}"
+        return 0
     fi
+
+    echo -e "${YELLOW}Failed to clone from GitHub${RESET}"
+    echo -e "${RED}No zsh-autosuggestions available (configure proxy and retry)${RESET}" 1>&2
+    return 1
 }
 
 # Download install zsh
@@ -40,9 +42,42 @@ if which zsh &> /dev/null && [[ "$SHELL" != *"zsh"* ]]; then
     fi
 fi
 
-# Download commands zsh-autosuggestions
-if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
-    create_autosuggestion
+# Download zsh-autosuggestions
+if [[ ! -f $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+    install_autosuggestion
+fi
+
+# Download zsh-syntax-highlighting
+if [[ ! -f $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    echo -e "${BLUE}Installing zsh-syntax-highlighting...${RESET}"
+    if git clone https://github.com/zsh-users/zsh-syntax-highlighting \
+        "$HOME/.zsh/zsh-syntax-highlighting" 2>/dev/null; then
+        echo -e "${GREEN}Cloned from GitHub successfully${RESET}"
+    else
+        echo -e "${YELLOW}Failed to clone zsh-syntax-highlighting (check proxy)${RESET}" 1>&2
+    fi
+fi
+
+# Download zsh-history-substring-search
+if [[ ! -f $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ]]; then
+    echo -e "${BLUE}Installing zsh-history-substring-search...${RESET}"
+    if git clone https://github.com/zsh-users/zsh-history-substring-search \
+        "$HOME/.zsh/zsh-history-substring-search" 2>/dev/null; then
+        echo -e "${GREEN}Cloned from GitHub successfully${RESET}"
+    else
+        echo -e "${YELLOW}Failed to clone zsh-history-substring-search (check proxy)${RESET}" 1>&2
+    fi
+fi
+
+# Download z (smart directory jumper)
+if [[ ! -f $HOME/.zsh/z/z.sh ]]; then
+    echo -e "${BLUE}Installing z (smart directory jumper)...${RESET}"
+    if git clone https://github.com/rupa/z \
+        "$HOME/.zsh/z" 2>/dev/null; then
+        echo -e "${GREEN}Cloned from GitHub successfully${RESET}"
+    else
+        echo -e "${YELLOW}Failed to clone z (check proxy)${RESET}" 1>&2
+    fi
 fi
 
 # Download command-not-found (optional on Ubuntu 24.04)

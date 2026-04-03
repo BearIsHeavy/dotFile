@@ -255,7 +255,6 @@ conda init zsh
 │   ├── lua/
 │   └── plugin/
 │
-├── .zsh/                       # Zsh 插件（自动补全）
 ├── bin/                        # 自定义脚本
 ├── vscode_config/              # VS Code 配置
 └── .gitignore
