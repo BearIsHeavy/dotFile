@@ -4,9 +4,7 @@ securityNote
 
 # Local scripts (keep bin structure but ignore personal scripts)
 bin/*
-!bin/shell/
 !bin/src/
-!bin/workshop/
 
 # Zsh plugins (managed separately)
 .zsh/*

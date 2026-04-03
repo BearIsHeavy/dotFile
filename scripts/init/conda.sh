@@ -11,10 +11,12 @@ conda_installer="Anaconda3-2024.10-1-Linux-x86_64.sh"
 conda_url="https://repo.anaconda.com/archive/$conda_installer"
 expected_sha="267955097a0e6902f761584062872168a6555cdc102708971a05a122a124d45e"
 
-if curl --max-time 120 -o "$HOME/Download/$conda_installer" -OL "$conda_url"; then
-  check_sha=$(sha256sum "$HOME/Download/$conda_installer" | awk '{print $1}')
+DOWNLOAD_DIR="$HOME/Downloads"
+
+if curl --max-time 120 -o "$DOWNLOAD_DIR/$conda_installer" -OL "$conda_url"; then
+  check_sha=$(sha256sum "$DOWNLOAD_DIR/$conda_installer" | awk '{print $1}')
   if [[ $check_sha == "$expected_sha" ]]; then
-    bash "$HOME/Download/$conda_installer"
+    bash "$DOWNLOAD_DIR/$conda_installer"
   else
     echo -e "${RED}SHA256 mismatch! Expected: $expected_sha, Got: $check_sha${RESET}" 1>&2
     exit 2
@@ -22,11 +24,11 @@ if curl --max-time 120 -o "$HOME/Download/$conda_installer" -OL "$conda_url"; th
 else
   # No network connection, try local file
   echo -e "${RED}Network connection error, trying to use local file...${RESET}"
-  if [[ -s "$HOME/Download/$conda_installer" ]]; then
-    check_sha=$(sha256sum "$HOME/Download/$conda_installer" | awk '{print $1}')
+  if [[ -s "$DOWNLOAD_DIR/$conda_installer" ]]; then
+    check_sha=$(sha256sum "$DOWNLOAD_DIR/$conda_installer" | awk '{print $1}')
     echo -e "\n${GREEN}$check_sha${RESET}\n"
     if [[ $check_sha == "$expected_sha" ]]; then
-      bash "$HOME/Download/$conda_installer"
+      bash "$DOWNLOAD_DIR/$conda_installer"
     else
       echo -e "${RED}SHA256 mismatch for local file${RESET}" 1>&2
       exit 2

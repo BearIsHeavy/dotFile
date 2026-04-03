@@ -13,7 +13,8 @@ alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOM
 alias sshAgent='eval $(ssh-agent) && ssh-add'
 alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
 alias cli='iflow'
-alias e-curl='LD_LIBRARY_PATH=/home/bear/code/openssl /home/bear/code/curl/src/curl'
+# Custom curl with specific OpenSSL — uncomment and adjust path for your system
+# alias e-curl='LD_LIBRARY_PATH=/home/bear/code/openssl /home/bear/code/curl/src/curl'
 
 # ls commands
 if type eza > /dev/null;then

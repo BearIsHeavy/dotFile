@@ -50,9 +50,7 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 │   └── zsh-autosuggestions/
 │
 ├── bin/                        # Custom scripts
-│   ├── shell/
-│   ├── src/
-│   └── workshop/
+│   └── src/
 │
 ├── vscode_config/
 ├── README.md

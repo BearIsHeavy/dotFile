@@ -59,7 +59,7 @@ batcat_installer() {
     fi
     sudo apt install bat -y && \
     mkdir -p "$HOME/bin" && \
-    ln -sf /bin/batcat "$HOME/bin/bat" && \
+    ln -sf "$(command -v batcat)" "$HOME/bin/bat" && \
     echo -e "\n${GREEN}batcat command installed successfully${RESET}\n"
 }
 
