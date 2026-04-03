@@ -1,5 +1,0 @@
-1. Add terminal font installation function 
-to ensure the normal operation of exa and other functions
-2. add batcat command installer
-3. update some initial files to optimized installation
-4. Found and fixed the problem that STATUS 3 would not display properly, the cause of the bug was incorrect, and now it is fixed by calling .zsh_history

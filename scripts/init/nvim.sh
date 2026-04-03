@@ -1,15 +1,24 @@
 #!/bin/env bash
 
-source ~/.dotfile/initial/colors.sh
+source "$HOME/.dotfile/scripts/init/colors.sh"
 
-install_nvm() {
-  read -r -p "Do you decide to install neovim in this computer(y/n): " dec
-  if [[ $dec =~ ^(y|Y) ]];then
-    ( cd ~/.dotfile/Download \
-        && tar -xvzf "$HOME"/.dotfile/Download/nvim-linux64.tar.gz \
-        && sudo mv nvim-linux64/ /opt/nvim-linux64 \
-    ) || exit 2
-    [[ ! -d /$HOME/bin ]] && mkdir -p $HOME/bin && ln -s /opt/nvim-linux64/bin/nvim $HOME/bin
+install_neovim() {
+  read -r -p "Do you decide to install neovim on this computer (y/n): " dec
+  if [[ $dec =~ ^([yY]|[yY][eE][sS])$ ]]; then
+    echo -e "${YELLOW}Downloading neovim from GitHub releases...${RESET}"
+    local nvim_url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    local download_dir="$HOME/.dotfile/Download"
+    mkdir -p "$download_dir"
+    curl -L --max-time 60 "$nvim_url" -o "$download_dir/nvim-linux-x86_64.tar.gz" || {
+      echo -e "${RED}Failed to download neovim${RESET}" 1>&2
+      return 2
+    }
+    tar -xzf "$download_dir/nvim-linux-x86_64.tar.gz" -C "$download_dir" \
+      && sudo mv "$download_dir"/nvim-linux-x86_64 /opt/nvim-linux-x86_64 \
+      || { echo -e "${RED}Failed to extract neovim${RESET}" 1>&2; return 2; }
+    [[ ! -d "$HOME/bin" ]] && mkdir -p "$HOME/bin"
+    ln -sf /opt/nvim-linux-x86_64/bin/nvim "$HOME/bin/nvim"
+    echo -e "${GREEN}Neovim installed to /opt/nvim-linux-x86_64${RESET}"
   fi
 }
 
@@ -28,23 +37,18 @@ initial_nvim_config() {
     echo -e -n "Installing...\n"
     mkdir -p "$HOME"/.config/nvim && ln -s "$HOME"/.dotfile/nvim "$HOME"/.config
   fi
-  echo -e "${GREEN}please access '$HOME'/.config/nvim/lua/plugins/plugins-setup.lua and then type :PackerSync \n${RESET}"
-}
-
-manual_plugin_installation() {
-  cp -r $HOME/.dotfile/Download/nvim/ $HOME/.local/share/nvim
+  echo -e "${GREEN}Please open '$HOME/.config/nvim/lua/plugins/plugins-setup.lua' and then type :PackerSync\n${RESET}"
 }
 
 
 # Initial NVIM
-echo "Whether to create stand-form directory link for Neovim: "
+echo "Whether to create standard directory link for Neovim: "
 read -r -p "yes/no: " ans
-if [[ $ans =~ ^(Y|y) ]];then
-   install_nvm && \
+if [[ $ans =~ ^([Yy]|[Yy][Ee][Ss])$ ]]; then
+   install_neovim && \
    initial_nvim_config || exit 4
-   manual_plugin_installation
-elif [[ $ans =~ ^[N|n] ]];then
-    echo -e "No Link be created\n"
+elif [[ $ans =~ ^([Nn]|[Nn][Oo])$ ]]; then
+    echo -e "No link will be created\n"
 fi
 
 

@@ -2,8 +2,6 @@
 # main.sh - Unified entry point for dotfiles setup
 # Supports: Ubuntu/Debian
 
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
@@ -53,13 +51,27 @@ show_menu() {
     echo ""
 }
 
+# Create a single symlink for a config file
+makeLink() {
+    local target="$1"
+    local fileName
+    fileName="$(basename "$target")"
+
+    if [[ -L "$HOME/$fileName" ]]; then
+        # Existing symlink — remove it
+        rm "$HOME/$fileName"
+    elif [[ -f "$HOME/$fileName" ]]; then
+        # Existing regular file — back it up
+        echo -e "${YELLOW}Backing up existing $HOME/$fileName -> $HOME/$fileName.bak${RESET}"
+        mv "$HOME/$fileName" "$HOME/$fileName.bak"
+    fi
+
+    ln -s "$SCRIPT_DIR/$target" "$HOME/$fileName"
+    echo -e "${GREEN}Created symlink: $HOME/$fileName -> $SCRIPT_DIR/$target${RESET}"
+}
+
 create_link() {
-    makeLink() {
-        fileName="$(basename $1)"
-        [ -f "$HOME/$fileName" ] || [ -L "$HOME/$fileName" ] \
-          && { rm "$HOME/$fileName"; } || echo -e "not exists $fileName \n"
-        ln -s "$SCRIPT_DIR/$1" ~/
-    }
+    echo -e "\n${BLUE}Creating symlinks...${RESET}"
 
     makeLink ".zsh"
     makeLink "generalConfig/.profile"
@@ -69,16 +81,16 @@ create_link() {
     makeLink "zshconfig/.zshrc"
     makeLink "zshconfig/.zshenv"
     makeLink "zshconfig/.zlogin"
-    
-    if [[ -d $HOME/bin ]];then
-        mv "$HOME"/bin "$HOME"/bin_back
-        ln -s "$SCRIPT_DIR/bin" ~/
-        cp "$HOME"/bin_back/* "$HOME"/bin
-        rm -r "$HOME"/bin_back
-    else
-        ln -s "$SCRIPT_DIR/bin" ~/
+
+    # Handle bin/ directory symlink
+    if [[ -d "$HOME/bin" && ! -L "$HOME/bin" ]]; then
+        echo -e "${YELLOW}Backing up existing $HOME/bin -> $HOME/bin.bak${RESET}"
+        mv "$HOME/bin" "$HOME/bin.bak"
+    elif [[ -L "$HOME/bin" ]]; then
+        rm "$HOME/bin"
     fi
-    
+    ln -s "$SCRIPT_DIR/bin" "$HOME/bin"
+
     echo -e "${GREEN}Symlinks created successfully!${RESET}"
 }
 
@@ -100,13 +112,11 @@ setup_module() {
     echo "  5) Tools"
     echo "  6) Fonts"
     echo "  7) Conda"
-    echo "  8) Colors"
-    echo "  9) Neovide"
-    echo "  10) Build DVWA"
+    echo "  8) Neovide"
     echo "  0) Back to main menu"
     echo ""
     read -p "Choice: " choice
-    
+
     case $choice in
         1) bash "$SCRIPT_DIR/scripts/init/vpn.sh" ;;
         2) bash "$SCRIPT_DIR/scripts/init/zsh.sh" ;;
@@ -115,9 +125,7 @@ setup_module() {
         5) bash "$SCRIPT_DIR/scripts/init/tools.sh" ;;
         6) bash "$SCRIPT_DIR/scripts/init/fonts.sh" ;;
         7) bash "$SCRIPT_DIR/scripts/init/conda.sh" ;;
-        8) bash "$SCRIPT_DIR/scripts/init/colors.sh" ;;
-        9) bash "$SCRIPT_DIR/scripts/init/neovide.sh" ;;
-        10) bash "$SCRIPT_DIR/scripts/init/build_dvwa.sh" ;;
+        8) bash "$SCRIPT_DIR/scripts/init/neovide.sh" ;;
         0) return ;;
         *) echo -e "${RED}Invalid choice${RESET}" ;;
     esac
@@ -125,22 +133,22 @@ setup_module() {
 
 full_setup() {
     echo -e "\n${YELLOW}Starting full setup...${RESET}"
-    
+
     # Install packages
     echo -e "\n${BLUE}Step 1: Installing packages...${RESET}"
-    install_packages
-    
+    install_packages || { echo -e "${RED}Package installation failed${RESET}"; return 1; }
+
     # Create symlinks
     echo -e "\n${BLUE}Step 2: Creating symlinks...${RESET}"
     create_link
-    
+
     # Setup modules
     echo -e "\n${BLUE}Step 3: Setup modules...${RESET}"
     for module in vpn zsh vim nvim tools fonts; do
         echo -e "\n${YELLOW}Setting up $module...${RESET}"
-        bash "$SCRIPT_DIR/scripts/init/${module}.sh" || echo -e "${RED}Failed: $module${RESET}"
+        bash "$SCRIPT_DIR/scripts/init/${module}.sh" || echo -e "${RED}Failed: $module (continuing)${RESET}"
     done
-    
+
     echo -e "\n${GREEN}========================================${RESET}"
     echo -e "${GREEN}  Full Setup Complete!${RESET}"
     echo -e "${GREEN}========================================${RESET}"
@@ -153,7 +161,7 @@ print_banner
 while true; do
     show_menu
     read -p "Enter your choice: " choice
-    
+
     case $choice in
         1) full_setup ;;
         2) install_packages ;;
@@ -162,4 +170,5 @@ while true; do
         5) echo -e "${GREEN}Goodbye!${RESET}"; exit 0 ;;
         *) echo -e "${RED}Invalid choice${RESET}" ;;
     esac
+    echo ""
 done

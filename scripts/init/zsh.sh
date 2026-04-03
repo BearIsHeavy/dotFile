@@ -1,10 +1,10 @@
 #!/bin/env bash
 
-# $? o is OK
-# $? 2 is not connect github
-# $? 3 is not install zsh
+# $? 0 is OK
+# $? 2 is not connected to github
+# $? 3 is zsh not installed
 
-. $HOME/.dotfile/initial/colors.sh # import color fime
+. "$HOME/.dotfile/scripts/init/colors.sh"
 
 create_autosuggestion() {
     echo -e "Installing autosuggestion model. \n"
@@ -15,7 +15,7 @@ create_autosuggestion() {
       echo -e -n "${GREEN}please execute command: source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh${RESET} \n"
     else
       git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
-        || echo -e -n "${RED}please checkout your proxy, which dont't connect github${RESET} \n"; exit 2
+      || { echo -e "${RED}Check your proxy, unable to connect to GitHub${RESET}" 1>&2; exit 2; }
     fi
 }
 

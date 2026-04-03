@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-source ~/.dotfile/initial/colors.sh
+source "$HOME/.dotfile/scripts/init/colors.sh"
 initial_vim() {
     # delete .vim fold
     [[ -d "$HOME/.vim" || -f "$HOME/.vim" || -L "$HOME/.vim" ]] && rm -r "$HOME/.vim"

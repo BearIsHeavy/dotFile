@@ -103,4 +103,4 @@ fi
 echo -e "\n${GREEN}========================================${RESET}"
 echo -e "${GREEN}  Ubuntu Initial Setup Complete!${RESET}"
 echo -e "${GREEN}========================================${RESET}"
-echo -e "${BLUE}Next step: Run ${GREEN}bash ~/path/to/.dotfile/setup_ubuntu.sh${BLUE} to configure dotfiles${RESET}"
+echo -e "${BLUE}Next step: Run ${GREEN}bash main.sh${BLUE} from the .dotfile directory to configure dotfiles${RESET}"

@@ -34,7 +34,6 @@ sudo apt install -y \
     htop \
     tree \
     tldr \
-    exa \
     eza \
     bat \
     httpie \

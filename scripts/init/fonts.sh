@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.dotfile/initial/colors.sh
+source "$HOME/.dotfile/scripts/init/colors.sh"
 
 declare -a fonts=(
     0xProto
@@ -25,4 +25,4 @@ for font in "${fonts[@]}"; do
     fi
 done
 
-fc-cache -fv 1
+fc-cache -fv
