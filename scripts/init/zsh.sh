@@ -45,8 +45,8 @@ if [[ ! -d $HOME/.zsh/zsh-autosuggestions ]];then
     create_autosuggestion
 fi
 
-# Download command-not-found
-if ! sudo apt install command-not-found; then
-  echo -e -n "${RED}not install command-not-found${RESET}"
-  exit 3
+# Download command-not-found (optional on Ubuntu 24.04)
+if ! dpkg -l command-not-found > /dev/null 2>&1; then
+    sudo apt install -y command-not-found || \
+    echo -e "${YELLOW}command-not-found not available (optional)${RESET}"
 fi

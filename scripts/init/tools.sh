@@ -12,18 +12,19 @@ tmux_installer() {
     fi
 }
 
-# Install tldr
+# Install tldr (tealdeer is the recommended Rust-based replacement)
 tldr_installer() {
-    if sudo apt install tldr -y; then
-      echo -e "\n${GREEN}tldr installed successfully${RESET}\n"
+    # On Ubuntu 24.04, the apt tldr package is broken.
+    # Install tealdeer (tldr in Rust) instead if cargo is available,
+    # otherwise skip.
+    if command -v cargo > /dev/null 2>&1; then
+        cargo install tealdeer && \
+        echo -e "\n${GREEN}tealdeer (tldr) installed via cargo${RESET}\n" || \
+        { echo -e "\n${YELLOW}tealdeer install failed, skipping${RESET}\n"; return 0; }
     else
-      echo -e "\n${RED}tldr install failed${RESET}\n" 1>&2
-      return 1
-    fi
-    if tldr -u > /dev/null 2>&1; then
-      echo -e "${GREEN}tldr cache updated${RESET}"
-    else
-      echo -e "${RED}tldr cache update failed${RESET}" 1>&2
+        echo -e "\n${YELLOW}cargo not found, skipping tldr/tealdeer install${RESET}"
+        echo -e "${YELLOW}Install manually: cargo install tealdeer${RESET}\n"
+        return 0
     fi
 }
 

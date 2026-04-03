@@ -23,19 +23,19 @@ install_neovim() {
 }
 
 initial_nvim_config() {
-  # create .config/nvim format
-  if [[ -d $HOME/.config/nvim || -L $HOME/.config/nvim ]]; then
-    echo -e "\n ${RED}nvim config file existed, do you want to override it?${RESET} \n"
+  # create .config/nvim symlink
+  if [[ -d "$HOME/.config/nvim" || -L "$HOME/.config/nvim" ]]; then
+    echo -e "\n${RED}nvim config already exists, do you want to override it?${RESET}\n"
     read -r -p "yes/no: " ans
-    if [[ $ans =~ ^(y|Y) ]]; then
-      # make .config direcotry
-      ( rm -rf "$HOME"/.config/nvim \
-          && mkdir -p "$HOME"/.config/ \
-          && ln -s "$HOME"/.dotfile/nvim "$HOME"/.config 1>/dev/null)
+    if [[ $ans =~ ^([yY]|[yY][eE][sS])$ ]]; then
+      rm -rf "$HOME/.config/nvim"
+      mkdir -p "$HOME/.config"
+      ln -s "$HOME/.dotfile/nvim" "$HOME/.config/nvim"
     fi
   else
-    echo -e -n "Installing...\n"
-    mkdir -p "$HOME"/.config/nvim && ln -s "$HOME"/.dotfile/nvim "$HOME"/.config
+    echo -e "Installing...\n"
+    mkdir -p "$HOME/.config"
+    ln -s "$HOME/.dotfile/nvim" "$HOME/.config/nvim"
   fi
   echo -e "${GREEN}Please open '$HOME/.config/nvim/lua/plugins/plugins-setup.lua' and then type :PackerSync\n${RESET}"
 }

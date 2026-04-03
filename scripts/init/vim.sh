@@ -27,10 +27,10 @@ initial_vim() {
 }
 
 # Initial VIM
-echo "Whether to create stand-form directory link for vim: "
+echo "Whether to create standard directory structure for Vim: "
 read -r -p "yes/no: " ans
-if [[ $ans =~ ^(Y|y) ]];then
+if [[ $ans =~ ^([Yy]|[Yy][eE][sS])$ ]]; then
     initial_vim
-elif [[ $ans =~ ^(N|n) ]];then
-    echo -e "No Link be created\n"
+elif [[ $ans =~ ^([Nn]|[Nn][oO])$ ]]; then
+    echo -e "No directory will be created\n"
 fi

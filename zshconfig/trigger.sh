@@ -18,7 +18,7 @@ else
 fi
 
 # python virtual environment, not conda environment
-[[ -n $VIRTUAL_ENV ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
+[[ -n "$VIRTUAL_ENV" ]] && python_venv="(🐍 $(basename "$VIRTUAL_ENV"))" || python_venv=''
 
 # conda environment
 if [[ -z "$CONDA_DEFAULT_ENV" ]];then
@@ -27,10 +27,10 @@ else
     conda_activate_env="(🐍 ${CONDA_DEFAULT_ENV})"
 fi
 
-# branch 
-if which git > /dev/null;then
-    branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')" 
-    [[ -n $branch ]] && git_branch="( $branch)" || git_branch=""
+# branch
+if which git > /dev/null; then
+    branch="$(git branch 2>/dev/null | grep -e '\* ' | sed 's/\*.//g')"
+    [[ -n "$branch" ]] && git_branch="( $branch)" || git_branch=""
 fi
 
 # If the judgment logic is related to the following code snippet, you can modify it
@@ -38,30 +38,30 @@ fi
 # ---------------------------------------relevant code snippet-------------------------------------------------------
 
 # node_version optional open
-if type node > /dev/null;then
+if type node > /dev/null; then
   node_version="$(node -v)"
   node_version="(🚀: $node_version)"
-  _currentPwd="$(/usr/bin/ls $(pwd) | grep 'package.json')"
-  if [[ -z ${_currentPwd} ]];then
-    _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-    if [[ -z ${_parentPwd} ]];then
-        _double_parentPwd="$(/usr/bin/ls $(pwd)/../.. | grep 'package.json')"
-        [ -z ${_double_parentPwd} ] && unset node_version
+  _currentPwd="$(/usr/bin/ls "$(pwd)" | grep 'package.json')"
+  if [[ -z "$_currentPwd" ]]; then
+    _parentPwd="$(/usr/bin/ls "$(pwd)/.." | grep 'package.json')"
+    if [[ -z "$_parentPwd" ]]; then
+        _double_parentPwd="$(/usr/bin/ls "$(pwd)/../.." | grep 'package.json')"
+        [ -z "$_double_parentPwd" ] && unset node_version
     fi
   fi
 fi
 
-# The execution of the following code is related to whether the path has changed 
-# and consumes large resources 
+# The execution of the following code is related to whether the path has changed
+# and consumes large resources
 # and can be optimized by detecting whether the path has changed
 # ---------------------------------------relevant code snippet-------------------------------------------------------
 PREVIOUS_PATH="$(tail -n 1 "${HOME}/.zsh_history")"
-if [[ ${PREVIOUS_PATH} =~ 'cd' ]];then
+if [[ "$PREVIOUS_PATH" =~ 'cd' ]]; then
     # docker environment
     docker_environment="(🐳)"
-    _currentPwd="$(/usr/bin/ls $(pwd) | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
-    if [[ -z ${_currentPwd} ]];then
-      _parentPwd="$(/usr/bin/ls $(pwd)/.. | grep 'package.json')"
-      [ -z ${_parentPwd} ] && unset docker_environment
+    _currentPwd="$(/usr/bin/ls "$(pwd)" | grep -Ei '((d|D)ockerfile)|(docker-compose\.ya?ml)')"
+    if [[ -z "$_currentPwd" ]]; then
+      _parentPwd="$(/usr/bin/ls "$(pwd)/.." | grep 'package.json')"
+      [ -z "$_parentPwd" ] && unset docker_environment
     fi
 fi

@@ -9,7 +9,7 @@ alias mv='mv -i'
 
 # Custom script for daily work
 alias publicIp='(curl --max-time 5 https://ipinfo.io/ip) || echo "Link network failure"'
-alias setProxy='bash $HOME/bin/enableProxy && source $HOME/tmp.txt && rm -f $HOME/tmp.txt && echo -n "proxy has been Open"'
+alias setProxy='bash "$HOME/bin/enableProxy" && source "$HOME/tmp.txt" && rm -f "$HOME/tmp.txt" && echo -n "proxy has been Open"'
 alias sshAgent='eval $(ssh-agent) && ssh-add'
 alias unsetProxy='unset all_proxy && unset http_proxy && unset https_proxy && unset sockets_proxy'
 alias cli='iflow'
