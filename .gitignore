@@ -20,3 +20,6 @@ zshconfig/.zprofile
 
 # Log files
 *.log
+
+# Neovim auto-generated files
+nvim/plugin/packer_compiled.lua

@@ -17,5 +17,5 @@ fi
 if [[ -d ~/.zsh/zsh-autosuggestions || -L ~/.zsh/zsh-autosuggestions ]];then
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh                                
 else                                                                       
-    echo -e "not find $HOME/.zsh/zsh-autosuggestion fold\n" 1>&2           
+    echo -e "not found $HOME/.zsh/zsh-autosuggestions folder\n" 1>&2           
 fi

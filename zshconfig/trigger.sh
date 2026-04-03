@@ -55,7 +55,7 @@ fi
 # and consumes large resources 
 # and can be optimized by detecting whether the path has changed
 # ---------------------------------------relevant code snippet-------------------------------------------------------
-PREVIOUS_PATH="tail -n 1 ${HOME}/.zsh_history"
+PREVIOUS_PATH="$(tail -n 1 "${HOME}/.zsh_history")"
 if [[ ${PREVIOUS_PATH} =~ 'cd' ]];then
     # docker environment
     docker_environment="(🐳)"

@@ -9,13 +9,7 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 ├── main.sh                     # Unified entry point (run this first)
 │
 ├── scripts/                    # All setup scripts
-│   ├── setup/                  # Distro setup entry points
-│   │   └── ubuntu.sh
-│   │
-│   ├── install/                # OS installation scripts
-│   │   └── ubuntu.sh
-│   │
-│   ├── post_install/           # Post-install configuration
+│   ├── bootstrap/              # Fresh OS bootstrap
 │   │   └── ubuntu.sh
 │   │
 │   ├── requirements/           # Package requirements
@@ -29,11 +23,11 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 │       ├── tools.sh            # Additional tools
 │       ├── fonts.sh            # Terminal fonts
 │       ├── conda.sh            # Conda setup
-│       ├── colors.sh           # Colorscheme setup
+│       ├── colors.sh           # Color variables
 │       ├── neovide.sh          # Neovide setup
-│       └── build_dvwa.sh       # DVWA build script
+│       └── uv.sh               # UV Python package manager
 │
-├── config/                     # Configuration files
+├── generalConfig/              # Configuration files
 │   ├── .alias
 │   ├── .bashrc
 │   ├── .profile
@@ -42,7 +36,6 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 │
 ├── zshconfig/                  # Zsh configuration
 │   ├── .zlogin
-│   ├── .zprofile
 │   ├── .zshenv
 │   ├── .zshrc
 │   └── trigger.sh
@@ -54,7 +47,6 @@ Personal dotfiles configuration for **Ubuntu/Debian** systems.
 │   └── plugin/
 │
 ├── .zsh/                       # Zsh plugins
-│   ├── spaceship/
 │   └── zsh-autosuggestions/
 │
 ├── bin/                        # Custom scripts
@@ -120,9 +112,8 @@ Option 4 allows you to setup specific modules:
 - Tools
 - Fonts
 - Conda
-- Colors
 - Neovide
-- Build DVWA
+- UV (Python package manager)
 
 ---
 

@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
 
   use ("christoomey/vim-tmux-navigator") -- use ctl-hjkl to local window
   use ("nvim-treesitter/nvim-treesitter") -- high light syntax
-  use ("p00f/nvim-ts-rainbow") -- coordniate treesitter，difference backet have difference colors
+  use ("HiPhish/rainbow-delimiters.nvim") -- rainbow brackets
 
   use {
     "williamboman/mason.nvim",
@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
   use ("lewis6991/gitsigns.nvim") -- left prompt for git
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    'nvim-telescope/telescope.nvim', tag = '*',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
